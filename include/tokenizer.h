@@ -2,6 +2,8 @@
 # define TOKENIZER_H
 
 #include <stdlib.h>
+#include "minishell.h"
+typedef struct s_redcmd t_redi_exec;
 typedef enum e_token {
     WORD,
     PIPE,
@@ -32,9 +34,9 @@ typedef struct s_token
 	char			*value;
     int             count;
     int             index;
-    t_redi_exec *list_here_doc;
 	struct s_token	*next;
 	struct s_token	*prev; 
+    t_redi_exec *list_here_doc;
 }   t_token;
 
 t_token*	tokenization(char *line);

@@ -46,10 +46,11 @@ void read_from_user(char *delimiter, t_redi_exec *node_heredoc, int i)
         free(line);
     }
     close (node_heredoc->infile);
-    // node_heredoc->infile = open(path_tmp_file, O_RDONLY);
-    // free (path_tmp_file);
+    node_heredoc->infile = open(path_tmp_file, O_RDONLY);
+    node_heredoc->file_name = ft_strdup(delimiter);
+    free (path_tmp_file);
 }
-t_tree *creat_list_heredoc(t_token *tokens)
+t_redi_exec *creat_list_heredoc(t_token *tokens)
 {
     t_token *ptr_token;
     t_redi_exec *list_heredoc;
@@ -66,6 +67,7 @@ t_tree *creat_list_heredoc(t_token *tokens)
         if (ptr_token->type == HEREDOC)
         {
             delimiter = remove_quotes(ptr_token->next->value);
+            // printf ("%s\n",delimiter);
             new_node = new_node_here_doc(HEREDOC);
             read_from_user(delimiter, new_node, i);
             free (delimiter);
@@ -77,23 +79,12 @@ t_tree *creat_list_heredoc(t_token *tokens)
                 new_node->prev = last_node;
             }
             last_node = new_node;
-            // Skip the delimiter token
-            // ptr_token = ptr_token->next->next;
         }
-        else if (ptr_token->type != HEREDOC && ptr_token->type != WORD)
-        {
-            new_node = new_node_here_doc(SPLIT);
-            if (!list_heredoc)
-                list_heredoc = new_node;
-            else
-            {
-                last_node->next = new_node;
-                new_node->prev = last_node;
-            }
-            last_node = new_node;
-                        i++;
-        }
-            ptr_token = ptr_token->next;
+        else if (ptr_token->type & PARN || ptr_token->type & PIPE || ptr_token->type & LOGICAL)
+            i++;
+        ptr_token = ptr_token->next;
     }
-    return ((t_tree *)list_heredoc);
+    while (list_heredoc && list_heredoc->next)
+        list_heredoc = list_heredoc->next;
+    return (list_heredoc);
 }

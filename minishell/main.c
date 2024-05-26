@@ -23,51 +23,57 @@ char *token_type_to_string(int type) {
     }
 }
 
-int main() {
-    char *line;
-    t_token *tokens;
-    t_redi_exec *list_heredoc;
-    int i;
-    // char *line2;
+// int main() {
+//     char *line;
+//     t_token *tokens;
+//     t_redi_exec *list_heredoc;
+//     // t_exec *ptr;
+//     t_redi_exec *ptr2;
+//     int i;
+//     // char *line2;
 
-    i = 0;
-	line = readline("minishell> "); // link with -lreadkine
+//     i = 0;
+// 	line = readline("minishell> "); // link with -lreadkine
 
-    // tokenscopy = tokens;
-    tokens = tokenization(line);
-    // line = remove_quotes(tokens->next->next->value);
-    // printf ("%s\n", line);
-    clean_list_tokens(&tokens);
-    list_heredoc = (t_redi_exec *)creat_list_heredoc(tokens);
-    while (list_heredoc)
-    {
-        printf ("%s", list_heredoc->file_name);
-        list_heredoc = list_heredoc->next;
-    }
-    // reverse_list_tokens(&tokens);
-    // ptr = get_exec_and_update_tokens(&tokens);
-    // while (ptr->args[i])
-    // {
-    //     // printf ("jj");
-    //     printf ("..%s..\n", ptr->args[i]);
-    //     i++;
-    // }
+//     // tokenscopy = tokens;
+//     tokens = tokenization(line);
+//     // line = remove_quotes(tokens->next->next->value);
+//     // printf ("%s\n", line);
+//     clean_list_tokens(&tokens);
+//     list_heredoc = (t_redi_exec *)creat_list_heredoc(tokens);
+//     // while (list_heredoc)
+//     // {
+//         ptr2 = get_node_heredoc(&list_heredoc);
+//         printf ("%s\n", ptr2->file_name);
+//         ptr2 = get_node_heredoc(&list_heredoc);
+//         printf ("%s\n", ptr2->file_name);
+//     //     list_heredoc = list_heredoc->next;
+//     // }
+// //     reverse_list_tokens(&tokens);
+
+// //     ptr = get_exec_and_update_tokens(&tokens);
+// //     while (ptr->args[i])
+// //     {
+// //         // printf ("jj");
+// //         printf ("..%s..\n", ptr->args[i]);
+// //         i++;
+// //     }
     
     
-//while (1)
-//{
-        // while (tokens != NULL) {
-        //     if (tokens && tokens->value)
-        //     {
-        //         // printf ("jj\n");
-        //      printf("%s_%s=> \n",  tokens->value, token_type_to_string(tokens->type));
-        //     }
-        //     tokens = tokens->next;
-        // }
-	// analyze(tokenscopy);
-//}
-    return 0;
-}
+// // //while (1)
+// // //{
+// //         while (tokens != NULL) {
+// //             if (tokens && tokens->value)
+// //             {
+// //                 // printf ("jj\n");
+// //              printf("%s_%s=> \n",  tokens->value, token_type_to_string(tokens->type));
+// //             }
+// //             tokens = tokens->prev;
+// //         }
+// // // 	// analyze(tokenscopy);
+// // // //}
+//     return 0;
+// }
 // void print_tree(t_tree *root) {
 //     if (root == NULL) {
 //         printf("NULL\n");
@@ -258,15 +264,15 @@ void print_tree(t_tree *root) {
         }
     }
 }
-// int main() {
-//     char *line;
-//     t_token *tokens;
-//     t_tree *root;
+int main() {
+    char *line;
+    t_token *tokens;
+    t_tree *root;
 
-// 	line = readline("minishell "); // link with -lreadkine
+	line = readline("minishell> "); // link with -lreadkine
 
-//     tokens = tokenization(line);
-//     root = build_tree(&tokens);
-//     print_tree (root);
-//     return 0;
-// }
+    tokens = tokenization(line);
+    root = build_tree(&tokens);
+    print_tree (root);
+    return 0;
+}
