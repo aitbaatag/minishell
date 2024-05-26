@@ -5,11 +5,9 @@
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include "syntax.h"
-#include "tokenizer.h"
-#include "../libft/libft.h"
-#include "parser.h"
 #include <fcntl.h>
+#include "../libft/libft.h"
+#include "tokenizer.h"
+#include "parser.h"
 
-
-#endif
+#endif // MINISHELL_H
