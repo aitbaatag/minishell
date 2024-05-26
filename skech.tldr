@@ -42,9 +42,9 @@
 		{
 			"id": "pointer:pointer",
 			"typeName": "pointer",
-			"x": 10024.333431732335,
-			"y": 51862.57205576697,
-			"lastActivityTimestamp": 1716688618871,
+			"x": 13047.301462570322,
+			"y": 50646.26000862009,
+			"lastActivityTimestamp": 1716689016301,
 			"meta": {}
 		},
 		{
@@ -63,10 +63,12 @@
 			"typeName": "camera"
 		},
 		{
-			"editingShapeId": null,
+			"editingShapeId": "shape:uZyCzBCStSzB9j7YhgFhV",
 			"croppingShapeId": null,
-			"selectedShapeIds": [],
-			"hoveredShapeId": "shape:bVFXJZ37NxrKfwMHNoggS",
+			"selectedShapeIds": [
+				"shape:uZyCzBCStSzB9j7YhgFhV"
+			],
+			"hoveredShapeId": "shape:uZyCzBCStSzB9j7YhgFhV",
 			"erasingShapeIds": [],
 			"hintingShapeIds": [],
 			"focusedGroupId": null,
@@ -77,7 +79,7 @@
 		},
 		{
 			"followingUserId": null,
-			"opacityForNextShape": 1,
+			"opacityForNextShape": 0.5,
 			"stylesForNextShape": {
 				"tldraw:color": "yellow",
 				"tldraw:size": "xl",
@@ -40980,7 +40982,7 @@
 			"y": 50462.45903318842,
 			"rotation": 0,
 			"isLocked": false,
-			"opacity": 0.25,
+			"opacity": 0.5,
 			"meta": {},
 			"id": "shape:0LZ89F9UqXtAiaNbjwoMJ",
 			"type": "arrow",
@@ -41049,7 +41051,7 @@
 			"y": 51353.064031770635,
 			"rotation": 0,
 			"isLocked": false,
-			"opacity": 0.25,
+			"opacity": 0.5,
 			"meta": {},
 			"id": "shape:38ld6PF7toILEAkziTOna",
 			"type": "arrow",
@@ -41086,8 +41088,8 @@
 			"typeName": "shape"
 		},
 		{
-			"x": 10493.866482337142,
-			"y": 50391.79063431842,
+			"x": 10562.25248214835,
+			"y": 50394.09671688805,
 			"rotation": 0,
 			"isLocked": false,
 			"opacity": 1,
@@ -41097,8 +41099,8 @@
 			"props": {
 				"color": "light-green",
 				"size": "xl",
-				"w": 1923.5933405019512,
-				"text": "I think to execute this tree must start from root \nin our case root is grouped cmd so first one shuld\ncheck pointer outer redir if not point to NULL \nwe have to dup file\nif yes complete exec",
+				"w": 2503.1777448172234,
+				"text": "To execute this tree, you must start from the root. In our case \nthe root is the grouped command. First, you should check \nthe pointer outer_redir If it is not NULL, we have to dup the file\nIf it is NULL, proceed to execute the command",
 				"font": "draw",
 				"textAlign": "start",
 				"autoSize": true,
