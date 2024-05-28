@@ -15,8 +15,9 @@ char **convert_env_list_to_array(t_env *envs)
     {
         env_array[i] = ft_strjoin(ptr_envs->key, "=");
         if (ptr_envs->value)
-            env_array[i] = ft_strjoin(ptr_envs->key, ptr_envs->value);
+            env_array[i] = ft_strjoin(env_array[i], ptr_envs->value);
         ptr_envs = ptr_envs->next;
+        i++;
     }
     return (env_array);
 }

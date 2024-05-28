@@ -1,13 +1,4 @@
 #include "../include/minishell.h"
-int compare_env(const void *a, const void *b)
-{
-    char **env_a;
-    char **env_b;
-
-    env_a = (char **)a;
-    env_b = (char **)b;
-    return (ft_strcmp(*env_a, *env_b));
-}
 void bubble_sort_env(char **env_array, size_t size)
 {
     size_t i;
@@ -22,7 +13,7 @@ void bubble_sort_env(char **env_array, size_t size)
         swapped = 0;
         while (j < size - i - 1)
         {
-            if (ft_strcmp(env_array[j], env_array[j + 1]) > 0)
+            if (ft_strcmp((const char *)env_array[j], (const char *)env_array[j + 1]) > 0)
             {
                 temp = env_array[j];
                 env_array[j] = env_array[j + 1];
@@ -44,8 +35,7 @@ void print_sorted_env(t_env *envs)
 
     env_array = convert_env_list_to_array(envs);
     size = get_envp_size(NULL, envs, 1);
-    bubble_sort_env(env_array, size);
-
+    bubble_sort_env(env_array, size - 1);
     while (i < size)
     {
         printf("declare -x %s\n", env_array[i]);
@@ -62,11 +52,14 @@ void add_var_to_envs_or_app_modif_exis(char *arg)
     int flag;
     char *value;
     char *new_value;
+    char *delimiter;
 
-    flag =  0;
-    i = 0;
-    value = create_value(ft_strchr(arg, '=') + 1);
-    key = create_key(arg, ft_strchr(arg, '='));
+    flag = 0;
+    i = 0; 
+    delimiter = ft_strchr(arg, '=');
+    if (delimiter)
+        value = create_value(delimiter + 1);
+    key = create_key(arg, delimiter);
     current = find_env_var(g_env, key);
     if (current)
     {
@@ -81,19 +74,19 @@ void add_var_to_envs_or_app_modif_exis(char *arg)
         if (flag == 1)
         {
             new_value = ft_strjoin(current->value, value);
-            free (current->value);
+            // free (current->value);
             current->value = new_value;
         }
         else
         {
-            free(current->value);
+            // free(current->value);
             current->value = ft_strdup(value);
         }
     }
     else
         add_envp(arg);
-    free (key);
-    free (value);
+    // free (key);
+    // free (value);
 }
 void export_env_var(char **args)
 {
@@ -110,6 +103,6 @@ void export_env_var(char **args)
         {
             add_var_to_envs_or_app_modif_exis(args[i]);
             i++;
-        }   
+        }
     }
 }

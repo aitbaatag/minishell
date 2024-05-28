@@ -8,7 +8,7 @@ int main(int argc, char *argv[], char *envp[])
     t_env *g_env;
 
     g_env = NULL;
-    value =ft_split("export", ' ');
+    value =ft_split("export var=jjjjjjjjjjjjjjjjjjjjjjjjj", ' ');
     data = safe_malloc(sizeof(data));
 
     (void)argv;
@@ -23,10 +23,10 @@ int main(int argc, char *argv[], char *envp[])
     {
         data->line = readline("minishell@1337:~$ ");
         data->tokens = tokenization(data->line);
-        if (ft_strcmp("export", "export"))
+        if (!ft_strcmp("export", "export"))
             export_env_var(value);
 
         // data->root = build_tree(&data->tokens);
         //start_execute(data->root);
     }
-}
+}   
