@@ -15,12 +15,7 @@ int handle_special_characters(t_token **tokens, char *line, int *i)
 
 	while (line[*i] && line[*i] == line[fix] && count < 2)
 	{
-		if (line[*i] == '$')
-		{
-			flag = 1;
-			*i += is_variable(tokens, &line[*i]);
-		}
-		else if (line[*i] == '\"' || line[*i] == '\'')
+		if (line[*i] == '\"' || line[*i] == '\'')
 		{
 			flag = 1;
 			is_quotes(tokens, &line[*i], i);

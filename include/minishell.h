@@ -9,5 +9,12 @@
 #include "../libft/libft.h"
 #include "tokenizer.h"
 #include "parser.h"
-
+#include "envs.h"
+#include "builtins.h"
+typedef struct s_tree t_tree;
+typedef struct s_data {
+    char *line;
+    t_token *tokens;
+    t_tree *root;
+} t_data;
 #endif // MINISHELL_H

@@ -1,29 +1,25 @@
 #include "../include/minishell.h"
-size_t get_envp_size(char **envp, t_env *envs, int i)
+void add_env_node_to_list(t_env *new)
 {
-    size_t size = 0;
-    t_env *ptr_env;
+    t_env *temp;
 
-    ptr_env = envs;
-    if (i == 0)
+    if (g_env == NULL)
+        g_env = new;
+    else
     {
-        while (envp[size])
-            size++;
+        temp = g_env;
+        while (temp->next)
+            temp = temp->next;
+        temp->next = new;
+        new->prev = temp;
     }
-    else if (i == 1)
-    {
-        while (ptr_env)
-        {
-            ptr_env = ptr_env->next;
-            size++;
-        }
-    }
-    return size;
 }
+
 char *create_value(char *value_start)
 {
     char *value;
-    value = strdup(value_start);
+
+    value = remove_quotes(value_start);
     if (!value)
     {
         perror("strdup");
@@ -69,11 +65,12 @@ t_env *create_env_node(char *env)
     return new;
 }
 
-void add_envp(char *env, t_env **envs)
+void add_envp(char *env)
 {
     t_env *new;
+
     new = create_env_node(env);
     if (!new)
         return;
-    add_env_node_to_list(envs, new);
+    add_env_node_to_list(new);
 }

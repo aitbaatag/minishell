@@ -26,27 +26,28 @@ char *token_type_to_string(int type) {
 // int main() {
 //     char *line;
 //     t_token *tokens;
-//     t_redi_exec *list_heredoc;
+//     // t_redi_exec *list_heredoc;
 //     // t_exec *ptr;
-//     t_redi_exec *ptr2;
+//     // t_redi_exec *ptr2;
 //     int i;
 //     // char *line2;
 
 //     i = 0;
 // 	line = readline("minishell> "); // link with -lreadkine
+//     // add_history_time(line);
 
 //     // tokenscopy = tokens;
 //     tokens = tokenization(line);
 //     // line = remove_quotes(tokens->next->next->value);
 //     // printf ("%s\n", line);
 //     clean_list_tokens(&tokens);
-//     list_heredoc = (t_redi_exec *)creat_list_heredoc(tokens);
+//     // list_heredoc = (t_redi_exec *)creat_list_heredoc(tokens);
 //     // while (list_heredoc)
 //     // {
-//         ptr2 = get_node_heredoc(&list_heredoc);
-//         printf ("%s\n", ptr2->file_name);
-//         ptr2 = get_node_heredoc(&list_heredoc);
-//         printf ("%s\n", ptr2->file_name);
+//         // ptr2 = get_node_heredoc(&list_heredoc);
+//         // printf ("%s\n", ptr2->file_name);
+//         // ptr2 = get_node_heredoc(&list_heredoc);
+//         // printf ("%s\n", ptr2->file_name);
 //     //     list_heredoc = list_heredoc->next;
 //     // }
 // //     reverse_list_tokens(&tokens);
@@ -62,14 +63,14 @@ char *token_type_to_string(int type) {
     
 // // //while (1)
 // // //{
-// //         while (tokens != NULL) {
-// //             if (tokens && tokens->value)
-// //             {
-// //                 // printf ("jj\n");
-// //              printf("%s_%s=> \n",  tokens->value, token_type_to_string(tokens->type));
-// //             }
-// //             tokens = tokens->prev;
-// //         }
+//         while (tokens != NULL) {
+//             if (tokens && tokens->value)
+//             {
+//                 // printf ("jj\n");
+//              printf("%s_%s=> \n",  tokens->value, token_type_to_string(tokens->type));
+//             }
+//             tokens = tokens->next;
+//         }
 // // // 	// analyze(tokenscopy);
 // // // //}
 //     return 0;
