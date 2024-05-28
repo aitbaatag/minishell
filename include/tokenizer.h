@@ -15,7 +15,6 @@ typedef enum e_token {
     OR,
     DOUBLE_QUOTE,
     SINGLE_QUOTE,
-    VARIABLE,
     OPENING_PARENTHESES,
     CLOSING_PARENTHESES,
     WHITE_SPACE,
@@ -50,5 +49,6 @@ void init_struct(t_token *list_tokens);
 void is_quotes(t_token **token, char *str, int *i);
 int is_variable(t_token **token, char *str);
 int check_quotes(char *str);
+int count_qoutes(char *str, char c);
 
 #endif

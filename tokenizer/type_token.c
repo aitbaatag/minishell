@@ -27,8 +27,6 @@ token check_special_characters(char *str, int count)
 			return OPENING_PARENTHESES;
 		else if (!ft_strcmp(str, ")"))
 			return CLOSING_PARENTHESES;
-		else if (!ft_strcmp(str, "$"))
-			return VARIABLE;
 		else if (!ft_strcmp(str, "*"))
 			return STAR;
 	}

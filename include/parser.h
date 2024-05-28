@@ -45,13 +45,6 @@ typedef struct s_grouped_commands {
 	t_tree *outer_redir;
 } t_grp_exec;
 
-typedef struct s_env {
-    char *key;
-    char *value;
-    struct s_env *next;
-	struct s_env *prev;
-} t_env;
-
 //Tree Building Functions
 t_tree *build_tree(t_token **tokens);
 t_tree *link_root_tree(t_token **tokens, t_tree *right, t_redi_exec **list_heredoc);
@@ -93,11 +86,4 @@ char *remove_quotes(char *str);
 void reverse_list_tokens(t_token **token);
 void clean_list_tokens(t_token **tokens);
 
-t_env *create_env_node(char *env);
-char *create_key(char *env, char *delimiter);
-char *create_value(char *value_start);
-void add_env_node_to_list(t_env **envs, t_env *new);
-t_env *set_env(char **envp);
-char **copy_envp(char **envp);
-size_t get_envp_size(char **envp, t_env *envs, int i);
 #endif
