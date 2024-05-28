@@ -99,6 +99,6 @@ char *remove_quotes(char *str)
         }
     }
 
-    free(str);
+    // free(str);
     return joined;
 }

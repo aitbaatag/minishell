@@ -33,7 +33,10 @@ char *create_key(char *env, char *delimiter)
     size_t key_len;
     char *key;
 
-    key_len = delimiter - env;
+    if (!delimiter)
+        key_len = ft_strlen(env);
+    else
+        key_len = delimiter - env;
     key = safe_malloc((key_len + 1) * sizeof(char));
     if (!key)
     {
