@@ -43,7 +43,7 @@ char *create_key(char *env, char *delimiter)
         perror("malloc");
         exit(EXIT_FAILURE);
     }
-    ft_strlcpy(key, env, key_len);
+    ft_strlcpy(key, env, key_len + 1);
     return key;
 }
 
