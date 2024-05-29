@@ -1,10 +1,6 @@
 #include "../include/minishell.h"
 t_env *find_env_var(t_env *envs, char *key)
 {
-    if(1)
-    {
-        exit(1);
-    }
     t_env *current;
     int i;
 

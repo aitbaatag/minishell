@@ -33,7 +33,7 @@ char	*get_path(char *command)
 		return (command);
 	// if ((command[0] == '/' || command[0] == '.'))
 	// 	return (NULL);
-	path_node = find_env_var(global->env, "PATH");
+	path_node = find_env_var(global.env, "PATH");
 	split_path = ft_split(path_node->value, ':');
 	if (split_path)
 	{
@@ -49,4 +49,10 @@ char	*get_path(char *command)
 		}
 	}
 	return (NULL);
+}
+
+int	check_cmd(t_exec *exec)
+{
+	(void)exec;
+	return (0);
 }

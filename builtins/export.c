@@ -70,7 +70,7 @@ void add_var_to_envs_or_app_modif_exis(char *arg)
     if (delimiter)
         value = create_value(delimiter + 1);
     key = create_key(arg, delimiter);
-    current = find_env_var(global->env, key);
+    current = find_env_var(global.env, key);
     if (current)
     {
         while (arg[i])
@@ -99,19 +99,24 @@ void add_var_to_envs_or_app_modif_exis(char *arg)
     free (key);
     free (value);   
 }
+
 int export_env_var(t_exec *exec)
 {
     int i;
     t_env *envs;
 
-    envs = global->env;
+    envs = global.env;
     i = 1;
     if (exec->args[1] == NULL)
         print_sorted_env(envs);
     else
     {
         while (exec->args[i])
-            add_var_to_envs_or_app_modif_exis(exec->args[i++]);
-    }
+        {
+            // printf("myvar: %s\n", exec->args[i]);
+            add_var_to_envs_or_app_modif_exis(exec->args[i]);
+			i++;
+		}
+	}
     return (0);
 }

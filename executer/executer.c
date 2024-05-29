@@ -1,4 +1,5 @@
 #include "../include/minishell.h"
+
 int	run_subshell(t_tree *subshell)
 {
 	(void)subshell;
@@ -88,12 +89,15 @@ int     run_cmd(t_tree *tree)
 	// handle signals
 	if (fork() == 0)	// execute child
 	{
-		execve(get_path(exec->args[0]), exec->args, env_to_char(exec->env));
-		error(exec->args[0], NULL);	// if the child fails, handle it
+		// printf("hughosuhgo\n");
+		execve(get_path(exec->args[0]), exec->args, env_to_array(exec->env));
+		// printf("hughosuhgo\n");
+		printf("\033[0;31m%s\n\033[0m", exec->args[0]); // error/perror?
 		set_exit_status(127);
 		// collect_garbage();
 		exit(get_exit_status());
 	}
+	// waitpid
 	wait(&status);
 	if (WIFEXITED(status))
 		status = WEXITSTATUS(status);

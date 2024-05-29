@@ -1,17 +1,15 @@
 #include "../include/minishell.h"
 
+t_global	global;
+
 int main(int argc, char *argv[], char *envp[])
 {
     t_data *data;
-    char **value;
-    t_global *global;
-    char **value2;
+    t_global global;
 
-    global = NULL;
-    global->env = NULL;
-    global->status = 0;
-    value =ft_split("export ZSH=jj", ' ');
-    value2 =ft_split("export", ' ');
+	// global = malloc(sizeof(t_global));
+    global.env = NULL;
+    global.status = 0;
     data = safe_malloc(sizeof(data));
 
     (void)argv;
@@ -24,14 +22,9 @@ int main(int argc, char *argv[], char *envp[])
     set_env(envp);
     while (1)
     {
-        data->line = readline("minishell@1337:~$ ");
+        data->line = readline("\033[1;32mminishell@1337:~$ \033[0m");
         data->tokens = tokenization(data->line);
-        // if (!ft_strcmp("export", "export"))
-        //     export_env_var(value);
-        // export_env_var(value2);
-        // builtin_unset("ZSH");
-        // builtin_env();
-        data->root = build_tree(&data->tokens);
-        //start_execute(data->root);
+        data->tree = build_tree(&data->tokens);
+        executer(data->tree);
     }
-}   
+}
