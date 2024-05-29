@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <error.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <fcntl.h>
@@ -19,17 +20,19 @@
 typedef struct s_tree t_tree;
 struct s_token;
 typedef struct s_env t_env;
+
 typedef	struct s_global {
     t_env   *env;
     int		status;
 }	t_global;
 
 // Declare the global variable
-extern t_global *global;
+extern t_global global;
 
 typedef struct s_data {
     char *line;
     t_token *tokens;
-    t_tree *root;
+    t_tree *tree;
 } t_data;
+
 #endif // MINISHELL_H

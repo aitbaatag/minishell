@@ -1,7 +1,7 @@
 #ifndef SYNTAX_H
 # define SYNTAX_H
 
-#include "tokenizer.h"
+#include "minishell.h"
 
 int	analyze(t_token *line);
 void	check_andorpipe(t_token *node);

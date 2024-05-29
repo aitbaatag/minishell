@@ -1,8 +1,8 @@
 #ifndef TOKENIZER_H
 # define TOKENIZER_H
 
-#include <stdlib.h>
 #include "minishell.h"
+
 typedef struct s_redcmd t_redi_exec;
 typedef enum e_token {
     WORD,
