@@ -31,14 +31,24 @@ void print_sorted_env(t_env *envs)
 {
     char **env_array;
     size_t size;
-    size_t i = 0;
+    size_t i;
+    size_t j;
 
+    i = 0;
+    j = 0;
     env_array = convert_env_list_to_array(envs);
     size = get_envp_size(NULL, envs, 1);
     bubble_sort_env(env_array, size - 1);
     while (i < size)
     {
-        printf("declare -x %s\n", env_array[i]);
+        j = 0;
+        printf("declare -x ");
+        while (env_array[i][j] != '=')
+            printf ("%c", env_array[i][j++]);
+        printf ("=\"");
+        while (env_array[i][j])
+            printf ("%c", env_array[i][++j]);
+        printf ("\"\n");
         free(env_array[i]);
         i++;
     }
@@ -70,23 +80,24 @@ void add_var_to_envs_or_app_modif_exis(char *arg)
                 flag = 1;
                 break;
             }
+            i++;
         }
         if (flag == 1)
         {
             new_value = ft_strjoin(current->value, value);
-            // free (current->value);
+            free (current->value);   
             current->value = new_value;
         }
         else
         {
-            // free(current->value);
+            free(current->value);
             current->value = ft_strdup(value);
         }
     }
     else
         add_envp(arg);
-    // free (key);
-    // free (value);
+    free (key);
+    free (value);   
 }
 void export_env_var(char **args)
 {

@@ -55,6 +55,11 @@ void set_env(char **envp)
     int i;
 
     i = 0;
+    if (!envp || !*envp)
+    {
+        add_envp("PATH=/usr/bin");
+        add_envp("SHLVL=1");
+    }
     while (envp[i])
     {
         add_envp(envp[i]);
