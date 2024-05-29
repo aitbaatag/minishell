@@ -87,9 +87,12 @@ int     run_cmd(t_tree *tree)
 	if (status != 0)
 		return (status); // return that exit_status on failure
 	// handle signals
+	exec->env = global.env;
 	if (fork() == 0)	// execute child
 	{
+		// char **array = env_to_array(exec->env);
 		// printf("hughosuhgo\n");
+		// printf("path: %s\n; env: %s\n", get_path(exec->args[0]), array[12]);
 		execve(get_path(exec->args[0]), exec->args, env_to_array(exec->env));
 		// printf("hughosuhgo\n");
 		printf("\033[0;31m%s\n\033[0m", exec->args[0]); // error/perror?

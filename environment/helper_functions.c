@@ -1,4 +1,5 @@
 #include "../include/minishell.h"
+
 t_env *find_env_var(t_env *envs, char *key)
 {
     t_env *current;

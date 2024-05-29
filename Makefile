@@ -4,6 +4,6 @@ all		:
 	builtins/*.c environment/*.c executer/*.c parser/*.c tokenizer/*.c \
 	-lreadline libft/libft.a -o $(NAME)
 clean	:
-	tokenizer/*.o parser/*.o
+	rm -rf *.o */*.o
 fclean	:
 	rm $(NAME)
