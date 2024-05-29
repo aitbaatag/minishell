@@ -36,7 +36,7 @@ void print_sorted_env(t_env *envs)
 
     i = 0;
     j = 0;
-    env_array = convert_env_list_to_array(envs);
+    env_array = env_to_array(envs);
     size = get_envp_size(NULL, envs, 1);
     bubble_sort_env(env_array, size - 1);
     while (i < size)
@@ -70,7 +70,7 @@ void add_var_to_envs_or_app_modif_exis(char *arg)
     if (delimiter)
         value = create_value(delimiter + 1);
     key = create_key(arg, delimiter);
-    current = find_env_var(g_env, key);
+    current = find_env_var(global->env, key);
     if (current)
     {
         while (arg[i])
@@ -99,21 +99,19 @@ void add_var_to_envs_or_app_modif_exis(char *arg)
     free (key);
     free (value);   
 }
-void export_env_var(char **args)
+int export_env_var(t_exec *exec)
 {
     int i;
     t_env *envs;
 
-    envs = g_env;
+    envs = global->env;
     i = 1;
-    if (args[1] == NULL)
+    if (exec->args[1] == NULL)
         print_sorted_env(envs);
     else
     {
-        while (args[i])
-        {
-            add_var_to_envs_or_app_modif_exis(args[i]);
-            i++;
-        }
+        while (exec->args[i])
+            add_var_to_envs_or_app_modif_exis(exec->args[i++]);
     }
+    return (0);
 }

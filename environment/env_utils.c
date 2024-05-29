@@ -3,11 +3,11 @@ void add_env_node_to_list(t_env *new)
 {
     t_env *temp;
 
-    if (g_env == NULL)
-        g_env = new;
+    if (global->env == NULL)
+        global->env = new;
     else
     {
-        temp = g_env;
+        temp = global->env;
         while (temp->next)
             temp = temp->next;
         temp->next = new;

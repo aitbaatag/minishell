@@ -1,14 +1,15 @@
 #include "../include/minishell.h"
-t_env *g_env = NULL;
 
 int main(int argc, char *argv[], char *envp[])
 {
     t_data *data;
     char **value;
-    t_env *g_env;
+    t_global *global;
     char **value2;
 
-    g_env = NULL;
+    global = NULL;
+    global->env = NULL;
+    global->status = 0;
     value =ft_split("export ZSH=jj", ' ');
     value2 =ft_split("export", ' ');
     data = safe_malloc(sizeof(data));
@@ -30,7 +31,7 @@ int main(int argc, char *argv[], char *envp[])
         // export_env_var(value2);
         // builtin_unset("ZSH");
         // builtin_env();
-        // data->root = build_tree(&data->tokens);
+        data->root = build_tree(&data->tokens);
         //start_execute(data->root);
     }
 }   

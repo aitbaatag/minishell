@@ -1,5 +1,5 @@
 #include "../include/minishell.h"
-char **convert_env_list_to_array(t_env *envs)
+char **env_to_array(t_env *envs)
 {
     t_env *ptr_envs;
     char **env_array;

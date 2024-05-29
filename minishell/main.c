@@ -17,7 +17,7 @@ char *token_type_to_string(int type) {
         case 12: return "CLOSING_PARENTHESES";
         case 13: return "WHITE_SPACE";
         case 14: return "STAR";
-        case 15: return "GROUPED_CMDS";
+        case 15: return "SUBSHELL";
         case 16: return "EXEC";
         default: return "UNKNOWN";
     }
@@ -114,7 +114,7 @@ char *token_type_to_string(int type) {
 //         print_tree(((t_logic *)root)->left);
 //         printf("Right subtree:\n");
 //         print_tree(((t_logic *)root)->right);
-//     } else if (root->type == GROUPED_CMDS) {
+//     } else if (root->type == SUBSHELL) {
 //         printf("GROUPED_COMMANDS\n");
 //         printf("Child subtree:\n");
 //         print_tree(((t_grp_exec *)root)->child);
@@ -232,7 +232,7 @@ void print_tree(t_tree *root) {
                 current = NULL; // End loop for AND/OR node
                 break;
             }
-            case GROUPED_CMDS: {
+            case SUBSHELL: {
                 t_grp_exec *grp_node = (t_grp_exec *)current;
                 printf("GROUPED_COMMANDS\n");
                 printf("Child subtree:\n");

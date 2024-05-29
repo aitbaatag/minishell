@@ -2,7 +2,6 @@
 # define PARSER_H
 
 #include "minishell.h"
-struct s_token;
 typedef struct s_tree{
 	token type;
 }	t_tree;
@@ -18,6 +17,7 @@ typedef struct s_exec {
 	char	*path;
 	char	**args;
 	t_tree	*child_redi;
+	struct s_env	*env;
 }	t_exec;
 
 typedef struct s_logiccmd {

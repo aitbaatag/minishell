@@ -31,26 +31,6 @@ int count_qoutes(char *str, char c)
 	}
 	return (count);
 }
-// int is_variable(t_token **token, char *str)
-// {
-// 	t_token *new_token;
-// 	int n;
-// 	char *strr;
-
-// 	n = 0;
-// 	while (str[n])
-// 	{
-// 		if (str[n] == ' ' || str[n] == '\"')
-// 			break;
-// 		n++;
-// 	}
-// 	strr = ft_substr(str, 0, n);
-// 	new_token = new_node(ft_strtrim(strr, "\""), return_type(str, 0));
-// 	if (!new_token)
-// 		exit(EXIT_FAILURE);
-// 	add_node_back(token, new_token);
-// 	return (n);
-// }
 	void is_quotes(t_token **token, char *str, int *i)
 	{
 		t_token *new_token;

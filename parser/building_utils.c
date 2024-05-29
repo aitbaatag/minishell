@@ -37,7 +37,7 @@ t_grp_exec *new_grp_exec()
     t_grp_exec *grp_exec;
 
     grp_exec = safe_malloc (sizeof(t_grp_exec));
-    grp_exec->type = GROUPED_CMDS;
+    grp_exec->type = SUBSHELL;
     grp_exec->child = NULL;
     grp_exec->outer_redir = NULL;
     return (grp_exec);
