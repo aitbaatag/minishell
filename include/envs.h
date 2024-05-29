@@ -8,11 +8,9 @@ typedef struct s_env {
     struct s_env *next;
 	struct s_env *prev;
 } t_env;
-// Declare the global variable
-extern t_env *g_env;
 
 void set_env(char **envp);
-char **convert_env_list_to_array(t_env *envs);
+char **env_to_array(t_env *envs);
 char **copy_envp(char **envp);
 void add_env_node_to_list(t_env *new);
 char *create_value(char *value_start);
