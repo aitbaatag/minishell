@@ -19,7 +19,7 @@ t_tree *grouoped_cmd_tree(t_token **tokens, t_tree *redi_list, t_redi_exec **lis
         mini_tree = link_root_tree(tokens, mini_tree, list_heredoc);
     grp->child = mini_tree;
     grp->outer_redir = redi_list;
-    if (!(*tokens) || (*tokens)->type == OPENING_PARENTHESES)
+    if ((*tokens) && (*tokens)->type == OPENING_PARENTHESES)
         (*tokens) = (*tokens)->prev;
 
     return ((t_tree *)grp);
@@ -79,7 +79,7 @@ t_tree *handling_redi(t_token **tokens, t_redi_exec **list_heredoc)
     redi_exec = NULL;
     if (!(*tokens))
         return NULL;
-
+    printf ("jj\n");
     exec = get_exec_and_update_tokens(tokens);
     if ((*tokens) && (*tokens)->prev && (*tokens)->prev->type == HEREDOC)
     {

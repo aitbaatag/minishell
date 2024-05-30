@@ -10,38 +10,43 @@ int	run_redir()
 {
 	return (0);
 }
-int	run_pipe(t_tree *tree)
+int run_pipe(t_tree *tree)
 {
-	int		fd[2];
-	int		status;
-	pid_t	cpid;
-	t_pipe	*pipenode;
+    int fd[2];
+    int status;
+    pid_t cpid;
+    t_pipe *pipenode;
+    int copy_fd;
+    int copy_fdin;
 
-	(void)status;
-	pipenode = (t_pipe *)tree;
+    copy_fd = dup(STDOUT_FILENO);
+    copy_fdin = dup(STDIN_FILENO);
+    pipenode = (t_pipe *)tree;
 	pipe(fd);
-	cpid = fork();
-	if (cpid == 0)
-	{
-		close(fd[0]);
+    cpid = fork();
+    if (cpid == 0) // Child process
+    {
+        close(fd[0]);
 		dup2(fd[1], STDOUT_FILENO);
-		run_cmd(pipenode->left);
-	}
-	cpid = fork();
-	if (cpid == 0)
-	{
-		close(fd[1]);
+        close(fd[1]);
+        get_status(pipenode->left);
+        exit(EXIT_SUCCESS);
+    }
+    else // Parent process
+    {
+        close(fd[1]);
 		dup2(fd[0], STDIN_FILENO);
-		run_cmd(pipenode->right);
-	}
-	close(fd[0]);
-	close(fd[1]);
-
-	while (wait(NULL) != -1)
-		;
-	return (0);
+        close(fd[0]);
+        get_status(pipenode->right);
+		dup2(copy_fdin, STDIN_FILENO);
+		dup2(copy_fd, STDOUT_FILENO);
+        while (wait(&status) != -1)
+			;
+        close(copy_fdin);
+        close(copy_fd);
+    }
+    return 0;
 }
-
 int	run_logic(t_tree *tree)
 {
 	t_logic	*logic;
@@ -92,7 +97,6 @@ int     run_cmd(t_tree *tree)
 	{
 		// char **array = env_to_array(exec->env);
 		// printf("hughosuhgo\n");
-		// printf("path: %s\n; env: %s\n", get_path(exec->args[0]), array[12]);
 		execve(get_path(exec->args[0]), exec->args, env_to_array(exec->env));
 		// printf("hughosuhgo\n");
 		printf("\033[0;31m%s\n\033[0m", exec->args[0]); // error/perror?

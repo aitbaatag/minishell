@@ -48,6 +48,8 @@ t_token *tokenization(char *line)
 	t_token *tokens = NULL;
 	int i = 0;
 
+	if (!line)
+		return (NULL);
 	while (line[i])
 	{
 		if (line[i] == 32)

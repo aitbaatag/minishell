@@ -2,6 +2,7 @@
 t_tree *node_logic(token type, t_tree *left, t_tree *right)
 {
     t_logic *logical;
+
     logical = new_logic(type);
     logical->right = right;
     logical->left = left;

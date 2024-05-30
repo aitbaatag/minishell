@@ -74,7 +74,7 @@ int visit_tokens(t_token **tokens)
         return 0;
     while (ptr && ptr->prev && ptr->type != AND && ptr->type != OR && ptr->type != PIPE && ptr->type != CLOSING_PARENTHESES && ptr->type != OPENING_PARENTHESES)
     {
-        if (ptr->type == WORD && (ptr->prev->type & REDIERCTION))
+        if (ptr->type == WORD && (ptr->prev->type == INPUT_REDIRECTION || ptr->prev->type == OUTPUT_REDIRECTION || ptr->prev->type == APPEND_REDIRECTION || ptr->prev->type == HEREDOC))
             return (1);
         ptr = ptr->prev;
     }
