@@ -1,4 +1,5 @@
 #include "../include/minishell.h"
+t_global	global; 
 
 char *token_type_to_string(int type) {
     switch (type) {
@@ -218,7 +219,7 @@ void print_tree(t_tree *root) {
                 }
                 current = exec_node->child_redi;
                 if (current)
-                    printf ("redi ==> ");
+                    printf ("redi ==> \n");
                 break;
             }
             case AND:
@@ -266,14 +267,25 @@ void print_tree(t_tree *root) {
     }
 }
 int main() {
+    t_data *data;
+    t_global global;
+
+	// global = malloc(sizeof(t_global));
+    global.env = NULL;
+    global.status = 0;
+    data = safe_malloc(sizeof(data));
+
+    // set_env(envp);
     char *line;
     t_token *tokens;
     t_tree *root;
-
+    while (1)
+    {
 	line = readline("minishell> "); // link with -lreadkine
 
     tokens = tokenization(line);
     root = build_tree(&tokens);
     print_tree (root);
+    }
     return 0;
 }
