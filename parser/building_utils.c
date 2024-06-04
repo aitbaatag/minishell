@@ -27,7 +27,7 @@ t_exec* new_exec(int size_of_args)
     exec = safe_malloc(sizeof(t_exec));
     exec->args = safe_malloc(sizeof(char *) * (size_of_args + 1));
     exec->args[size_of_args] = NULL;
-    exec->path = NULL;
+    exec->line = NULL;
     exec->child_redi = NULL;
     exec->type = EXEC;
     return (exec);
@@ -60,12 +60,10 @@ t_redi_exec *new_redi(t_token **tokens)
     redi->type = (*tokens)->prev->type;
     if (redi->type == INPUT_REDIRECTION)
     {
-        redi->fd = 0;
         redi->flags =  O_RDONLY;
     }
     else if (redi->type == OUTPUT_REDIRECTION || redi->type == APPEND_REDIRECTION)
     {
-        redi->fd = 1;
         redi->flags = O_WRONLY | O_CREAT;
         if (redi->type == APPEND_REDIRECTION)
             redi->flags |= O_APPEND;

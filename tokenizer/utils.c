@@ -5,13 +5,13 @@ int is_special(char c, int i)
 	if (i == 0)
 	{
 		if (c == '<' || c == '>' || c == '&' || c == '|' ||
-			c == '(' || c == ')' || c == '*')
+			c == '(' || c == ')')
 			return (1);
 	}
 	else
 	{
 		if (c == '<' || c == '>' || c == '&' || c == '|' ||
-			c == '\"' || c == '\'' || c == '(' || c == ')' || c == '*')
+			c == '\"' || c == '\'' || c == '(' || c == ')')
 			return (1);
 	}
 	return (0);
@@ -34,19 +34,9 @@ int count_qoutes(char *str, char c)
 	void is_quotes(t_token **token, char *str, int *i)
 	{
 		t_token *new_token;
-		char arr[2];
 		int n;
-		int count;
 
 	n = 0;
-	arr[0] = str[0];
-	arr[1] = '\0';
-	count = count_qoutes(&str[0], str[0]);
-	if (count % 2 != 0)
-	{
-		printf("error\n"); // free
-		exit(1);
-	}
 	n++;
 	while (str[n])
 	{

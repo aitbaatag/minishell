@@ -7,7 +7,11 @@ int    builtin_env(t_exec *exec)
     ptr_envs = global.env;
     while (ptr_envs)
     {
-        printf("%s=%s\n", ptr_envs->key, ptr_envs->value);
+        printf("%s", ptr_envs->key);
+        if (ptr_envs->value)
+            printf("=%s\n",ptr_envs->value);
+        else
+            printf ("\n");
         ptr_envs = ptr_envs->next;
     }
     return (0);

@@ -13,138 +13,42 @@ char *token_type_to_string(int type) {
         case 7: return "OR";
         case 8: return "DOUBLE_QUOTE";
         case 9: return "SINGLE_QUOTE";
-        case 10: return "VARIABLE";
-        case 11: return "OPENING_PARENTHESES";
-        case 12: return "CLOSING_PARENTHESES";
-        case 13: return "WHITE_SPACE";
-        case 14: return "STAR";
-        case 15: return "SUBSHELL";
-        case 16: return "EXEC";
+        case 10: return "OPENING_PARENTHESES";
+        case 11: return "CLOSING_PARENTHESES";
+        case 12: return "WHITE_SPACE";
+        case 13: return "STAR";
+        case 14: return "SUBSHELL";
+        case 15: return "EXEC";
         default: return "UNKNOWN";
     }
 }
 
-// int main() {
-//     char *line;
-//     t_token *tokens;
-//     // t_redi_exec *list_heredoc;
-//     // t_exec *ptr;
-//     // t_redi_exec *ptr2;
-//     int i;
-//     // char *line2;
+int main() {
+    char *line;
+    t_token *tokens;
 
-//     i = 0;
-// 	line = readline("minishell> "); // link with -lreadkine
-//     // add_history_time(line);
+    int i;
 
-//     // tokenscopy = tokens;
-//     tokens = tokenization(line);
-//     // line = remove_quotes(tokens->next->next->value);
-//     // printf ("%s\n", line);
-//     clean_list_tokens(&tokens);
-//     // list_heredoc = (t_redi_exec *)creat_list_heredoc(tokens);
-//     // while (list_heredoc)
-//     // {
-//         // ptr2 = get_node_heredoc(&list_heredoc);
-//         // printf ("%s\n", ptr2->file_name);
-//         // ptr2 = get_node_heredoc(&list_heredoc);
-//         // printf ("%s\n", ptr2->file_name);
-//     //     list_heredoc = list_heredoc->next;
-//     // }
-// //     reverse_list_tokens(&tokens);
+    i = 0;
+	line = readline("minishell> "); // link with -lreadkine
 
-// //     ptr = get_exec_and_update_tokens(&tokens);
-// //     while (ptr->args[i])
-// //     {
-// //         // printf ("jj");
-// //         printf ("..%s..\n", ptr->args[i]);
-// //         i++;
-// //     }
+    tokens = tokenization(line);
+ 
     
-    
-// // //while (1)
-// // //{
-//         while (tokens != NULL) {
-//             if (tokens && tokens->value)
-//             {
-//                 // printf ("jj\n");
-//              printf("%s_%s=> \n",  tokens->value, token_type_to_string(tokens->type));
-//             }
-//             tokens = tokens->next;
-//         }
-// // // 	// analyze(tokenscopy);
-// // // //}
-//     return 0;
-// }
-// void print_tree(t_tree *root) {
-//     if (root == NULL) {
-//         printf("NULL\n");
-//         return;
-//     }
+while (1)
+{
+        while (tokens != NULL) {
+            if (tokens && tokens->value)
+            {
+                // printf ("jj\n");
+             printf("%s_%s=> \n",  tokens->value, token_type_to_string(tokens->type));
+            }
+            tokens = tokens->next;
+        }
+}
+    return 0;
+}
 
-//     // Determine the type of the node based on its structure
-//     if (root == NULL) {
-//         printf("Empty node\n");
-//         return;
-//     }
-
-//     // Print the appropriate information based on the type of node
-//     if (root->type == PIPE) {
-//         printf("PIPE\n");
-//         printf("Left subtree:      ");
-//         print_tree(((t_pipe *)root)->left);
-//         printf("Right subtree:     ");
-//         print_tree(((t_pipe *)root)->right);
-//     } else if (root->type == EXEC) {
-//         printf("EXEC\n");
-//         t_exec *exec = (t_exec *)root;
-//         printf("Path: %s\n", exec->path);
-//         printf("Arguments: \n");
-//         char **args = exec->args;
-//         while (*args) {
-//             printf("  %s\n", *args);
-//             args++;
-//         }
-//         print_tree(((t_exec*)root)->child_redi);
-//     } else if (root->type == AND || root->type == OR) {
-//         if (root->type == AND)
-//             printf("AND\n");
-//         if (root->type == OR)
-//             printf("OR\n");
-//         printf("Left subtree:\n");
-//         print_tree(((t_logic *)root)->left);
-//         printf("Right subtree:\n");
-//         print_tree(((t_logic *)root)->right);
-//     } else if (root->type == SUBSHELL) {
-//         printf("GROUPED_COMMANDS\n");
-//         printf("Child subtree:\n");
-//         print_tree(((t_grp_exec *)root)->child);
-//     }
-//     else if (root->type == APPEND_REDIRECTION) {
-//         printf("append \n");
-//         t_redi_exec *redcmd = (t_redi_exec*)root;
-//         // printf("Mode: %s\n", redcmd->mode);
-//         printf("Filename: %s\n", redcmd->file_name);
-//         print_tree(redcmd->exec_child);
-//     }
-//     else if (root->type == INPUT_REDIRECTION) {
-//         printf("input \n");
-//         t_redi_exec *redcmd = (t_redi_exec*)root;
-//         // printf("Mode: %s\n", redcmd->mode);
-//         printf("Filename: %s\n", redcmd->file_name);
-//         print_tree(redcmd->exec_child);
-//     }
-//     else if (root->type == OUTPUT_REDIRECTION) {
-//         printf("output \n");
-//         t_redi_exec *redcmd = (t_redi_exec*)root;
-//         // printf("Mode: %s\n", redcmd->mode);
-//         printf("Filename: %s\n", redcmd->file_name);
-//         print_tree(redcmd->exec_child);
-//     }
-//     else {
-//         printf("Unknown node type\n");
-//     }
-// }
 void print_tree2(t_tree *root) {
     if (root == NULL) {
         printf("NULL\n");
@@ -157,7 +61,6 @@ void print_tree2(t_tree *root) {
             case EXEC: {
                 t_exec *exec_node = (t_exec *)current;
                 printf("EXEC\n");
-                printf("Path: %s\n", exec_node->path);
                 printf("Arguments: \n");
                 char **args = exec_node->args;
                 while (*args) {
@@ -210,7 +113,6 @@ void print_tree(t_tree *root) {
             case EXEC: {
                 t_exec *exec_node = (t_exec *)current;
                 printf("EXEC\n");
-                printf("Path: %s\n", exec_node->path);
                 printf("Arguments: \n");
                 char **args = exec_node->args;
                 while (*args) {
@@ -266,26 +168,26 @@ void print_tree(t_tree *root) {
         }
     }
 }
-int main() {
-    t_data *data;
-    t_global global;
+// int main() {
+//     t_data *data;
+//     t_global global;
 
-	// global = malloc(sizeof(t_global));
-    global.env = NULL;
-    global.status = 0;
-    data = safe_malloc(sizeof(data));
+// 	// global = malloc(sizeof(t_global));
+//     global.env = NULL;
+//     global.status = 0;
+//     data = safe_malloc(sizeof(data));
 
-    // set_env(envp);
-    char *line;
-    t_token *tokens;
-    t_tree *root;
-    while (1)
-    {
-	line = readline("minishell> "); // link with -lreadkine
+//     // set_env(envp);
+//     char *line;
+//     t_token *tokens;
+//     t_tree *root;
+//     while (1)
+//     {
+// 	line = readline("minishell> "); // link with -lreadkine
 
-    tokens = tokenization(line);
-    root = build_tree(&tokens);
-    print_tree (root);
-    }
-    return 0;
-}
+//     tokens = tokenization(line);
+//     root = build_tree(&tokens);
+//     print_tree (root);
+//     }
+//     return 0;
+// }

@@ -18,8 +18,16 @@ void	set_exit_status(int status);
 void	executer(t_tree *tree);
 
 // utils
-int		check_cmd(t_exec *exec);
+void	expand(t_exec *exec);
+void	cmd_notfound(char *cmd);
 char	*get_path(char *command);
 void	free_it(char **split_path);
+
+
+int	set_type_redi(t_tree *redi);
+int handle_redir_input(t_redi_exec *redi);
+int handle_redir_output(t_redi_exec *redi);
+int save_and_redirect(int old_fd, int new_fd);
+void restore_fd(int old_fd, int saved_fd);
 
 #endif

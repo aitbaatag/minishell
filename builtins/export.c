@@ -44,60 +44,34 @@ void print_sorted_env(t_env *envs)
         j = 0;
         printf("declare -x ");
         while (env_array[i][j] != '=')
-            printf ("%c", env_array[i][j++]);
-        printf ("=\"");
-        while (env_array[i][j])
-            printf ("%c", env_array[i][++j]);
-        printf ("\"\n");
+            printf("%c", env_array[i][j++]);
+        if (env_array[i][j] == '=')
+        {
+            printf("=\"");
+            while (env_array[i][++j])
+                printf("%c", env_array[i][j]);
+            printf("\"\n");
+        }
+        else
+            printf("\n");
         free(env_array[i]);
         i++;
     }
     free(env_array);
 }
-void add_var_to_envs_or_app_modif_exis(char *arg)
+int add_var_to_envs_or_app_modif_exis(char *arg)
 {
     char *key;
-    t_env *current;
-    int i;
-    int flag;
     char *value;
-    char *new_value;
-    char *delimiter;
 
-    flag = 0;
-    i = 0; 
-    delimiter = ft_strchr(arg, '=');
-    if (delimiter)
-        value = create_value(delimiter + 1);
-    key = create_key(arg, delimiter);
-    current = find_env_var(global.env, key);
-    if (current)
-    {
-        while (arg[i])
-        {
-            if (arg[i] == '+' && arg[i + 1] == '=')
-            {
-                flag = 1;
-                break;
-            }
-            i++;
-        }
-        if (flag == 1)
-        {
-            new_value = ft_strjoin(current->value, value);
-            free (current->value);   
-            current->value = new_value;
-        }
-        else
-        {
-            free(current->value);
-            current->value = ft_strdup(value);
-        }
-    }
-    else
-        add_envp(arg);
-    free (key);
-    free (value);   
+    key = NULL;
+    value = NULL;
+    if (create_key_value_pair(arg, &key, &value) != 0)
+        return 1;
+    add_or_update_var(arg, key, value);
+    free(key);
+    free(value);
+    return 0;
 }
 
 int export_env_var(t_exec *exec)
@@ -108,15 +82,21 @@ int export_env_var(t_exec *exec)
     envs = global.env;
     i = 1;
     if (exec->args[1] == NULL)
+    {
         print_sorted_env(envs);
+    }
     else
     {
         while (exec->args[i])
         {
-            // printf("myvar: %s\n", exec->args[i]);
-            add_var_to_envs_or_app_modif_exis(exec->args[i]);
-			i++;
-		}
-	}
-    return (0);
+            if (add_var_to_envs_or_app_modif_exis(exec->args[i]) != 0)
+            {
+                ft_putstr_fd("minishell: export: `", 2);
+                ft_putstr_fd(exec->args[i], 2);
+                ft_putstr_fd("'\033[0;31m: not a valid identifier\n\033[0m", 2);
+            }
+            i++;
+        }
+    }
+    return 0;
 }

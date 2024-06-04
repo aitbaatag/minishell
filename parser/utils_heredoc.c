@@ -5,7 +5,6 @@ t_redi_exec *new_node_here_doc(token type)
 
     redi = safe_malloc(sizeof(t_redi_exec));
     redi->type = type;
-    redi->fd = 0;
     redi->flags = O_RDONLY;
     redi->exec_child = NULL;
     redi->next = NULL;
@@ -13,20 +12,6 @@ t_redi_exec *new_node_here_doc(token type)
     return (redi);
 }
 
-// char	*set_filename(t_redir *node, char *s, t_etype type)
-// {
-// 	char	*filename;
-// 	bool	expand;
-
-// 	if (type != HEREDOC)
-// 		return (node->file = s, s);
-// 	expand = true;
-// 	filename = read_heardoc(s, &expand);
-// 	node->expand = expand;
-// 	if (!filename)
-// 		return (NULL);
-// 	return (node->file = filename, node->file);
-// }
 char *get_substring(char *str, int *i, char delimiter)
 {
     char *result;
@@ -34,7 +19,7 @@ char *get_substring(char *str, int *i, char delimiter)
     int length = 0;
 
     if (delimiter != '\0')
-    {
+{
         start++; // Skip the opening quote
         (*i)++;
         while (str[*i] && str[*i] != delimiter)
@@ -52,7 +37,6 @@ char *get_substring(char *str, int *i, char delimiter)
             length++;
         }
     }
-
     result = ft_substr(str, start, length);
     return result;
 }
@@ -71,34 +55,26 @@ char *append_substring(char *joined, char *str, int *i, char delimiter)
         free(joined);
     }
     else
-    {
         new_joined = substring;
-    }
 
     return new_joined;
 }
 
 char *remove_quotes(char *str)
 {
-    char *joined = NULL;
-    int i = 0;
-    char *str1;
-    char *str2;
+    char *joined;
+    int i;
 
-    str1 = NULL;
-    str2 = NULL;
+    joined = NULL;
+    i = 0;
     while (str[i])
     {
         if (str[i] == '\'' || str[i] == '\"')
-        {
             joined = append_substring(joined, str, &i, str[i]);
-        }
         else
-        {
             joined = append_substring(joined, str, &i, '\0');
-        }
     }
 
     // free(str);
-    return joined;
+    return (joined);
 }

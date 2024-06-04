@@ -19,12 +19,9 @@ char *create_value(char *value_start)
 {
     char *value;
 
+    if (!value_start)
+        return (ft_strdup(""));
     value = remove_quotes(value_start);
-    if (!value)
-    {
-        perror("strdup");
-        exit(EXIT_FAILURE);
-    }
     return value;
 }
 
@@ -33,16 +30,13 @@ char *create_key(char *env, char *delimiter)
     size_t key_len;
     char *key;
 
+    if (*(delimiter - 1) == '+')
+        delimiter-=1;
     if (!delimiter)
         key_len = ft_strlen(env);
     else
         key_len = delimiter - env;
     key = safe_malloc((key_len + 1) * sizeof(char));
-    if (!key)
-    {
-        perror("malloc");
-        exit(EXIT_FAILURE);
-    }
     ft_strlcpy(key, env, key_len + 1);
     return key;
 }
@@ -53,16 +47,12 @@ t_env *create_env_node(char *env)
     t_env *new;
 
     delimiter = ft_strchr(env, '=');
-    if (!delimiter)
-        return NULL;
     new = safe_malloc(sizeof(t_env));
-    if (!new)
-    {
-        perror("malloc");
-        exit(EXIT_FAILURE);
-    }
     new->key = create_key(env, delimiter);
-    new->value = create_value(delimiter + 1);
+    if (delimiter)
+        new->value = create_value(delimiter + 1);
+    else
+        new->value = ft_strdup("");
     new->next = NULL;
     new->prev = NULL;
     return new;
