@@ -14,7 +14,7 @@ typedef struct s_pipecmd {
 
 typedef struct s_exec {
 	token	type;
-	char	*path;
+	char	*line;
 	char	**args;
 	t_tree	*child_redi;
 	struct s_env	*env;
@@ -28,7 +28,6 @@ typedef struct s_logiccmd {
 
 typedef struct s_redcmd {
 	token	type;
-	int		fd;
 	int		infile;
 	int		outfile;
 	char	*file_name;

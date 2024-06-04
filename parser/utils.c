@@ -12,7 +12,7 @@ t_exec *get_exec_and_update_tokens(t_token **tokens)
     exec_cmd = new_exec(size);
     while (ptr)
     {
-        if ((ptr->prev == NULL && ptr->type == WORD) || (ptr->type == WORD && ptr->prev && (ptr->prev->type == WORD)))
+        if ((ptr->prev == NULL && ptr->type == WORD) || (ptr->type == WORD && ptr->prev && (ptr->prev->type == WORD || ptr->prev->type == PIPE ||  ptr->prev->type == AND ||  ptr->prev->type == OR || ptr->prev->type == OPENING_PARENTHESES)))
         {
             exec_cmd->args[size - 1] = init_arg(ptr->value);
             temp = ptr;
@@ -27,7 +27,7 @@ t_exec *get_exec_and_update_tokens(t_token **tokens)
             free(temp->value);
             free(temp);
         }
-        else if (ptr->type == CLOSING_PARENTHESES || ptr->type == OPENING_PARENTHESES || ptr->type == PIPE)
+        else if (ptr->type == CLOSING_PARENTHESES || ptr->type == OPENING_PARENTHESES || ptr->type == PIPE ||  ptr->type == AND ||  ptr->type == OR)
             return (exec_cmd);
         else
             ptr = ptr->prev;

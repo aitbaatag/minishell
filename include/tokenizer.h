@@ -18,13 +18,11 @@ typedef enum e_token {
     OPENING_PARENTHESES,
     CLOSING_PARENTHESES,
     WHITE_SPACE,
-	STAR,
 	SUBSHELL,
     EXEC,
 	LOGICAL = AND | OR,
 	REDIERCTION = INPUT_REDIRECTION | OUTPUT_REDIRECTION | APPEND_REDIRECTION | HEREDOC,
-	PARN = OPENING_PARENTHESES | CLOSING_PARENTHESES,
-    SPLIT
+	PARN = OPENING_PARENTHESES | CLOSING_PARENTHESES
 }	token;
 
 typedef struct s_token
@@ -50,5 +48,9 @@ void is_quotes(t_token **token, char *str, int *i);
 int is_variable(t_token **token, char *str);
 int check_quotes(char *str);
 int count_qoutes(char *str, char c);
+int check_wildcard(char *str);
+int    is_match(const char *f, const char *p);
+void add_meant_file(t_token **tokens, char *namefile);
+void listfile(char *expand, t_token **tokens);
 
 #endif

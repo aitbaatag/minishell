@@ -17,12 +17,8 @@ char *init_arg(char *value)
     if (!value)
         return (NULL);
     arg = safe_malloc(ft_strlen(value) + 1);
-    while (value[i])
-    {
-        arg[i] = value[i];
-        i++;
-    }
-    arg[i] = '\0';
+        arg = remove_quotes(value);
+    // arg[i] = '\0';
     return (arg);
 }
 t_tree *add_node_tree(t_tree *right, t_tree *left)

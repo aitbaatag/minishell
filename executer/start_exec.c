@@ -7,9 +7,10 @@ int	get_status(t_tree *tree)
 		return (run_subshell(tree));
 	else if (tree->type == EXEC)
 		return (run_cmd(tree));
-	else if (tree->type & LOGICAL)
+	else if (tree->type == AND || tree->type == OR)
 		return (run_logic(tree));
-	else if (tree->type & REDIERCTION)
+	else if (tree->type == OUTPUT_REDIRECTION || tree->type == INPUT_REDIRECTION
+    || tree->type == APPEND_REDIRECTION || tree->type == HEREDOC)
 		return (run_redir(tree));
 	return (EXIT_FAILURE);
 }
@@ -19,4 +20,4 @@ void	executer(t_tree *tree)
 	if (!tree)
 		return ;
 	set_exit_status(get_status(tree));
-}
+}   

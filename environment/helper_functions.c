@@ -14,9 +14,9 @@ t_env *find_env_var(t_env *envs, char *key)
     }
     current = envs;
     while (current)
-    {
-        if (ft_strncmp(current->key, key, i) == 0)
-        {
+	{
+		if (ft_strncmp(current->key, key, i) == 0)
+		{
             return current;
         }
         current = current->next;

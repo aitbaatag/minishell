@@ -52,13 +52,16 @@ char **copy_envp(char **envp)
 // convert arr env to list 
 void set_env(char **envp)
 {
-    int i;
+    int		i;
+	char	pwd[1024];
 
-    i = 0;
-    if (!envp || !*envp)
+	i = 0;
+	if (!envp || !*envp)
     {
-        add_envp("PATH=/usr/bin");
+		getcwd(pwd, sizeof(pwd));
+		add_var_to_envs_or_app_modif_exis(ft_strjoin("PWD=", pwd));
         add_envp("SHLVL=1");
+		add_envp("_=/usr/bin/env");
     }
     while (envp[i])
     {
