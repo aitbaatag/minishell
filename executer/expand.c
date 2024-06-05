@@ -20,7 +20,8 @@ char	*handle_questionmark(char *var_name)
 		}
 		buff = safe_malloc(sizeof(char) * (len + 1));
 		ft_strlcpy(buff, tmp, ft_strlen(tmp) + 1);
-		ft_strlcpy(buff + ft_strlen(tmp), var_name + 1, ft_strlen(var_name) + 1);
+		ft_strlcpy(buff + ft_strlen(tmp), var_name + 1, ft_strlen(var_name)
+				+ 1);
 		free(tmp);
 	}
 	else
@@ -35,10 +36,10 @@ char	*handle_questionmark(char *var_name)
 
 void	expand(char **args)
 {
-	char	*var_name;
-	char	*var_value;
-	t_env	*tmp;
-	int		i;
+	char *var_name;
+	char *var_value;
+	t_env *tmp;
+	int i;
 
 	i = 0;
 	while (args[i])
