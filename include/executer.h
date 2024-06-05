@@ -18,7 +18,7 @@ void	set_exit_status(int status);
 void	executer(t_tree *tree);
 
 // utils
-void	expand(t_exec *exec);
+void	expand(char **args);
 void	cmd_notfound(char *cmd);
 char	*get_path(char *command);
 void	free_it(char **split_path);

@@ -87,58 +87,50 @@ int run_redir(t_tree *tree)
 // 	}
 // 	return (get_exit_status());
 // }
-// int parent(t_tree *tree, int *pipe_fd)
-// {
-// 	close(pipe_fd[0]);
-// 	close(pipe_fd[1]);
-// }
+void parent(int *pipe_fd, int *status, int *orig_fd, pid_t *cpid)
+{
+		close(pipe_fd[0]);
+		close(pipe_fd[1]);
+		waitpid(cpid[0], status, 0);
+		waitpid(cpid[1], status, 0);
+		dup2(orig_fd[0], STDIN_FILENO);
+		dup2(orig_fd[1], STDOUT_FILENO);
+		close(orig_fd[0]);
+		close(orig_fd[1]);
+		// printf("status: %d\n", *status);
+		set_exit_status(*status % 255);
+		// printf ("%d\n",  WEXITSTATUS(*status));
+}
 int run_pipe(t_tree *tree)
 {
 	int fd[2];
-	pid_t cpid1;
-	pid_t cpid2;
+	pid_t cpid[2];
+	// pid_t cpid2;
 	int status;
 	t_pipe *pipenode;
-	int orig_stdin;
-	int orig_stdout;
+	int orig_fd[2];
 
-	signal(SIGINT, sigint_handler);
-	signal(SIGQUIT, SIG_IGN);
-	orig_stdout = dup(STDOUT_FILENO);
-	orig_stdin = dup(STDIN_FILENO);
+	orig_fd[1] = dup(STDOUT_FILENO);
+	orig_fd[0] = dup(STDIN_FILENO);
 	pipenode = (t_pipe *)tree;
 	pipe(fd);
-	cpid1 = fork();
-	if (cpid1 == 0) // Child process
+	cpid[0] = fork();
+	if (cpid[0] == 0) // Child process 1
 	{
 		close(fd[0]);
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[1]);
-		ft_run_node(pipenode->left);
-		exit(EXIT_SUCCESS);
+		exit(ft_run_node(pipenode->left));
 	}
-	cpid2 = fork();
-	if (cpid2 == 0) // Child process
+	cpid[1] = fork();
+	if (cpid[1] == 0) // Child process 2
 	{
-		if (global.status == 130)
-			return (set_exit_status(130), global.status);
 		close(fd[1]);
 		dup2(fd[0], STDIN_FILENO);
 		close(fd[0]);
-		ft_run_node(pipenode->right);
-		exit(EXIT_SUCCESS);
+		exit(ft_run_node(pipenode->right));
 	}
-	else
-	{
-		close(fd[0]);
-		close(fd[1]);
-		waitpid(cpid1, &status, 0);
-		waitpid(cpid2, &status, 0);
-		dup2(orig_stdin, STDIN_FILENO);
-		dup2(orig_stdout, STDOUT_FILENO);
-		close(orig_stdin);
-		close(orig_stdout);
-	}
+	parent(fd, &status, orig_fd, cpid);
 	return (get_exit_status());
 }
 
@@ -210,7 +202,7 @@ int run_cmd(t_tree *tree)
 	orig_stdout = dup(STDOUT_FILENO);
 	if (set_type_redi((t_tree *)exec->child_redi) != 0)
 		return (get_exit_status());
-	expand(exec);
+	expand(exec->args);
 	builtin = is_builtin(exec->args[0]);
 	if (builtin)
 	{

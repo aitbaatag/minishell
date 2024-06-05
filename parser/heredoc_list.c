@@ -52,9 +52,12 @@
 // }
 void read_from_user(char *delimiter, t_redi_exec *node_heredoc, int i)
 {
-    t_exec line;
+    char *line;
+    char **expand_line;
     char *path_tmp_file;
+    int n;
 
+    n = -1;
     path_tmp_file = ft_strjoin("/tmp/here_doc", ft_itoa(i));
     node_heredoc->infile = open(path_tmp_file, O_CREAT | O_WRONLY | O_RDONLY | O_TRUNC, 0666);
     if (node_heredoc->infile == -1)
@@ -64,20 +67,23 @@ void read_from_user(char *delimiter, t_redi_exec *node_heredoc, int i)
     }
     while (1)
     {
-        line.line = readline("> ");
-        if (!line.line)  
+        line = readline("> ");
+        if (!line)  
             break;
-        if (ft_strcmp(line.line, delimiter) == 0)
+        expand_line = ft_split(line, ' ');
+        expand(expand_line);
+        if (ft_strcmp(line, delimiter) == 0)
         {
-            free(line.line);
+            free(line);
             break;
         }
-        write(node_heredoc->infile, line.line, ft_strlen(line.line));
+        while (expand_line[++n])
+            write(node_heredoc->infile, expand_line[n], ft_strlen(expand_line[n]));
         write(node_heredoc->infile, "\n", 1);
-        free(line.line);
+        free(line);
+        free_it(expand_line);
     }
     close (node_heredoc->infile);
-    node_heredoc->infile = open(path_tmp_file, O_RDONLY);
     node_heredoc->file_name = ft_strdup(path_tmp_file);
     free (path_tmp_file);
 }
@@ -98,7 +104,6 @@ t_redi_exec *creat_list_heredoc(t_token *tokens)
         if (ptr_token->type == HEREDOC)
         {
             delimiter = remove_quotes(ptr_token->next->value);
-            // printf ("%s\n",delimiter);
             new_node = new_node_here_doc(HEREDOC);
             read_from_user(delimiter, new_node, i);
             free (delimiter);
