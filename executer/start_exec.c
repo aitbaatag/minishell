@@ -1,5 +1,5 @@
 #include "../include/minishell.h"
-int	get_status(t_tree *tree)
+int	ft_run_node(t_tree *tree)
 {
 	if (tree->type == PIPE)
 		return (run_pipe(tree));
@@ -19,5 +19,5 @@ void	executer(t_tree *tree)
 {
 	if (!tree)
 		return ;
-	set_exit_status(get_status(tree));
+	set_exit_status(ft_run_node(tree));
 }   

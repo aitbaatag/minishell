@@ -30,11 +30,11 @@ int main(int argc, char *argv[], char *envp[])
 		global.homedir = homedir->value;
     while (1)
     {
-		// signal(SIGINT, sigint_handler);
-		// signal(SIGQUIT, SIG_IGN);
+		signal(SIGINT, sigint_handler);
+		signal(SIGQUIT, SIG_IGN);
         data->line = readline("\033[1;32mminishell@1337:~$ \033[0m");
-		// if (data->line == NULL)
-		// 	eof_handler();
+		if (data->line == NULL)
+			eof_handler();
         add_history(data->line);
         data->tokens = tokenization(data->line);
         data->tree = build_tree(&data->tokens);

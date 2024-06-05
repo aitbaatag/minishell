@@ -9,7 +9,7 @@
 // 	{
 // 		set_type_redi((t_tree *)group_root->outer_redir);
 // 	}
-// 	get_status(group_root->child);
+// 	ft_run_node(group_root->child);
 // 	if (group_root->outer_redir)
 // 	{
 // 		dup2(global.old_stdin, STDIN_FILENO);
@@ -33,7 +33,7 @@ int run_subshell(t_tree *subshell)
 		if (set_type_redi((t_tree *)group_root->outer_redir) != 0)
 			return (get_exit_status());
 	}
-	get_status(group_root->child);
+	ft_run_node(group_root->child);
 	if (group_root->outer_redir)
 	{
 		// Restore original stdin and stdout
@@ -52,8 +52,8 @@ int run_redir(t_tree *tree)
 	set_exit_status(set_type_redi(tree));
 	dup2(orig_stdin, STDIN_FILENO);
 	dup2(orig_stdout, STDOUT_FILENO);
-    close(orig_stdin);
-    close(orig_stdout);
+	close(orig_stdin);
+	close(orig_stdout);
 	return (get_exit_status());
 }
 
@@ -71,7 +71,7 @@ int run_redir(t_tree *tree)
 // 		close(fd[0]);
 // 		dup2(fd[1], STDOUT_FILENO);
 // 		close(fd[1]);
-// 		get_status(pipenode->left);
+// 		ft_run_node(pipenode->left);
 // 		exit(EXIT_SUCCESS);
 // 	}
 // 	else // Parent process
@@ -80,69 +80,88 @@ int run_redir(t_tree *tree)
 // 		dup2(fd[0], STDIN_FILENO);
 // 		close(fd[0]);
 // 		wait(NULL);
-// 		get_status(pipenode->right);
+// 		ft_run_node(pipenode->right);
 // 		dup2(global.old_stdin, STDIN_FILENO);
 // 		dup2(global.old_stdout, STDOUT_FILENO);
 
 // 	}
 // 	return (get_exit_status());
 // }
+// int parent(t_tree *tree, int *pipe_fd)
+// {
+// 	close(pipe_fd[0]);
+// 	close(pipe_fd[1]);
+// }
 int run_pipe(t_tree *tree)
 {
 	int fd[2];
-	pid_t cpid;
+	pid_t cpid1;
+	pid_t cpid2;
+	int status;
 	t_pipe *pipenode;
-	int copy_fd;
-	int copy_fdin;
+	int orig_stdin;
+	int orig_stdout;
 
-	copy_fd = dup(STDOUT_FILENO);
-	copy_fdin = dup(STDIN_FILENO);
+	signal(SIGINT, sigint_handler);
+	signal(SIGQUIT, SIG_IGN);
+	orig_stdout = dup(STDOUT_FILENO);
+	orig_stdin = dup(STDIN_FILENO);
 	pipenode = (t_pipe *)tree;
 	pipe(fd);
-	cpid = fork();
-	if (cpid == 0) // Child process
+	cpid1 = fork();
+	if (cpid1 == 0) // Child process
 	{
 		close(fd[0]);
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[1]);
-		get_status(pipenode->left);
+		ft_run_node(pipenode->left);
 		exit(EXIT_SUCCESS);
 	}
-	else // Parent process
+	cpid2 = fork();
+	if (cpid2 == 0) // Child process
 	{
+		if (global.status == 130)
+			return (set_exit_status(130), global.status);
 		close(fd[1]);
 		dup2(fd[0], STDIN_FILENO);
 		close(fd[0]);
-		wait(NULL);
-		get_status(pipenode->right);
-		dup2(copy_fdin, STDIN_FILENO);
-		dup2(copy_fd, STDOUT_FILENO);
-		close(copy_fdin);
-		close(copy_fd);
+		ft_run_node(pipenode->right);
+		exit(EXIT_SUCCESS);
+	}
+	else
+	{
+		close(fd[0]);
+		close(fd[1]);
+		waitpid(cpid1, &status, 0);
+		waitpid(cpid2, &status, 0);
+		dup2(orig_stdin, STDIN_FILENO);
+		dup2(orig_stdout, STDOUT_FILENO);
+		close(orig_stdin);
+		close(orig_stdout);
 	}
 	return (get_exit_status());
 }
 
 int run_logic(t_tree *tree)
 {
-    t_logic *logic;
-    int status;
+	t_logic *logic;
+	int status;
 
-    logic = (t_logic *)tree;
-    status = 0;
-    if (logic->type == AND)
-    {
-        status = get_status(logic->left);
-        if (status == EXIT_SUCCESS)
-            status = get_status(logic->right);
-    }
-    else if (logic->type == OR)
-    {
-        status = get_status(logic->left);
-        if (status != EXIT_SUCCESS)
-            status = get_status(logic->right);
-    }
-    return (set_exit_status(status), get_exit_status());
+	logic = (t_logic *)tree;
+	status = 0;
+	if (logic->type == AND)
+	{
+		status = ft_run_node(logic->left);
+		if (status == EXIT_SUCCESS)
+			status = ft_run_node(logic->right);
+	}
+	else if (logic->type == OR)
+	{
+		status = ft_run_node(logic->left);
+		if (status != EXIT_SUCCESS)
+			status = ft_run_node(logic->right);
+	}
+	return (set_exit_status(status), get_exit_status());
 }
 
 // int run_cmd(t_tree *tree)
@@ -215,7 +234,7 @@ int run_cmd(t_tree *tree)
 	set_exit_status(status);
 	dup2(orig_stdin, STDIN_FILENO);
 	dup2(orig_stdout, STDOUT_FILENO);
-    close(orig_stdin);
-    close(orig_stdout);
+	close(orig_stdin);
+	close(orig_stdout);
 	return (status);
 }
