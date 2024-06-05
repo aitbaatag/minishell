@@ -33,7 +33,7 @@ char	*handle_questionmark(char *var_name)
 	return (buff);
 }
 
-void	expand(t_exec *exec)
+void	expand(char **args)
 {
 	char	*var_name;
 	char	*var_value;
@@ -41,19 +41,19 @@ void	expand(t_exec *exec)
 	int		i;
 
 	i = 0;
-	while (exec->args[i])
+	while (args[i])
 	{
-		if (exec->args[i][0] == '$' && exec->args[i][1])
+		if (args[i][0] == '$' && args[i][1])
 		{
-			var_name = ft_substr(exec->args[i], 1, ft_strlen(exec->args[i]) - 1);
-			free(exec->args[i]);
+			var_name = ft_substr(args[i], 1, ft_strlen(args[i]) - 1);
+			free(args[i]);
 			tmp = find_env_var(global.env, var_name);
 			if (tmp)
 				var_value = tmp->value;
 			else
 				var_value = handle_questionmark(var_name);
-			exec->args[i] = safe_malloc(sizeof(char) * (ft_strlen(var_value) + 1));
-			ft_strlcpy(exec->args[i], var_value, ft_strlen(var_value) + 1);
+			args[i] = safe_malloc(sizeof(char) * (ft_strlen(var_value) + 1));
+			ft_strlcpy(args[i], var_value, ft_strlen(var_value) + 1);
 			free(var_name);
 			if (!tmp)
 				free(var_value);

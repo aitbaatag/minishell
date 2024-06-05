@@ -15,6 +15,7 @@
 * clear_history() when copyied ?
 * cmd_not found if "unset $PATH"
 * (ls) > out -la  ==> syntax error near unexpected token `-la'
+* sleep 4 | ls ; sleep 4 || ls
 
 # TEST CASES TO FIX #
 ```
