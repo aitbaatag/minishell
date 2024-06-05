@@ -15,6 +15,7 @@ int	run_redir();
 int		ft_run_node(t_tree *tree);
 int		get_exit_status(void);
 void	set_exit_status(int status);
+void    ft_function(int *status);
 void	executer(t_tree *tree);
 
 // utils

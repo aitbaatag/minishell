@@ -16,6 +16,7 @@
 * cmd_not found if "unset $PATH"
 * (ls) > out -la  ==> syntax error near unexpected token `-la'
 * sleep 4 | ls ; sleep 4 || ls
+* should execute execute wthout ./ like lsss 
 
 # TEST CASES TO FIX #
 ```

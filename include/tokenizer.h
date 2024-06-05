@@ -13,8 +13,6 @@ typedef enum e_token {
     HEREDOC,
     AND,
     OR,
-    DOUBLE_QUOTE,
-    SINGLE_QUOTE,
     OPENING_PARENTHESES,
     CLOSING_PARENTHESES,
     WHITE_SPACE,

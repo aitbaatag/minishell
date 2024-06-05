@@ -61,7 +61,6 @@ void update_existing_var(t_env *current, char *arg, char *value)
         current->value = ft_strdup(value);
     }
 }
-
 void add_or_update_var(char *arg, char *key, char *value)
 {
     t_env *current;
