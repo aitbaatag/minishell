@@ -30,7 +30,7 @@ char *create_key(char *env, char *delimiter)
     size_t key_len;
     char *key;
 
-    if (*(delimiter - 1) == '+')
+    if (delimiter && *(delimiter - 1) == '+')
         delimiter-=1;
     if (!delimiter)
         key_len = ft_strlen(env);

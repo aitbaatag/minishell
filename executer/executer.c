@@ -110,7 +110,7 @@ int	run_logic(t_tree *tree)
 	else if (logic->type == OR)
 	{
 		status = ft_run_node(logic->left);
-		if (status != EXIT_SUCCESS)
+		if (status != EXIT_SUCCESS && status != 130)
 			status = ft_run_node(logic->right);
 	}
 	return (set_exit_status(status), get_exit_status());
@@ -141,6 +141,7 @@ int	handle_external_command(t_exec *exec)
 		cmd_notfound(exec->args[0]);
 		exit(get_exit_status());
 	}
+		signal(SIGQUIT, SIG_DFL);
 	wait(&status);
 	ft_function(&status);
 	return (status);

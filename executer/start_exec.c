@@ -20,4 +20,4 @@ void	executer(t_tree *tree)
 	if (!tree)
 		return ;
 	set_exit_status(ft_run_node(tree));
-}   
+}

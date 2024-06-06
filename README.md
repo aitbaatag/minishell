@@ -17,7 +17,6 @@
 * cmd_not found if "unset $PATH"
 * (ls) > out -la  ==> syntax error near unexpected token `-la'
 * sleep 4 | ls ; sleep 4 || ls
-* should execute execute wthout ./ like lsss 
 
 # TEST CASES TO FIX #
 ```
@@ -36,6 +35,10 @@ CTRL+C ==> exit status 130
 echo $ignore?status
 
 echo $?status
+
+sleep 4 || ls
+
+should execute executable file without ./ initially like lsss
 ```
 
 # SYNTAX ANALYSIS #
