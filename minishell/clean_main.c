@@ -37,9 +37,11 @@ int main(int argc, char *argv[], char *envp[])
 			eof_handler();
         add_history(data->line);
         data->tokens = tokenization(data->line);
-        data->tree = build_tree(&data->tokens);
-        executer(data->tree);
-        global.flag = 0;
-        free (data->line);
-    }
+		if (analyze_syntax(data->tokens) == true)
+		{
+			data->tree = build_tree(&data->tokens);
+			executer(data->tree);
+		}
+		free (data->line);
+	}
 }

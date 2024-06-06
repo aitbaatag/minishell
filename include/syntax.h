@@ -3,10 +3,11 @@
 
 #include "minishell.h"
 
-int		analyze(t_token *line);
-void	check_andorpipe(t_token *node);
-void	check_opening_parentheses(t_token *node);
-void	check_closing_parentheses(t_token *node);
-void	check_redirection(t_token *node);
+bool	analyze_syntax(t_token *tokens);
+bool	check_andorpipe(t_token *node);
+bool	check_parn_nbr(t_token *node);
+bool	check_parentheses(t_token *node);
+bool	check_redirection(t_token *node);
+bool	check_quotes1(char *node);
 
 #endif

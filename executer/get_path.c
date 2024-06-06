@@ -9,6 +9,7 @@ void	free_it(char **split_path)
 		free(split_path[i++]);
 	free(split_path);
 }
+
 char	*check_path(char *path, char *command)
 {
 	char	*valid_command;
@@ -19,6 +20,7 @@ char	*check_path(char *path, char *command)
 	else
 		return (free(valid_command), NULL);
 }
+
 char	*get_path(char *command)
 {
 	int		i;
@@ -35,6 +37,8 @@ char	*get_path(char *command)
 	if ((command[0] == '/' || command[0] == '.'))
 		return (NULL);
 	path_node = find_env_var(global.env, "PATH");
+	if (!path_node)
+		return (NULL);
 	split_path = ft_split(path_node->value, ':');
 	if (split_path)
 	{

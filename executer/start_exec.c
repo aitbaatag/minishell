@@ -9,8 +9,8 @@ int	ft_run_node(t_tree *tree)
 		return (run_cmd(tree));
 	else if (tree->type == AND || tree->type == OR)
 		return (run_logic(tree));
-	else if (tree->type == OUTPUT_REDIRECTION || tree->type == INPUT_REDIRECTION
-    || tree->type == APPEND_REDIRECTION || tree->type == HEREDOC)
+	else if (tree->type == HEREDOC || tree->type == INPUT_REDIRECTION || \
+    	tree->type == APPEND_REDIRECTION || tree->type == OUTPUT_REDIRECTION)
 		return (run_redir(tree));
 	return (EXIT_FAILURE);
 }

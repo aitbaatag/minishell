@@ -4,6 +4,7 @@
 * fix strjoin leaks when used with add_var_to_envs_or_app_modif_exis()
 * cd ~ if runned with env -i
 * grep eof (no file) => CTRL+C problem
+* fix ls >| ls
 * echo "'$USER'" ==> '$USER' problem should print 'user name'
 * echo hello$USER ==> hellousername
 * expand should take char** as argument
@@ -20,20 +21,30 @@
 
 # TEST CASES TO FIX #
 ```
-minishell:~$ notfound | (echo "hello " > file0 || ls && ls -la) | grep mini
- 
-minishell:~$ (echo "hello " > file4 || ls && ls -la) | grep mini
 ```
 
 # TRIVIAL CASES HANDLED ###
 ```
+minishell:~$ notfound | (echo "hello " > file0 || ls && ls -la) | grep mini
+ 
+minishell:~$ (echo "hello " > file4 || ls && ls -la) | grep mini
+
+minishell:~$ ((ls && ls -la) | cat | cat) || pwd
+
 CTRL+C ==> exit status 130
 
-echo ignore?status
-➜  minishell git:(main) ✗ cp /bin/ls lsss
+echo $ignore?status
 
 echo $?status
 ```
+
+# SYNTAX ANALYSIS #
+()()			=> error	V
+()				=> error	V
+(())			=> no_error	V
+ls  >| wc 		=> no_error	X
+ls > | wc		=> error	V
+'utgig'"		=> error	V
 
 # REFERENCES #
 - [Bash Reference Manual](https://www.gnu.org/software/bash/manual/html_node/index.html)

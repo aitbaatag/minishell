@@ -12,6 +12,7 @@
 #include <unistd.h>
 #include <dirent.h>
 #include <signal.h>
+#include <stdbool.h>
 #include "../libft/libft.h"
 #include "tokenizer.h"
 #include "parser.h"
