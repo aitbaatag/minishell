@@ -81,6 +81,7 @@ int export_env_var(t_exec *exec)
 
     envs = global.env;
     i = 1;
+    i = 1;
     if (exec->args[1] == NULL)
     {
         print_sorted_env(envs);
