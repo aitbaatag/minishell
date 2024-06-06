@@ -1,4 +1,5 @@
 #include "../include/minishell.h"
+
 void	save_and_restore_fd(int *orig_stdin, int *orig_stdout, int action)
 {
 	if (action == 0)
@@ -14,6 +15,7 @@ void	save_and_restore_fd(int *orig_stdin, int *orig_stdout, int action)
 		close(*orig_stdout);
 	}
 }
+
 int	run_subshell(t_tree *subshell)
 {
 	t_grp_exec	*group_root;
@@ -34,6 +36,7 @@ int	run_subshell(t_tree *subshell)
 	}
 	return (get_exit_status());
 }
+
 int	run_redir(t_tree *tree)
 {
 	int	orig_stdin;
@@ -46,6 +49,7 @@ int	run_redir(t_tree *tree)
 	save_and_restore_fd(&orig_stdin, &orig_stdout, 1);
 	return (get_exit_status());
 }
+
 void	parent(int *pipe_fd, int *status, int *orig_fd, pid_t *cpid)
 {
 	(void)orig_fd;
@@ -111,6 +115,7 @@ int	run_logic(t_tree *tree)
 	}
 	return (set_exit_status(status), get_exit_status());
 }
+
 int	handle_builtin(t_exec *exec, int orig_stdin, int orig_stdout)
 {
 	int	status;
@@ -125,6 +130,7 @@ int	handle_builtin(t_exec *exec, int orig_stdin, int orig_stdout)
 	}
 	return (-1);
 }
+
 int	handle_external_command(t_exec *exec)
 {
 	int	status;
@@ -139,6 +145,7 @@ int	handle_external_command(t_exec *exec)
 	ft_function(&status);
 	return (status);
 }
+
 int	run_cmd(t_tree *tree)
 {
 	t_exec *exec;

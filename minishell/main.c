@@ -3,26 +3,24 @@ t_global	global;
 
 char *token_type_to_string(int type) {
     switch (type) {
-        case 0: return "WORD";
-        case 1: return "PIPE";
-        case 2: return "INPUT_REDIRECTION";
-        case 3: return "OUTPUT_REDIRECTION";
-        case 4: return "APPEND_REDIRECTION";
-        case 5: return "HEREDOC";
-        case 6: return "AND";
-        case 7: return "OR";
-        case 8: return "DOUBLE_QUOTE";
-        case 9: return "SINGLE_QUOTE";
-        case 10: return "OPENING_PARENTHESES";
-        case 11: return "CLOSING_PARENTHESES";
-        case 12: return "WHITE_SPACE";
-        case 13: return "STAR";
-        case 14: return "SUBSHELL";
-        case 15: return "EXEC";
+        case WORD: return "WORD";
+        case PIPE: return "PIPE";
+        case INPUT_REDIRECTION: return "INPUT_REDIRECTION";
+        case OUTPUT_REDIRECTION: return "OUTPUT_REDIRECTION";
+        case APPEND_REDIRECTION: return "APPEND_REDIRECTION";
+        case HEREDOC: return "HEREDOC";
+        case AND: return "AND";
+        case OR: return "OR";
+        case OPENING_PARENTHESES: return "OPENING_PARENTHESES";
+        case CLOSING_PARENTHESES: return "CLOSING_PARENTHESES";
+        case WHITE_SPACE: return "WHITE_SPACE";
+        case SUBSHELL: return "SUBSHELL";
+        case EXEC: return "EXEC";
         default: return "UNKNOWN";
     }
 }
 
+//#####	tokens	#####
 int main() {
     char *line;
     t_token *tokens;
@@ -45,6 +43,8 @@ while (1)
             }
             tokens = tokens->next;
         }
+			line = readline("minishell> ");
+		    tokens = tokenization(line);
 }
     return 0;
 }
@@ -168,6 +168,7 @@ void print_tree(t_tree *root) {
         }
     }
 }
+//#####	tree	#####
 // int main() {
 //     t_data *data;
 //     t_global global;

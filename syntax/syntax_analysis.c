@@ -1,37 +1,33 @@
 #include "../include/minishell.h"
 
-int	analyze(t_token *line)
+bool	analyze_syntax(t_token *tokens)
 {
-	t_token	*crnt;
-	// int		squote_count;
-	// int		dquote_count;
+	bool	no_error;
 
-	crnt = line;
-	// squote_count = 0;
-	// dquote_count = 0;
-	while (crnt)
+	no_error = true;
+	no_error = check_parn_nbr(tokens);
+	if (no_error == false)
+		return (no_error);
+	while (tokens)
 	{
-		// if (crnt->type == SINGLE_QUOTE)
-		// 	squote_count++;
-		// else if (crnt->type == DOUBLE_QUOTE)
-		// 	dquote_count++;
-		if (crnt->type == AND || crnt->type == OR || crnt->type == PIPE)
-			check_andorpipe(crnt);
-		else if (crnt->type == OPENING_PARENTHESES)
-			check_opening_parentheses(crnt);
-		else if (crnt->type == CLOSING_PARENTHESES)
-			check_closing_parentheses(crnt);
-		else if (crnt->type == INPUT_REDIRECTION || crnt->type == HEREDOC || \
-			crnt->type == OUTPUT_REDIRECTION || crnt->type == APPEND_REDIRECTION)
-			check_redirection(crnt);
-		else
-			printf("check: word/space_encountred\n");
-		crnt = crnt->next;
+		if (tokens->type & LOGICAL || tokens->type == PIPE)
+			no_error = check_andorpipe(tokens);
+		else if (tokens->type & PARN)
+			no_error = check_parentheses(tokens);
+		else if (tokens->type & REDIRECTION)
+			no_error = check_redirection(tokens);
+		else if (tokens->type == WORD)
+		{
+			no_error = check_quotes1(tokens->value);
+			if (no_error == false)
+				ft_putstr_fd("syntax error: unclosed quotes\n", 2);
+		}
+		if (no_error == false)
+		{
+			set_exit_status(2);
+			break ;
+		}
+		tokens = tokens->next;
 	}
-	// if (squote_count % 2 || dquote_count % 2)
-	// {
-	// 	printf("minishell: syntax error\n");
-	// 	exit(EXIT_FAILURE);
-	// }
-	return (0);
+	return (no_error);
 }
