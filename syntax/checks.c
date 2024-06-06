@@ -2,14 +2,14 @@
 
 bool	check_andorpipe(t_token *node)
 {
-	if (node->prev && !(node->prev->type & (WORD | CLOSING_PARENTHESES)))
+	if (!node->prev || (node->prev && !(node->prev->type & (WORD | CLOSING_PARENTHESES))))
 	{
 		ft_putstr_fd("minishell: syntax error near unexpected token `", 2);
 		write(2, node->value, 2);
 		ft_putstr_fd("'\n", 2);
 		return (false);
 	}
-	if (node->next && !(node->next->type & (WORD | REDIRECTION | OPENING_PARENTHESES)))
+	if (!node->next || (node->next && !(node->next->type & (WORD | REDIRECTION | OPENING_PARENTHESES))))
 	{
 		ft_putstr_fd("minishell: syntax error near unexpected token `", 2);
 		write(2, node->value, 2);
@@ -86,7 +86,7 @@ bool	check_parentheses(t_token *node)
 
 bool	check_redirection(t_token *node)
 {
-	if (node->next && !(node->next->type & WORD))
+	if (!node->next || (node->next && !(node->next->type & WORD)))
 	{
 		ft_putstr_fd("minishell: syntax error near unexpected token `", 2);
 		write(2, node->value, 2);
