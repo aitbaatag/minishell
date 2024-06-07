@@ -59,7 +59,7 @@ void	expand(char **args)
 	i = 1;
 	while (args[i])
 	{
-		printf("args: %s\n", args[i]);
+		// printf("args: %s\n", args[i]);
 		j = 0;
 		while (args[i][j])
 		{

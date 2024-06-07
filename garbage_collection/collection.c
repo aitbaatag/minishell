@@ -22,6 +22,7 @@ void	*ft_malloc(size_t size, t_garbage *garbage)
 	new->address = malloc(size);
 	new->next = NULL;
 	if (garbage == NULL)
+	if (garbage == NULL)
 	{
 		garbage = new;
 		return (new->address);

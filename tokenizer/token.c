@@ -1,11 +1,9 @@
 #include "../include/minishell.h"
 
-void	process_spaces(t_token **tokens, char *line, int *i)
+void	process_spaces(char *line, int *i)
 {
-	(void)tokens;
 	while (line[*i] == 32 || (line[*i] >= 9 && line[*i] <= 13))
 		(*i)++;
-	// add_token(tokens, ft_strdup(" "), 1);
 }
 
 int	handle_special_characters(t_token **tokens, char *line, int *i)
@@ -69,7 +67,7 @@ t_token	*tokenization(char *line)
 	{
 		if (line[i] == 32 || (line[i] >= 9 && line[i] <= 13))
 		{
-			process_spaces(&tokens, line, &i);
+			process_spaces(line, &i);
 		}
 		else if (is_special(line[i], 1))
 		{
