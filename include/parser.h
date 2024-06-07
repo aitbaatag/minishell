@@ -49,6 +49,7 @@ t_tree *build_tree(t_token **tokens);
 t_tree *link_root_tree(t_token **tokens, t_tree *right, t_redi_exec **list_heredoc);
 t_tree *pipe_tree(t_token **tokens, t_redi_exec **list_heredoc);
 t_tree *handling_redi(t_token **tokens, t_redi_exec **list_heredoc);
+t_redi_exec	*handle_redirection(t_token **tokens, t_redi_exec **list_heredoc);
 t_tree *add_node_tree(t_tree *left, t_tree *right);
 t_tree *grouoped_cmd_tree(t_token **tokens, t_tree *redi_list, t_redi_exec **list_heredoc);
 

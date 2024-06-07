@@ -60,6 +60,7 @@ t_redi_exec	*get_node_heredoc(t_redi_exec **list_heredoc)
 	}
 	return (ptr);
 }
+
 int	visit_tokens(t_token **tokens)
 {
 	t_token	*ptr;
@@ -80,6 +81,7 @@ int	visit_tokens(t_token **tokens)
 	}
 	return (0);
 }
+
 void	clean_list_tokens(t_token **tokens)
 {
 	t_token *ptr_tokens;

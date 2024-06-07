@@ -45,7 +45,7 @@ void	handle_general_tokens(t_token **tokens, char *line, int *i)
 	while (line[*i] && !(line[*i] == 32 && flag == 0) && !is_special(line[*i],
 			0))
 	{
-		if (line[*i] == '\"' || line[*i] == '\"')
+		if (line[*i] == '\"' || line[*i] == '\'')
 			flag = 1;
 		count++;
 		(*i)++;

@@ -48,6 +48,7 @@ t_tree	*exec_tree(t_token **tokens)
 	}
 	return ((t_tree *)exec);
 }
+
 t_tree	*link_root_tree(t_token **tokens, t_tree *right,
 		t_redi_exec **list_heredoc)
 {
@@ -69,56 +70,6 @@ t_tree	*link_root_tree(t_token **tokens, t_tree *right,
 	if (!(*tokens) || (*tokens)->type == OPENING_PARENTHESES)
 		return (right);
 	return (left);
-}
-
-t_tree	*handling_redi(t_token **tokens, t_redi_exec **list_heredoc)
-{
-	t_redi_exec	*redi_exec;
-	t_exec		*exec;
-
-	redi_exec = NULL;
-	if (!(*tokens) || !tokens)
-		return (NULL);
-	exec = get_exec_and_update_tokens(tokens);
-	if ((*tokens) && (*tokens)->prev && (*tokens)->prev->type == HEREDOC)
-	{
-		redi_exec = get_node_heredoc(list_heredoc);
-		if ((*tokens) && (*tokens)->prev)
-		{
-			if ((*tokens)->prev->prev)
-				(*tokens) = (*tokens)->prev->prev;
-			else
-				(*tokens) = NULL;
-		}
-	}
-	else if ((*tokens) && (*tokens)->prev
-			&& ((*tokens)->prev->type == INPUT_REDIRECTION
-				|| (*tokens)->prev->type == OUTPUT_REDIRECTION
-				|| (*tokens)->prev->type == APPEND_REDIRECTION))
-	{
-		redi_exec = new_redi(tokens);
-		if ((*tokens) && (*tokens)->prev)
-		{
-			if ((*tokens)->prev->prev)
-				(*tokens) = (*tokens)->prev->prev;
-			else
-				(*tokens) = NULL;
-		}
-	}
-	if ((*tokens) && (*tokens)->prev
-		&& ((*tokens)->prev->type == INPUT_REDIRECTION
-			|| (*tokens)->prev->type == OUTPUT_REDIRECTION
-			|| (*tokens)->prev->type == APPEND_REDIRECTION
-			|| (*tokens)->prev->type == HEREDOC))
-	{
-		redi_exec->exec_child = (t_tree *)handling_redi(tokens, list_heredoc);
-	}
-	if (exec)
-	{
-		exec->child_redi = (t_tree *)redi_exec;
-		return ((t_tree *)exec);
-	}
-	return ((t_tree *)redi_exec);
 }
 
 t_tree	*pipe_tree(t_token **tokens, t_redi_exec **list_heredoc)

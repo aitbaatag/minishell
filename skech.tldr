@@ -43,9 +43,9 @@
 		{
 			"id": "pointer:pointer",
 			"typeName": "pointer",
-			"x": 11214.261674559682,
-			"y": 67534.62423617464,
-			"lastActivityTimestamp": 1717635589065,
+			"x": 9771.64945658969,
+			"y": 62909.03363037869,
+			"lastActivityTimestamp": 1717717510988,
 			"meta": {}
 		},
 		{
@@ -56,8 +56,8 @@
 			"typeName": "page"
 		},
 		{
-			"x": -2926.1989304190574,
-			"y": -60124.43624789339,
+			"x": -1313.5238462381274,
+			"y": -57634.84600830838,
 			"z": 0.1,
 			"meta": {},
 			"id": "camera:page:page",
@@ -66,8 +66,10 @@
 		{
 			"editingShapeId": null,
 			"croppingShapeId": null,
-			"selectedShapeIds": [],
-			"hoveredShapeId": null,
+			"selectedShapeIds": [
+				"shape:-TPBOypMDvM-XHkML6d7D"
+			],
+			"hoveredShapeId": "shape:-TPBOypMDvM-XHkML6d7D",
 			"erasingShapeIds": [],
 			"hintingShapeIds": [],
 			"focusedGroupId": null,
@@ -101,8 +103,8 @@
 			"screenBounds": {
 				"x": 0,
 				"y": 0,
-				"w": 1160.4000244140625,
-				"h": 1104
+				"w": 1453.2000732421875,
+				"h": 1216.800048828125
 			},
 			"insets": [
 				false,
@@ -44445,6 +44447,52 @@
 			},
 			"parentId": "page:page",
 			"index": "bNu",
+			"typeName": "shape"
+		},
+		{
+			"x": 5859.101848690978,
+			"y": 63334.583873756375,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:-TPBOypMDvM-XHkML6d7D",
+			"type": "text",
+			"props": {
+				"color": "yellow",
+				"size": "xl",
+				"w": 665.050048828125,
+				"text": "echo \"'''hello''' hello \"'hello'\"\"",
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 6.95012610977825
+			},
+			"parentId": "page:page",
+			"index": "bNv",
+			"typeName": "shape"
+		},
+		{
+			"x": 5799.101238339415,
+			"y": 63910.584850318875,
+			"rotation": 0,
+			"isLocked": false,
+			"opacity": 1,
+			"meta": {},
+			"id": "shape:z3WsUHF2yF8_W0CeqcdWA",
+			"type": "text",
+			"props": {
+				"color": "yellow",
+				"size": "xl",
+				"w": 657.081298828125,
+				"text": " \"'$USER' \"$USER\" \"'$USER'\"\"",
+				"font": "draw",
+				"textAlign": "start",
+				"autoSize": true,
+				"scale": 7.054286608601923
+			},
+			"parentId": "page:page",
+			"index": "bNw",
 			"typeName": "shape"
 		}
 	]
