@@ -39,7 +39,7 @@ int	var_len(char *var)
 	int	len;
 
 	len = 0;
-	while (var[len] && var[len] != '$' && var[len] != ' ' && var[len] != '+')
+	while (var[len] && ft_isalnum(var[len]))
 		len++;
 	return (len);
 }
@@ -75,7 +75,6 @@ void	expand(char **args)
 					var_value = handle_questionmark(var_name);
 				tmp_buff = safe_malloc(sizeof(char) * (ft_strlen(var_value) + 1));
 				ft_strlcpy(tmp_buff, var_value, ft_strlen(var_value) + 1);
-				// args[i] = buff;
 				// free(var_name);
 				// if (!tmp)
 					// free(var_value);
@@ -97,14 +96,8 @@ void	expand(char **args)
 			}
 			j++;
 		}
-		args[i] = buff;
+		args[i] = remove_quotes(buff);
 		buff = NULL;
 		i++;
 	}
-	// i = 0;
-	// while (args[i])
-	// {
-	// 	printf("args[%d]: %s\n", i, buff);
-	// 	i++;
-	// }
 }
