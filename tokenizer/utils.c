@@ -1,19 +1,10 @@
 #include "../include/minishell.h"
 
-int	is_special(char c, int i)
+int	is_special(char c)
 {
-	if (i == 0)
-	{
-		if (c == '<' || c == '>' || c == '&' || c == '|' ||
-			c == '(' || c == ')')
-			return (1);
-	}
-	else
-	{
-		if (c == '<' || c == '>' || c == '&' || c == '|' ||
-			c == '\"' || c == '\'' || c == '(' || c == ')')
-			return (1);
-	}
+	if (c == '<' || c == '>' || c == '&' || c == '|' ||
+		c == '\"' || c == '\'' || c == '(' || c == ')')
+		return (1);
 	return (0);
 }
 int	count_qoutes(char *str, char c)

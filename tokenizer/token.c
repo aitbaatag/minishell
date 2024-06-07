@@ -40,11 +40,8 @@ void	handle_general_tokens(t_token **tokens, char *line, int *i)
 
 	count = 0;
 	flag = 0;
-	while (line[*i] && !(line[*i] == 32 && flag == 0) && !is_special(line[*i],
-			0))
+	while (line[*i] && !(line[*i] == 32 && flag == 0) && !is_special(line[*i]))
 	{
-		if (line[*i] == '\"' || line[*i] == '\'')
-			flag = 1;
 		count++;
 		(*i)++;
 	}
@@ -69,12 +66,12 @@ t_token	*tokenization(char *line)
 		{
 			process_spaces(line, &i);
 		}
-		else if (is_special(line[i], 1))
+		else if (is_special(line[i]))
 		{
 			handle_special_characters(&tokens, line, &i);
 		}
 		else if ((line[i] != 32 || (line[i] >= 9 && line[i] <= 13))
-				&& !is_special(line[i], 0))
+				&& !is_special(line[i]))
 		{
 			handle_general_tokens(&tokens, line, &i);
 		}

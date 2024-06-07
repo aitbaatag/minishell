@@ -35,7 +35,7 @@ typedef struct s_token
 }   t_token;
 
 t_token*	tokenization(char *line);
-int	is_special(char c, int i);
+int	is_special(char c);
 t_token* new_node(char *value, token type);
 void add_node_back(t_token **list_token, t_token *new_token);
 token return_type(char *str, int count);
