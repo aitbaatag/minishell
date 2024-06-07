@@ -45,8 +45,6 @@ void	is_quotes(t_token **token, char *str, int *i)
 		n++;
 	}
 	*i += n;
-	if (n == 1)
-		return ;
 	new_token = new_node(ft_substr(str, 0, n + 1), return_type(str, 0));
 	if (!new_token)
 		return ;
