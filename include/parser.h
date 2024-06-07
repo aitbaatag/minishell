@@ -85,5 +85,6 @@ char *remove_quotes(char *str);
 // Token Processing Functions
 void reverse_list_tokens(t_token **token);
 void clean_list_tokens(t_token **tokens);
+void	read_from_user(char *delimiter, t_redi_exec *node_heredoc, int i, int flag);
 
 #endif
