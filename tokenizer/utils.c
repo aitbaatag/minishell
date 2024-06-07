@@ -40,11 +40,13 @@ void	is_quotes(t_token **token, char *str, int *i)
 	n++;
 	while (str[n])
 	{
-		if (str[n] == str[0] && (str[n + 1] == ' ' || str[n + 1] == '\0'))
+		if (str[n] == str[0])
 			break ;
 		n++;
 	}
 	*i += n;
+	if (n == 1)
+		return ;
 	new_token = new_node(ft_substr(str, 0, n + 1), return_type(str, 0));
 	if (!new_token)
 		return ;

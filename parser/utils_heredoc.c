@@ -15,7 +15,6 @@ t_redi_exec	*new_node_here_doc(token type)
 
 char	*get_substring(char *str, int *i, char delimiter)
 {
-	char	*result;
 	int		start;
 	int		length;
 
@@ -40,8 +39,7 @@ char	*get_substring(char *str, int *i, char delimiter)
 			length++;
 		}
 	}
-	result = ft_substr(str, start, length);
-	return (result);
+	return (ft_substr(str, start, length));
 }
 
 char	*append_substring(char *joined, char *str, int *i, char delimiter)

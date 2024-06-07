@@ -34,31 +34,77 @@ char	*handle_questionmark(char *var_name)
 	return (buff);
 }
 
+int	var_len(char *var)
+{
+	int	len;
+
+	len = 0;
+	while (var[len] && var[len] != '$' && var[len] != ' ' && var[len] != '+')
+		len++;
+	return (len);
+}
+
 void	expand(char **args)
 {
-	char *var_name;
-	char *var_value;
-	t_env *tmp;
-	int i;
+	char 	*var_name;
+	char 	*var_value;
+	int		len;
+	char	*buff;
+	char	*tmp_buff;
+	t_env	*tmp;
+	int 	i;
+	int		j;
 
-	i = 0;
+	buff = NULL;
+	i = 1;
 	while (args[i])
 	{
-		if (args[i][0] == '$' && args[i][1])
+		// printf("args: %s\n", args[i]);
+		j = 0;
+		while (args[i][j])
 		{
-			var_name = ft_substr(args[i], 1, ft_strlen(args[i]) - 1);
-			free(args[i]);
-			tmp = find_env_var(global.env, var_name);
-			if (tmp)
-				var_value = tmp->value;
+			if (args[i][j] == '$' && args[i][j + 1])
+			{
+				len = var_len(args[i] + j + 1);
+				var_name = ft_substr(args[i], j + 1, len);
+				// free(args[i]);
+				tmp = find_env_var(global.env, var_name);
+				if (tmp)
+					var_value = tmp->value;
+				else
+					var_value = handle_questionmark(var_name);
+				tmp_buff = safe_malloc(sizeof(char) * (ft_strlen(var_value) + 1));
+				ft_strlcpy(tmp_buff, var_value, ft_strlen(var_value) + 1);
+				// args[i] = buff;
+				// free(var_name);
+				// if (!tmp)
+					// free(var_value);
+				j += len;
+				if (!buff)
+					buff = tmp_buff;
+				else
+					buff = ft_strjoin(buff, tmp_buff);
+			}
 			else
-				var_value = handle_questionmark(var_name);
-			args[i] = safe_malloc(sizeof(char) * (ft_strlen(var_value) + 1));
-			ft_strlcpy(args[i], var_value, ft_strlen(var_value) + 1);
-			free(var_name);
-			if (!tmp)
-				free(var_value);
+			{
+				char *single_char = malloc(2);
+				single_char[0] = args[i][j];
+				single_char[1] = '\0';
+				if (!buff)
+					buff = single_char;
+				else
+					buff = ft_strjoin(buff, single_char);
+			}
+			j++;
 		}
+		args[i] = buff;
+		buff = NULL;
 		i++;
 	}
+	// i = 0;
+	// while (args[i])
+	// {
+	// 	printf("args[%d]: %s\n", i, buff);
+	// 	i++;
+	// }
 }
