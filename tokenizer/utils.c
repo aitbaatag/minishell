@@ -22,6 +22,7 @@ int	count_qoutes(char *str, char c)
 	}
 	return (count);
 }
+
 void	is_quotes(t_token **token, char *str, int *i)
 {
 	t_token *new_token;
@@ -43,3 +44,44 @@ void	is_quotes(t_token **token, char *str, int *i)
 		return ;
 	add_node_back(token, new_token);
 }
+
+// char	other_quote(char quote)
+// {
+// 	if (quote == '\'')
+// 		return ('\"');
+// 	else
+// 		return ('\'');
+// }
+
+// void	is_quotes(t_token **token, char *str, int *i)
+// {
+// 	t_token *new_token;
+// 	int		n;
+// 	int		even;
+
+// 	n = 0;
+// 	even = 0;
+// 	while (str[n])
+// 	{
+// 		if (str[n] == str[0])
+// 		{
+// 			if ((str[n + 1] == ' ' || str[n + 1] == other_quote(str[0])) && even)
+// 				break ;
+// 			else
+// 			{
+// 				if (even)
+// 					even = 0;
+// 				else
+// 					even = 1;
+// 			}
+// 		}
+// 		n++;
+// 	}
+// 	*i += n;
+// 	if (n == 1)
+// 		return ;
+// 	new_token = new_node(ft_substr(str, 0, n + 1), return_type(str, 0));
+// 	if (!new_token)
+// 		return ;
+// 	add_node_back(token, new_token);
+// }

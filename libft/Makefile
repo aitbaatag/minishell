@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kait-baa <kait-baa@student.42.fr>          +#+  +:+       +#+         #
+#    By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/11 00:30:25 by kait-baa          #+#    #+#              #
-#    Updated: 2024/05/24 06:38:43 by kait-baa         ###   ########.fr        #
+#    Updated: 2024/06/07 23:16:40 by asadiqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ fclean:			clean
 re:				fclean $(NAME)
 
 $(BONUS_OBJS) : $(BONUS)
-	$(CC) $(CFLAGS) -c $(BONUS)
+	@$(CC) $(CFLAGS) -c $(BONUS)
 	ar -rc ${NAME} $(BONUS_OBJS)
 
 bonus:	$(BONUS_OBJS)
