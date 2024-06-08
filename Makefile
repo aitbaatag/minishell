@@ -81,13 +81,13 @@ LIBFT = $(LIBFT_DIR)/libft.a
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT)  -lreadline -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT)  -lreadline -o $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT): $(SRCS_LIBFT)
-	make -C $(LIBFT_DIR)
+	@make -C $(LIBFT_DIR)
 
 clean:
 	rm -f $(OBJS)
