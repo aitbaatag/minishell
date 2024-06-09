@@ -12,7 +12,7 @@ void	expand_status(char *var_name, int *i, char **buff)
 		len++;
 		(*i)++;
 	}
-	*buff = safe_malloc(sizeof(char) * (len + 1));
+	*buff = safe_malloc(sizeof(char) * (len + 1), &global.garbage_list);
 	ft_strlcpy(*buff, tmp, ft_strlen(tmp) + 1);
 	ft_strlcpy(*buff + ft_strlen(tmp), var_name + 1, ft_strlen(var_name) + 1);
 }
@@ -31,7 +31,7 @@ char	*handle_questionmark(char *var_name)
 	{
 		while (var_name[i] && var_name[i] != '?')
 			i++;
-		buff = safe_malloc(sizeof(char) * (ft_strlen(var_name) - i + 1));
+		buff = safe_malloc(sizeof(char) * (ft_strlen(var_name) - i + 1), &global.garbage_list);
 		ft_strlcpy(buff, var_name + i, ft_strlen(var_name) - i + 1);
 	}
 	return (buff);

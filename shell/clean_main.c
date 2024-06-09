@@ -11,9 +11,8 @@ int main(int argc, char *argv[], char *envp[])
 	//	welcome();
     global.env = NULL;
 	global.homedir = NULL;
-    global.old_stdout = dup(STDOUT_FILENO);
-    global.old_stdin = dup(STDIN_FILENO);
-    data = safe_malloc(sizeof(data));
+    global.garbage_list = NULL;
+    data = malloc(sizeof(t_data));
 
     (void)argv;
     (void)argc;
@@ -23,7 +22,6 @@ int main(int argc, char *argv[], char *envp[])
         exit (EXIT_FAILURE);
     }
     set_env(envp);
-    global.flag = 0;
 	homedir = find_env_var(global.env, "HOME");
 	if (homedir)
 		global.homedir = homedir->value;
@@ -41,6 +39,7 @@ int main(int argc, char *argv[], char *envp[])
 			data->tree = build_tree(&data->tokens);
 			executer(data->tree);
 		}
+        free_garbage(&global.garbage_list);
 		free (data->line);
 	}
 }

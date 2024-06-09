@@ -50,14 +50,12 @@ int	run_redir(t_tree *tree)
 	return (get_exit_status());
 }
 
-void	parent(int *pipe_fd, int *status, int *orig_fd, pid_t *cpid)
+void	parent(int *pipe_fd, int *status, pid_t *cpid)
 {
-	(void)orig_fd;
 	close(pipe_fd[0]);
 	close(pipe_fd[1]);
 	waitpid(cpid[0], status, 0);
 	waitpid(cpid[1], status, 0);
-	// save_and_restore_fd(&orig_fd[0], &orig_fd[1], 1);
 	ft_function(status);
 	set_exit_status(*status);
 }
@@ -67,11 +65,7 @@ int	run_pipe(t_tree *tree)
 	pid_t	cpid[2];
 	int		status;
 	t_pipe	*pipenode;
-	int		orig_fd[2];
 
-	// orig_fd[1] = dup(STDOUT_FILENO);
-	// orig_fd[0] = dup(STDIN_FILENO);
-	// save_and_restore_fd(&orig_fd[0], &orig_fd[1], 0);
 	pipenode = (t_pipe *)tree;
 	pipe(fd);
 	cpid[0] = fork();
@@ -90,7 +84,7 @@ int	run_pipe(t_tree *tree)
 		close(fd[0]);
 		exit(ft_run_node(pipenode->right));
 	}
-	parent(fd, &status, orig_fd, cpid);
+	parent(fd, &status, cpid);
 	return (get_exit_status());
 }
 
@@ -162,6 +156,8 @@ int	run_cmd(t_tree *tree)
 		return (get_exit_status());
 	}
 	expand(exec->args);
+	if (!exec->args[0])
+		return (set_exit_status(0), get_exit_status());
 	status = handle_builtin(exec, orig_stdin, orig_stdout);
 	if (status != -1)
 		return (status);

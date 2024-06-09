@@ -5,11 +5,14 @@
 
 typedef	struct s_garbage
 {
-	void				*address;
+	void				*ptr;
 	struct s_garbage	*next;
 }	t_garbage;
 
-void	*ft_malloc(size_t size, t_garbage *garbage);
-void	clean(t_garbage *garbage);
+void	free_garbage(t_garbage **list);
+t_garbage	*new_garbage_node(void *ptr);
+void	add_garbage_node(t_garbage **list, t_garbage *new_node);
+void	*safe_malloc(size_t size, t_garbage **list);
+void free_token_list(t_token *head);
 
 #endif

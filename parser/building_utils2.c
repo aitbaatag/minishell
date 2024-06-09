@@ -16,7 +16,7 @@ char *init_arg(char *value)
     i = 0;
     if (!value)
         return (NULL);
-    arg = safe_malloc(ft_strlen(value) + 1);
+    arg = safe_malloc(ft_strlen(value) + 1, &global.garbage_list);
     arg = ft_strdup(value);
     // arg = remove_quotes(value);
     return (arg);    // arg = remove_quotes(value);

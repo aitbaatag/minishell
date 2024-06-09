@@ -53,9 +53,6 @@ t_redi_exec	*handle_redirection(t_token **tokens, t_redi_exec **list_heredoc);
 t_tree *add_node_tree(t_tree *left, t_tree *right);
 t_tree *grouoped_cmd_tree(t_token **tokens, t_tree *redi_list, t_redi_exec **list_heredoc);
 
-//Memory Management Functions
-void *safe_malloc(size_t size);
-
 //Node Creation Functions
 t_pipe *new_pipe();
 t_exec* new_exec(int size_of_args);

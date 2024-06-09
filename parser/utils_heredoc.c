@@ -4,7 +4,7 @@ t_redi_exec	*new_node_here_doc(token type)
 {
 	t_redi_exec	*redi;
 
-	redi = safe_malloc(sizeof(t_redi_exec));
+	redi = safe_malloc(sizeof(t_redi_exec), &global.garbage_list);
 	redi->type = type;
 	redi->flags = O_RDONLY;
 	redi->exec_child = NULL;

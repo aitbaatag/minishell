@@ -21,17 +21,17 @@
 #include "executer.h"
 #include "expander.h"
 #include "syntax.h"
+#include "garbage.h"
 
 typedef struct s_tree t_tree;
 struct s_token;
 typedef struct s_env t_env;
+typedef	struct s_garbage t_garbage;
 
 typedef	struct s_global {
     t_env   *env;
     int		status;
-    int     flag;
-    int old_stdin;
-    int old_stdout;
+    t_garbage *garbage_list;
 	char	*homedir;
 }	t_global;
 
