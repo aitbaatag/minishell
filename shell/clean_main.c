@@ -1,7 +1,6 @@
 #include "../include/minishell.h"
 
 t_global	global;
-
 int main(int argc, char *argv[], char *envp[])
 {
     t_data *data;

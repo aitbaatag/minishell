@@ -35,7 +35,7 @@ typedef struct s_token
 }   t_token;
 
 t_token*	tokenization(char *line);
-int	is_special(char c);
+int	is_special(char c, int i);
 t_token* new_node(char *value, token type);
 void add_node_back(t_token **list_token, t_token *new_token);
 token return_type(char *str, int count);
@@ -45,7 +45,6 @@ void init_struct(t_token *list_tokens);
 void is_quotes(t_token **token, char *str, int *i);
 int is_variable(t_token **token, char *str);
 int check_quotes(char *str);
-int count_qoutes(char *str, char c);
 int check_wildcard(char *str);
 int    is_match(const char *f, const char *p);
 void add_meant_file(t_token **tokens, char *namefile);

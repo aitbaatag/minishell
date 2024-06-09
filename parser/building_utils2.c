@@ -18,6 +18,7 @@ char *init_arg(char *value)
         return (NULL);
     arg = safe_malloc(ft_strlen(value) + 1);
     arg = ft_strdup(value);
+    // arg = remove_quotes(value);
     return (arg);    // arg = remove_quotes(value);
 }
 t_tree *add_node_tree(t_tree *right, t_tree *left)

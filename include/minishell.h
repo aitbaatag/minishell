@@ -28,7 +28,7 @@ typedef struct s_env t_env;
 typedef	struct s_global {
     t_env   *env;
     int		status;
-    int flag;
+    int     flag;
     int old_stdin;
     int old_stdout;
 	char	*homedir;
@@ -45,5 +45,6 @@ typedef struct s_data {
 void	welcome(void);
 void	sigint_handler(int signum);
 void	eof_handler(void);
+void	sigint_handler_nonl(int sig);
 
 #endif

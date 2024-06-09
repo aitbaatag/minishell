@@ -1,5 +1,13 @@
 #include "../include/minishell.h"
 
+void	sigint_handler_nonl(int sig)
+{
+	(void) sig;
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
+}
+
 void	sigint_handler(int signum)
 {
 	(void)signum;
