@@ -44,7 +44,8 @@ SRCS = ./executer/exit_satus.c \
       ./tokenizer/type_token.c \
       ./tokenizer/token.c \
       ./tokenizer/utils.c \
-      ./tokenizer/utils_creator_nodes.c
+      ./tokenizer/utils_creator_nodes.c \
+      ./garbage_collection/collection.c
 
 # Libft source files
 SRCS_LIBFT = ./libft/ft_split.c \

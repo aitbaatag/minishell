@@ -2,6 +2,8 @@
 
 int	(*is_builtin(char *cmd))(t_exec *exec)
 {
+	if (!cmd)
+		return (NULL);
 	if (ft_strcmp(cmd, "echo") == 0)
 		return (ft_echo);
 	else if (ft_strcmp(cmd, "cd") == 0)

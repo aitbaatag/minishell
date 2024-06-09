@@ -8,7 +8,7 @@ char **env_to_array(t_env *envs)
 
     size = get_envp_size(NULL, envs, 1);
     i = 0;
-    env_array = safe_malloc((size + 1)* sizeof(char *));
+    env_array = safe_malloc((size + 1)* sizeof(char *),  &global.garbage_list);
     env_array[size] = NULL;
     ptr_envs = envs;
     while (ptr_envs)

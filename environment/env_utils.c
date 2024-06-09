@@ -36,7 +36,7 @@ char *create_key(char *env, char *delimiter)
         key_len = ft_strlen(env);
     else
         key_len = delimiter - env;
-    key = safe_malloc((key_len + 1) * sizeof(char));
+    key = safe_malloc((key_len + 1) * sizeof(char),  &global.garbage_list);
     ft_strlcpy(key, env, key_len + 1);
     return key;
 }
@@ -47,7 +47,7 @@ t_env *create_env_node(char *env)
     t_env *new;
 
     delimiter = ft_strchr(env, '=');
-    new = safe_malloc(sizeof(t_env));
+    new = safe_malloc(sizeof(t_env),  &global.garbage_list);
     new->key = create_key(env, delimiter);
     if (delimiter)
         new->value = create_value(delimiter + 1);
