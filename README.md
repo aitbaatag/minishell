@@ -6,8 +6,6 @@
 * echo "'$USER'" ==> '$USER' problem should print 'user name'
 * echo hello$USER ==> hellousername
 * expand should take char** as argument
-* exit builtin
-* handle echo/expand
 * when removed a parent directory, pwd/oldpwd shall work
 * expand isnside heredoc, but not if there is a quote? in delimeter
 * clear_history() when copyied ?
@@ -16,7 +14,6 @@
 * sleep 4 | ls ; sleep 4 || ls
 * echo $USER$PATH
 * (ls) <Makefile -ls ==> syntax error
-
 
 # TEST CASES TO FIX #
 ```
