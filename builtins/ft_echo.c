@@ -18,20 +18,6 @@ int	check_echo_flag(char *str)
 	return (0);
 }
 
-/* dosn't work because quotes qre removed; even if not */
-// int	ft_put_space(t_exec *exec, int i)
-// {
-// 	printf("no_seg\n");
-// 	if (exec->args[i + 1][0] == '\'' || exec->args[i + 1][0] == '\"' \
-// 		|| exec->args[i][ft_strlen(exec->args[i]) - 1] == '\'' \
-// 		|| exec->args[i][ft_strlen(exec->args[i]) - 1] == '\"')
-// 		{
-// 		printf("no_seg\n");
-// 		return (0);
-// 		}
-// 	return (1);
-// }
-
 int ft_echo(t_exec *exec)
 {
     char    **args;
@@ -55,7 +41,7 @@ int ft_echo(t_exec *exec)
 	put_space = 0;
 	while (args[i])
 	{
-		if (put_space /*&& ft_put_space(exec, i)*/)
+		if (put_space)
 			printf(" ");
 		printf("%s", args[i++]);
 		put_space = 1;

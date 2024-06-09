@@ -7,14 +7,14 @@ int set_type_redi(t_tree *redi)
     redi_exec = (t_redi_exec *)redi;
     if (redi_exec)
     {
-        if (redi->type == INPUT_REDIRECTION)
-            return (handle_redir_input((t_redi_exec *)redi));
-        else if (redi->type == OUTPUT_REDIRECTION)
-            return (handle_redir_output((t_redi_exec *)redi));
-        else if (redi->type == APPEND_REDIRECTION)
-            return (handle_redir_output((t_redi_exec *)redi));
-        else if (redi->type == HEREDOC)
-            return (handle_redir_input((t_redi_exec *)redi));
+		if (redi->type == INPUT_REDIRECTION)
+			return (handle_redir_input((t_redi_exec *)redi));
+		else if (redi->type == OUTPUT_REDIRECTION)
+			return (handle_redir_output((t_redi_exec *)redi));
+		else if (redi->type == APPEND_REDIRECTION)
+			return (handle_redir_output((t_redi_exec *)redi));
+		else if (redi->type == HEREDOC)
+			return (handle_redir_input((t_redi_exec *)redi));
     }
     return (EXIT_SUCCESS);
 }
@@ -23,11 +23,9 @@ int handle_redir_input(t_redi_exec *redi)
     int fd;
 
     if (!redi)
-        return EXIT_SUCCESS;
+		return (EXIT_SUCCESS);
     if (set_type_redi((t_tree *)redi->exec_child) != 0)
-    {
-        return set_exit_status(1), get_exit_status();
-    }
+		return (set_exit_status(1), get_exit_status());
     if (redi->type == HEREDOC)
         fd = open(redi->file_name, O_RDONLY);
     else
@@ -35,11 +33,11 @@ int handle_redir_input(t_redi_exec *redi)
     if (fd == -1)
     {
         perror(redi->file_name);
-        return set_exit_status(1), get_exit_status();
+        return (set_exit_status(1), get_exit_status());
     }
     dup2(fd, STDIN_FILENO);
     close (fd);
-    return set_exit_status(0), get_exit_status();
+    return (set_exit_status(0), get_exit_status());
 }
 
 int handle_redir_output(t_redi_exec *redi)

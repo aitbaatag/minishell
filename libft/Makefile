@@ -6,7 +6,7 @@
 #    By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/11 00:30:25 by kait-baa          #+#    #+#              #
-#    Updated: 2024/06/07 23:16:40 by asadiqui         ###   ########.fr        #
+#    Updated: 2024/06/09 11:01:56 by asadiqui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ $(NAME):		$(OBJS)
 				ar rcs $(NAME) $(OBJS)
 
 clean:
-				$(RM) $(OBJS) $(BONUS_OBJS)
+				@$(RM) $(OBJS) $(BONUS_OBJS)
 
 fclean:			clean
 				$(RM) $(NAME)

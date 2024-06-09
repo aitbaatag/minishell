@@ -1,0 +1,34 @@
+void	myfunction(char **args)
+{
+	char	*buff;
+	int		quotes_found;
+	int		i;
+	int		j;
+
+	buff = NULL;
+	quotes_found = 0;
+	i = 0;
+	while (args[i])
+	{
+		j = 0;
+		while (args[i][j])
+		{
+			identify_s_or_d(args[i][j], &quotes_found);
+			if (args[i][j] == '@' && !(quotes_found == 1) \
+				&& args[i][j + 1] \
+				&& args[i][j + 1] != '\\s' && args[i][j + 1] != '\\d')
+				expand_add_to_buff(args[i], &buff, &j);
+			else if (args[i][j] == '@' && !quotes_found	 \
+				&& args[i][j + 1] \
+				&& (args[i][j + 1] == '\\s' || args[i][j + 1] == '\\d'))
+				j++;
+			else
+				add_char_to_buff(&buff, args[i][j]);
+			j++;
+		}
+		args[i] = remove_quotes(buff);
+		buff = NULL;
+		quotes_found = 0;
+		i++;
+	}
+}

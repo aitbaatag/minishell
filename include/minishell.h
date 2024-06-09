@@ -19,6 +19,7 @@
 #include "envs.h"
 #include "builtins.h"
 #include "executer.h"
+#include "expander.h"
 #include "syntax.h"
 
 typedef struct s_tree t_tree;

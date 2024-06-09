@@ -20,34 +20,34 @@ char *token_type_to_string(int type) {
     }
 }
 
-//#####	tokens	#####
-int main() {
-    char *line;
-    t_token *tokens;
+//	#####	tokens	#####
+// int main() {
+//     char *line;
+//     t_token *tokens;
 
-    int i;
+//     int i;
 
-    i = 0;
-	line = readline("minishell> "); // link with -lreadkine
+//     i = 0;
+// 	line = readline("minishell> "); // link with -lreadkine
 
-    tokens = tokenization(line);
+//     tokens = tokenization(line);
  
     
-while (1)
-{
-        while (tokens != NULL) {
-            if (tokens && tokens->value)
-            {
-                // printf ("jj\n");
-             printf("%s_%s=> \n",  tokens->value, token_type_to_string(tokens->type));
-            }
-            tokens = tokens->next;
-        }
-			line = readline("minishell> ");
-		    tokens = tokenization(line);
-}
-    return 0;
-}
+// while (1)
+// {
+//         while (tokens != NULL) {
+//             if (tokens && tokens->value)
+//             {
+//                 // printf ("jj\n");
+//              printf("%s_%s=> \n",  tokens->value, token_type_to_string(tokens->type));
+//             }
+//             tokens = tokens->next;
+//         }
+// 			line = readline("minishell> ");
+// 		    tokens = tokenization(line);
+// }
+//     return 0;
+// }
 
 void print_tree2(t_tree *root) {
     if (root == NULL) {
@@ -168,27 +168,27 @@ void print_tree(t_tree *root) {
         }
     }
 }
-// #####	tree	#####
-// int main() {
-//     t_data *data;
-//     t_global global;
+//	#####	tree	#####
+int main() {
+    t_data *data;
+    t_global global;
 
-// 	// global = malloc(sizeof(t_global));
-//     global.env = NULL;
-//     global.status = 0;
-//     data = safe_malloc(sizeof(data));
+	// global = malloc(sizeof(t_global));
+    global.env = NULL;
+    global.status = 0;
+    data = safe_malloc(sizeof(data));
 
-//     // set_env(envp);
-//     char *line;
-//     t_token *tokens;
-//     t_tree *root;
-//     while (1)
-//     {
-// 	line = readline("minishell> "); // link with -lreadkine
+    // set_env(envp);
+    char *line;
+    t_token *tokens;
+    t_tree *root;
+    while (1)
+    {
+	line = readline("minishell> "); // link with -lreadkine
 
-//     tokens = tokenization(line);
-//     root = build_tree(&tokens);
-//     print_tree (root);
-//     }
-//     return 0;
-// }
+    tokens = tokenization(line);
+    root = build_tree(&tokens);
+    print_tree (root);
+    }
+    return 0;
+}

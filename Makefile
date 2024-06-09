@@ -9,8 +9,11 @@ SRCS = ./executer/exit_satus.c \
       ./executer/utils.c \
       ./executer/redirection.c \
       ./executer/get_path.c \
-      ./executer/expand.c \
       ./executer/start_exec.c \
+	  ./expander/expand_vars.c \
+	  ./expander/expand_vars_utils.c \
+	  ./expander/expand_status.c \
+	  ./expander/expand_wildcards.c \
       ./parser/build_tree.c \
       ./parser/start_build_tree.c \
       ./parser/heredoc_list.c \
@@ -38,7 +41,6 @@ SRCS = ./executer/exit_satus.c \
       ./builtins/unset.c \
       ./syntax/syntax_analysis.c \
       ./syntax/checks.c \
-      ./tokenizer/expander_wildcards.c \
       ./tokenizer/type_token.c \
       ./tokenizer/token.c \
       ./tokenizer/utils.c \
@@ -84,13 +86,13 @@ $(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT)  -lreadline -o $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT): $(SRCS_LIBFT)
-	make -C $(LIBFT_DIR)
+	@make -C $(LIBFT_DIR)
 
 clean:
-	rm -f $(OBJS)
+	@rm -f $(OBJS)
 	make -C $(LIBFT_DIR) clean
 
 fclean: clean

@@ -31,6 +31,7 @@ int	count_qoutes(char *str, char c)
 	}
 	return (count);
 }
+
 void	is_quotes(t_token **token, char *str, int *i)
 {
 	t_token *new_token;
@@ -46,9 +47,12 @@ void	is_quotes(t_token **token, char *str, int *i)
 	{
 		if (str[n] == quote_char)
 			b++;
-		if ((str[n] == str[0]) && b % 2 == 0 && (str[n + 1] == ' ' || str[n + 1] == '\0'))
+		if (str[n] == str[0] && b % 2 == 0 && (str[n + 1] == 32 || \
+			(str[n + 1] >= 7 && str[n + 1] <= 13) || str[n + 1] == '\0'))
 			break ;
-		else if (b % 2 == 0 && str[n] == ' ')
+		else if (b % 2 == 0 && \
+			((str[n] == 32 || (str[n] >= 7 && str[n] <= 13)) || \
+			(str[n + 1] == 32 || (str[n + 1] >= 7 && str[n + 1] <= 13))))
 			break;
 		n++;
 	}
