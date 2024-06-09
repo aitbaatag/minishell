@@ -161,7 +161,7 @@ int	run_cmd(t_tree *tree)
 		save_and_restore_fd(&orig_stdin, &orig_stdout, 1);
 		return (get_exit_status());
 	}
-	expand(exec->args);
+	// expand(exec->args);
 	status = handle_builtin(exec, orig_stdin, orig_stdout);
 	if (status != -1)
 		return (status);

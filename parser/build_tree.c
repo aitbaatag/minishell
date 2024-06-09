@@ -5,8 +5,8 @@ t_tree	*grouoped_cmd_tree(t_token **tokens, t_tree *redi_list,
 {
 	t_grp_exec	*grp;
 	t_tree		*redi_child;
+	t_tree		*mini_tree;
 
-	t_tree *mini_tree; // right
 	redi_child = NULL;
 	grp = new_grp_exec();
 	if ((*tokens) && (*tokens)->type == CLOSING_PARENTHESES)
@@ -74,7 +74,7 @@ t_tree	*link_root_tree(t_token **tokens, t_tree *right,
 
 t_tree	*pipe_tree(t_token **tokens, t_redi_exec **list_heredoc)
 {
-	t_tree *tree_exec;
+	t_tree	*tree_exec;
 
 	if ((!*tokens))
 		return (NULL);

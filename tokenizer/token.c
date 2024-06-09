@@ -1,9 +1,15 @@
 #include "../include/minishell.h"
 
-void	process_spaces(char *line, int *i)
+void	process_spaces(t_token **tokens, char *line, int *i)
 {
-	while (line[*i] == 32 || (line[*i] >= 9 && line[*i] <= 13))
+	int fix;
+	
+	fix = *i;
+	(void)tokens;
+	while (line[*i] == 32 || (line[*i] >= 7 && line[*i] <= 13))
 		(*i)++;
+	// if (line[fix] == 32)
+	// 	add_token(tokens, ft_strdup(" "), 1);
 }
 
 int	handle_special_characters(t_token **tokens, char *line, int *i)
@@ -40,7 +46,7 @@ void	handle_general_tokens(t_token **tokens, char *line, int *i)
 
 	count = 0;
 	flag = 0;
-	while (line[*i] && !(line[*i] == 32 && flag == 0) && !is_special(line[*i]))
+	while (line[*i] && !(line[*i] == 32 && flag == 0) && !is_special(line[*i], 1))
 	{
 		count++;
 		(*i)++;
@@ -57,21 +63,21 @@ t_token	*tokenization(char *line)
 	int		i;
 
 	tokens = NULL;
-	i = 0;
+	i = 0;	
 	if (!line)
 		return (NULL);
 	while (line[i])
 	{
-		if (line[i] == 32 || (line[i] >= 9 && line[i] <= 13))
+		if (line[i] == 32 || (line[i] >= 7 && line[i] <= 13))
 		{
-			process_spaces(line, &i);
+			process_spaces(&tokens, line, &i);
 		}
-		else if (is_special(line[i]))
+		else if (is_special(line[i], 1))
 		{
 			handle_special_characters(&tokens, line, &i);
 		}
-		else if ((line[i] != 32 || (line[i] >= 9 && line[i] <= 13))
-				&& !is_special(line[i]))
+		else if ((line[i] != 32 || !(line[i] >= 7 && line[i] <= 13))
+				&& !is_special(line[i], 1))
 		{
 			handle_general_tokens(&tokens, line, &i);
 		}

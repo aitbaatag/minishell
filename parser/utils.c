@@ -92,6 +92,8 @@ void	clean_list_tokens(t_token **tokens)
 	{
 		if (ptr_tokens->type == WHITE_SPACE)
 		{
+			// if (ptr_tokens->prev && ptr_tokens->next)
+			// 	ptr_tokens->prev->value = ft_strjoin(ptr_tokens->prev->value, ".");
 			temp = ptr_tokens;
 			if (ptr_tokens->prev)
 				ptr_tokens->prev->next = ptr_tokens->next;
@@ -100,8 +102,8 @@ void	clean_list_tokens(t_token **tokens)
 			if (ptr_tokens == (*tokens))
 				*tokens = ptr_tokens->next;
 			ptr_tokens = ptr_tokens->next;
-			free(temp->value);
-			free(temp);
+			// free(temp->value);
+			// free(temp);
 		}
 		else
 			ptr_tokens = ptr_tokens->next;
