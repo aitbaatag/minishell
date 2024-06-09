@@ -46,7 +46,8 @@ void	handle_general_tokens(t_token **tokens, char *line, int *i)
 
 	count = 0;
 	flag = 0;
-	while (line[*i] && !(line[*i] == 32 && flag == 0) && !is_special(line[*i], 1))
+	while (line[*i] && !is_special(line[*i], 0) && \
+		!((line[*i] == 32 || (line[*i] >= 7 && line[*i] <= 13)) && flag == 0))
 	{
 		count++;
 		(*i)++;

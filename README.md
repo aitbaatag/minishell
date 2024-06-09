@@ -16,11 +16,7 @@
 * sleep 4 | ls ; sleep 4 || ls
 * echo $USER$PATH
 * (ls) <Makefile -ls ==> syntax error
-* TEST: echo "'$USER' "$USER" "'$USER'""	==>	;'asadiqui' asadiqui $USER;		(only space error)
-* TEST: echo '$USER"' ' "$USER" ''""'		==>	;$USER"  "$USER" "";			(only space error)
-* TEST: echo "'$USER"""'$USER' "$USER'"		==> ;'asadiqui$USER asadiqui';		(only space error)
-* TEST: echo '$'"---$?'$?'$?"?				==> ;$---130'130'130?;				(only space error)
-* TEST: echo $'USER'						==> USER (special case)				(only space error)
+
 
 # TEST CASES TO FIX #
 ```
@@ -28,6 +24,12 @@
 
 # TRIVIAL CASES HANDLED ###
 ```
+* TEST: echo "'$USER' "$USER" "'$USER'""	==>	;'asadiqui' asadiqui $USER;
+* TEST: echo '$USER"' ' "$USER" ''""'		==>	;$USER"  "$USER" "";
+* TEST: echo "'$USER"""'$USER' "$USER'"		==> ;'asadiqui$USER asadiqui';
+* TEST: echo '$'"---$?'$?'$?"?				==> ;$---130'130'130?;
+* TEST: echo $'USER'						==> USER (special case)
+
 minishell:~$ (ls) -la (syntax error)
 
 minishell:~$ notfound | (echo "hello " > file0 || ls && ls -la) | grep mini

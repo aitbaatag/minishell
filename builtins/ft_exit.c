@@ -5,7 +5,10 @@ static void	check_exit_args(char **args)
 	int	i;
 
 	if (!args[1])
+	{
+		ft_putstr_fd("exit\n", 2);
 		exit(EXIT_SUCCESS);
+	}
 	else if (args[2])
 	{
 		ft_putstr_fd("exit: too many arguments\n", 2);
