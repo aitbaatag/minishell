@@ -85,8 +85,8 @@ void	*safe_malloc(size_t size, t_garbage **list)
 // int main() {
 //     t_garbage *garbage_list = NULL;
 
-//     char *str1 = (char *)test(100 * sizeof(char), &garbage_list);
-//     char *str2 = (char *)test(50 * sizeof(char), &garbage_list);
+//     char *str1 = (char *)safe_malloc(100 * sizeof(char), &garbage_list);
+//     char *str2 = (char *)safe_malloc(50 * sizeof(char), &garbage_list);
 
 //     if (!str1 || !str2) {
 //         fprintf(stderr, "Memory allocation failed\n");

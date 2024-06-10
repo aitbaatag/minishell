@@ -56,7 +56,7 @@ void	parent(int *pipe_fd, int *status, pid_t *cpid)
 	close(pipe_fd[1]);
 	waitpid(cpid[0], status, 0);
 	waitpid(cpid[1], status, 0);
-	ft_function(status);
+	if_exit_with_signal(status);
 	set_exit_status(*status);
 }
 int	run_pipe(t_tree *tree)
@@ -66,6 +66,8 @@ int	run_pipe(t_tree *tree)
 	int		status;
 	t_pipe	*pipenode;
 
+	signal(SIGINT, sigint_handler_exit);
+	signal(SIGQUIT, sigint_handler_exit);
 	pipenode = (t_pipe *)tree;
 	pipe(fd);
 	cpid[0] = fork();
@@ -133,6 +135,8 @@ int	handle_external_command(t_exec *exec)
 {
 	int	status;
 
+	signal(SIGINT, sigint_handler_nl);
+	signal(SIGQUIT, sigint_handler_nl);
 	if (fork() == 0)
 	{
 		signal(SIGINT, SIG_DFL);
@@ -141,9 +145,9 @@ int	handle_external_command(t_exec *exec)
 		cmd_notfound(exec->args[0]);
 		exit(get_exit_status());
 	}
-		signal(SIGQUIT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	wait(&status);
-	ft_function(&status);
+	if_exit_with_signal(&status);
 	return (status);
 }
 
@@ -167,8 +171,6 @@ int	run_cmd(t_tree *tree)
 	status = handle_builtin(exec, orig_stdin, orig_stdout);
 	if (status != -1)
 		return (status);
-	signal(SIGINT, sigint_handler_nl);
-	signal(SIGQUIT, sigint_handler_nl);
 	status = handle_external_command(exec);
 	save_and_restore_fd(&orig_stdin, &orig_stdout, 1);
 	set_exit_status(status);

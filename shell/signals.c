@@ -14,14 +14,13 @@ void	sigint_handler_nl(int signum)
 {
 	(void)signum;
 	write(1, "\n", STDOUT_FILENO);
-	// set_exit_status(100);
+	set_exit_status(130);
 }
 
 void	sigint_handler_exit(int signum)
 {
 	(void)signum;
-	exit(0);
-	set_exit_status(100);
+	set_exit_status(130);
 }
 
 void	heredoc_handler(int signum)
