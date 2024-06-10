@@ -11,7 +11,7 @@ void	set_exit_status(int status)
 	global.status = status;
 }
 
-void	ft_function(int *status)
+void	if_exit_with_signal(int *status)
 {
 	if (WIFEXITED(*status))
 		*status = WEXITSTATUS(*status);
