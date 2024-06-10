@@ -23,6 +23,9 @@
 #include "syntax.h"
 #include "garbage.h"
 
+#define GREEN '\033[1;32m'
+#define CLOSE '\033[0m'
+
 typedef struct s_tree t_tree;
 struct s_token;
 typedef struct s_env t_env;
@@ -32,7 +35,6 @@ typedef	struct s_global {
     t_env   *env;
     int		status;
     t_garbage *garbage_list;
-	char	*homedir;
 }	t_global;
 
 extern t_global global;
@@ -45,7 +47,10 @@ typedef struct s_data {
 
 void	welcome(void);
 void	sigint_handler(int signum);
+void	sigint_handler_nl(int signum);
+void	sigint_handler_exit(int signum);
+void	heredoc_handler(int signum);
 void	eof_handler(void);
-void	sigint_handler_nonl(int sig);
+void	heredoc_eof(void);
 
 #endif

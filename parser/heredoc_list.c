@@ -37,8 +37,12 @@ void	read_from_user(char *delimiter, t_redi_exec *node_heredoc, int i,
 	while (break_)
 	{
 		line = readline("> ");
+		// signal(SIGINT, heredoc_handler);
 		if (!line)
+		{
+			// heredoc_eof();
 			break ;
+		}
 		line_split = ft_split(line, '\0');
 		if (!flag)
 			expand(line_split);

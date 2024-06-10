@@ -5,12 +5,10 @@ int main(int argc, char *argv[], char *envp[])
 {
     t_data *data;
     t_global global;
-	t_env	*homedir;
 
 	//if (isatty(STDIN_FILENO))
 	//	welcome();
     global.env = NULL;
-	global.homedir = NULL;
     global.garbage_list = NULL;
     data = malloc(sizeof(t_data));
 
@@ -22,13 +20,12 @@ int main(int argc, char *argv[], char *envp[])
         exit (EXIT_FAILURE);
     }
     set_env(envp);
-	homedir = find_env_var(global.env, "HOME");
-	if (homedir)
-		global.homedir = homedir->value;
     while (1)
     {
-		signal(SIGINT, sigint_handler);
-		signal(SIGQUIT, SIG_IGN);
+		if (signal(SIGINT, sigint_handler) == SIG_ERR)
+			ft_putstr_fd("signal error\n", STDERR_FILENO);
+		if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
+			ft_putstr_fd("signal error\n", STDERR_FILENO);
         data->line = readline("\033[1;32mminishell@1337:~$ \033[0m");
 		if (data->line == NULL)
 			eof_handler();
@@ -43,3 +40,5 @@ int main(int argc, char *argv[], char *envp[])
 		free (data->line);
 	}
 }
+
+// rl_clear_history()
