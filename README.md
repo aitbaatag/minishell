@@ -1,19 +1,7 @@
 # TO DO LIST #
-* fix strjoin leaks when used with add_var_to_envs_or_app_modif_exis()
-* cd ~ if runned with env -i
-* grep eof (no file) => CTRL+C problem
-* fix ls >| ls
-* echo "'$USER'" ==> '$USER' problem should print 'user name'
-* echo hello$USER ==> hellousername
-* expand should take char** as argument
+* signals with sleep 4 (pipe)
 * when removed a parent directory, pwd/oldpwd shall work
-* expand isnside heredoc, but not if there is a quote? in delimeter
-* clear_history() when copyied ?
-* cmd_not found if "unset $PATH"
 * (ls) > out -la  ==> syntax error near unexpected token `-la'
-* sleep 4 | ls ; sleep 4 || ls
-* echo $USER$PATH
-* (ls) <Makefile -ls ==> syntax error
 
 # TEST CASES TO FIX #
 ```

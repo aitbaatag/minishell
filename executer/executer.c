@@ -71,6 +71,8 @@ int	run_pipe(t_tree *tree)
 	cpid[0] = fork();
 	if (cpid[0] == 0)
 	{
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		close(fd[0]);
 		dup2(fd[1], STDOUT_FILENO);
 		close(fd[1]);
@@ -79,6 +81,8 @@ int	run_pipe(t_tree *tree)
 	cpid[1] = fork();
 	if (cpid[1] == 0)
 	{
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		close(fd[1]);
 		dup2(fd[0], STDIN_FILENO);
 		close(fd[0]);
@@ -131,6 +135,8 @@ int	handle_external_command(t_exec *exec)
 
 	if (fork() == 0)
 	{
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		execve(get_path(exec->args[0]), exec->args, env_to_array(global.env));
 		cmd_notfound(exec->args[0]);
 		exit(get_exit_status());
@@ -161,6 +167,8 @@ int	run_cmd(t_tree *tree)
 	status = handle_builtin(exec, orig_stdin, orig_stdout);
 	if (status != -1)
 		return (status);
+	signal(SIGINT, sigint_handler_nl);
+	signal(SIGQUIT, sigint_handler_nl);
 	status = handle_external_command(exec);
 	save_and_restore_fd(&orig_stdin, &orig_stdout, 1);
 	set_exit_status(status);

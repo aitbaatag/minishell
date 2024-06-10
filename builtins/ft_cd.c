@@ -8,12 +8,7 @@ int ft_cd(t_exec *exec)
 
 	oldpwd = ((find_env_var(global.env, "PWD"))->value);
 	set_exit_status(1);
-	if (exec->args[2])
-	{
-		ft_putstr_fd("cd: too many arguments\n", 2);
-		return (get_exit_status());
-	}
-	if (!exec->args[1])
+	if (!exec->args[1] || !ft_strcmp(exec->args[1], "~"))
 	{
 		home = find_env_var(global.env, "HOME");
 		if (home)
@@ -24,8 +19,11 @@ int ft_cd(t_exec *exec)
 			return (get_exit_status());
 		}
 	}
-	else if (exec->args[1] && ft_strcmp(exec->args[1], "~") == 0)
-		chdir(global.homedir);
+	else if (exec->args[2])
+	{
+		ft_putstr_fd("cd: too many arguments\n", 2);
+		return (get_exit_status());
+	}
 	else if (exec->args[1] && chdir(exec->args[1]) == -1)
 	{
 		ft_putstr_fd("cd: No such file or directory\n", 2);
