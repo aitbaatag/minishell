@@ -73,6 +73,7 @@ t_redi_exec *get_node_heredoc(t_redi_exec **list_heredoc);
 // Heredoc Creation Functions
 t_redi_exec *creat_list_heredoc(t_token *tokens);
 t_redi_exec *new_node_here_doc(token type);
+int check_expand(char *delimiter);
 
 // String Manipulation Functions
 char *get_substring(char *str, int *i, char delimiter);
