@@ -1,10 +1,12 @@
 #include "../include/parser.h"
-int check_expand(char *delimiter)
+
+int	check_expand(char *delimiter)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(delimiter);
-	return ((delimiter[0] != '\'' && delimiter[0] != '\"') && (delimiter[len - 1] != '\'' && delimiter[len - 1] != '\"'));
+	return ((delimiter[0] != '\'' && delimiter[0] != '\"') && (delimiter[len
+			- 1] != '\'' && delimiter[len - 1] != '\"'));
 }
 void	reverse_list_tokens(t_token **token)
 {

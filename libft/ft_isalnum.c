@@ -9,7 +9,7 @@
 /*   Updated: 2023/11/01 16:51:36 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "../include/minishell.h"
 
 int	ft_isalnum(int c)
 {

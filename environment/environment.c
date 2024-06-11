@@ -8,7 +8,8 @@ char **env_to_array(t_env *envs)
 
     size = get_envp_size(NULL, envs, 1);
     i = 0;
-    env_array = safe_malloc((size + 1)* sizeof(char *),  &global.garbage_list);
+    env_array = safe_malloc((size + 1)* sizeof(char *));
+
     env_array[size] = NULL;
     ptr_envs = envs;
     while (ptr_envs)
@@ -20,34 +21,6 @@ char **env_to_array(t_env *envs)
         i++;
     }
     return (env_array);
-}
-// think again 
-char **copy_envp(char **envp)
-{
-    size_t size;
-    size_t i;
-    char **my_envp;
-
-    i = 0;
-    size = get_envp_size(envp, NULL, 0);
-    my_envp = (char **)malloc((size + 1) * sizeof(char *));
-    if (!my_envp)
-    {
-        perror("malloc");
-        exit(EXIT_FAILURE);
-    }
-    while (i < size)
-    {
-        my_envp[i] = ft_strdup(envp[i]);
-        if (!my_envp[i])
-        {
-            perror("ft_strdup");
-            exit(EXIT_FAILURE);
-        }
-        i++;
-    }
-    my_envp[size] = NULL;
-    return my_envp;
 }
 // convert arr env to list 
 void set_env(char **envp)
@@ -68,4 +41,5 @@ void set_env(char **envp)
         add_envp(envp[i]);
         i++;
     }
+
 }

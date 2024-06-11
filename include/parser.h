@@ -10,7 +10,7 @@ typedef struct s_pipecmd {
 	token	type;
 	t_tree	*left;
 	t_tree	*right;
-}	t_pipe;
+}	t_pipe; 
 
 typedef struct s_exec {
 	token	type;
@@ -68,7 +68,8 @@ void reverse_list_tokens(t_token **token);
 void clean_list_tokens(t_token **tokens);
 int size_of_args(t_token *token);
 int visit_tokens(t_token **tokens);
-t_redi_exec *get_node_heredoc(t_redi_exec **list_heredoc);	
+t_redi_exec *get_node_heredoc(t_redi_exec **list_heredoc);
+int	process_token(t_token **tokens, t_exec *exec_cmd, int *size);
 
 // Heredoc Creation Functions
 t_redi_exec *creat_list_heredoc(t_token *tokens);

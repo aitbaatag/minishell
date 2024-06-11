@@ -13,9 +13,6 @@ int builtin_unset(char *key)
             global.env = key_node->next;
         if (key_node->next)
             key_node->next->prev = key_node->prev;
-        free(key_node->key);
-        free(key_node->value);
-        free(key_node);
     }
     return (0);
 }

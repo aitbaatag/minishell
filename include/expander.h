@@ -16,7 +16,7 @@ void	listfile(char *expand, t_token **tokens);
 /#			VARIABLES			*|
 |###############################*/
 
-void	expand(char **args);
+void	expand(char **args, int heredoc);
 void	add_char_to_buff(char **buff, char c);
 void	expand_add_to_buff(char *args_i, char **buff, int *j);
 void	identify_quotes(char c, int *quotes_found);

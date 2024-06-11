@@ -20,7 +20,8 @@ int set_type_redi(t_tree *redi)
 }
 int handle_redir_input(t_redi_exec *redi)
 {
-    int fd;
+    int fd;if (redi->type == HEREDOC)
+        fd = open(redi->file_name, O_RDONLY);
 
     if (!redi)
 		return (EXIT_SUCCESS);

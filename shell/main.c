@@ -176,7 +176,7 @@ int main() {
 	// global = malloc(sizeof(t_global));
     global.env = NULL;
     global.status = 0;
-    data = safe_malloc(sizeof(data));
+    data = malloc(sizeof(t_data));
 
     // set_env(envp);
     char *line;

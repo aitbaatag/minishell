@@ -3,7 +3,7 @@ t_pipe	*new_pipe(void)
 {
 	t_pipe	*pipe;
 
-	pipe = safe_malloc(sizeof(t_pipe), &global.garbage_list);
+	pipe = safe_malloc(sizeof(t_pipe));
 	pipe->type = PIPE;
 	pipe->right = NULL;
 	pipe->left = NULL;
@@ -15,8 +15,8 @@ t_exec	*new_exec(int size_of_args)
 
 	if (!size_of_args)
 		return (NULL);
-	exec = safe_malloc(sizeof(t_exec), &global.garbage_list);
-	exec->args = safe_malloc(sizeof(char *) * (size_of_args + 1), &global.garbage_list);
+	exec = safe_malloc(sizeof(t_exec));
+	exec->args = safe_malloc(sizeof(char *) * (size_of_args + 1));
 	exec->args[size_of_args] = NULL;
 	exec->line = NULL;
 	exec->child_redi = NULL;
@@ -27,7 +27,7 @@ t_grp_exec	*new_grp_exec(void)
 {
 	t_grp_exec	*grp_exec;
 
-	grp_exec = safe_malloc(sizeof(t_grp_exec), &global.garbage_list);
+	grp_exec = safe_malloc(sizeof(t_grp_exec));
 	grp_exec->type = SUBSHELL;
 	grp_exec->child = NULL;
 	grp_exec->outer_redir = NULL;
@@ -37,7 +37,7 @@ t_logic	*new_logic(token type)
 {
 	t_logic	*lo_oper;
 
-	lo_oper = safe_malloc(sizeof(t_token), &global.garbage_list);
+	lo_oper = safe_malloc(sizeof(t_token));
 	lo_oper->type = type;
 	lo_oper->left = NULL;
 	lo_oper->left = NULL;
@@ -47,7 +47,7 @@ t_redi_exec	*new_redi(t_token **tokens)
 {
 	t_redi_exec	*redi;
 
-	redi = safe_malloc(sizeof(t_redi_exec), &global.garbage_list);
+	redi = safe_malloc(sizeof(t_redi_exec));
 	redi->type = (*tokens)->prev->type;
 	if (redi->type == INPUT_REDIRECTION)
 	{

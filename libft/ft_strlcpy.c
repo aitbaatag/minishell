@@ -9,7 +9,7 @@
 /*   Updated: 2023/11/08 03:39:53 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "../include/minishell.h"
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {

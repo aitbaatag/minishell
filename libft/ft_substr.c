@@ -9,7 +9,7 @@
 /*   Updated: 2023/11/13 00:08:11 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "../include/minishell.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
@@ -21,7 +21,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	if (start >= ft_strlen(s))
 	{
-		ptr = malloc(1);
+		ptr = safe_malloc(1);
 		if (!ptr)
 			return (NULL);
 		ptr[0] = '\0';
@@ -29,7 +29,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	if (len > (ft_strlen(s) - start))
 		len = ft_strlen(s) - start;
-	ptr = malloc(1 + len * sizeof(char));
+	ptr = safe_malloc(1 + len * sizeof(char));
 	if (!ptr)
 		return (NULL);
 	while (s[++i + start] && len > i)

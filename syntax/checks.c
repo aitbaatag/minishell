@@ -80,6 +80,21 @@ bool	check_parentheses(t_token *node)
 			ft_putstr_fd("'\n", 2);
 			return (false);
 		}
+		if (node->next && node->next->type & REDIRECTION)
+		{
+			while (node)
+			{
+				if (node->next && node->next->next && node->next->next->next && \
+			node->next->type & REDIRECTION && node->next->next->next->type == WORD)
+				{
+					ft_putstr_fd("minishell: syntax error near unexpected token `", 2);
+					write(2, node->next->next->next->value, ft_strlen(node->next->next->next->value));
+					ft_putstr_fd("'\n", 2);
+					return (false);
+				}
+				node = node->next;
+			}
+		}
 	}
 	return (true);
 }

@@ -9,8 +9,7 @@
 /*   Updated: 2023/11/10 09:22:39 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
-#include <stdio.h>
+#include "../include/minishell.h"
 
 static int	count_char(char *str, char c)
 {
@@ -48,15 +47,6 @@ static int	count_words(char *ptr, char c)
 	return (word_size);
 }
 
-static void	free_it(char **ptr, int j)
-{
-	while (j-- > 0)
-	{
-		free(ptr[j]);
-	}
-	free (ptr);
-}
-
 static char	**help_split(char const *s, char c, char **ptr)
 {
 	int		i;
@@ -73,10 +63,7 @@ static char	**help_split(char const *s, char c, char **ptr)
 		{
 			ptr[j] = ft_substr(s, 0, i);
 			if (!ptr[j])
-			{
-				free_it(ptr, j);
 				return (NULL);
-			}
 			j++;
 		}
 		s += i;
@@ -92,7 +79,7 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	word_size = count_words((char *)s, c);
-	ptr = (char **)malloc(sizeof(char *) * (word_size + 1));
+	ptr = (char **)safe_malloc(sizeof(char *) * (word_size + 1));
 	if (!ptr)
 		return (NULL);
 	ptr[word_size] = NULL;

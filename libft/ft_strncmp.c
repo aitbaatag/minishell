@@ -9,7 +9,7 @@
 /*   Updated: 2023/11/08 03:39:53 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "../include/minishell.h"
 
 int	ft_strncmp(const char *str1, const char *str2, size_t n)
 {
