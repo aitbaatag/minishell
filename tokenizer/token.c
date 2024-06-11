@@ -8,8 +8,6 @@ void	process_spaces(t_token **tokens, char *line, int *i)
 	(void)tokens;
 	while (line[*i] == 32 || (line[*i] >= 7 && line[*i] <= 13))
 		(*i)++;
-	// if (line[fix] == 32)
-	// 	add_token(tokens, ft_strdup(" "), 1);
 }
 
 int	handle_special_characters(t_token **tokens, char *line, int *i)

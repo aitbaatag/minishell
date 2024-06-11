@@ -70,6 +70,8 @@ int size_of_args(t_token *token);
 int visit_tokens(t_token **tokens);
 t_redi_exec *get_node_heredoc(t_redi_exec **list_heredoc);
 int	process_token(t_token **tokens, t_exec *exec_cmd, int *size);
+int	is_argument_token(t_token *ptr);
+void	remove_token(t_token **tokens, t_token *token);
 
 // Heredoc Creation Functions
 t_redi_exec *creat_list_heredoc(t_token *tokens);

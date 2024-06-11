@@ -14,7 +14,10 @@ t_token	*new_node(char *value, token type)
 	}
 	new_token = safe_malloc(sizeof(t_token));
 	if (!new_token)
+	{
+		perror("error malloc\n");
 		return (NULL);
+	}
 	new_token->value = value;
 	new_token->type = type;
 	new_token->next = NULL;
@@ -25,7 +28,7 @@ void	add_node_back(t_token **list_token, t_token *new_token)
 {
 	t_token	*head;
 
-	if (*list_token == NULL)
+	if (!list_token || *list_token == NULL)
 	{
 		*list_token = new_token;
 		return ;

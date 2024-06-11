@@ -48,6 +48,7 @@ void	sigint_handler(int signum);
 void	sigint_handler_nl(int signum);
 void	sigint_handler_exit(int signum);
 void	heredoc_handler(int signum);
+int     *heredoc_error(void);
 void	eof_handler(void);
 void	heredoc_eof(void);
 
