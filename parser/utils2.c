@@ -11,16 +11,14 @@ int	check_expand(char *delimiter)
 void	reverse_list_tokens(t_token **token)
 {
 	if (!token || !(*token))
-	{
 		return ;
-	}
 	while ((*token)->next)
 		(*token) = (*token)->next;
 }
 int	size_of_args(t_token *token)
 {
-	t_token *ptr;
-	int size;
+	t_token	*ptr;
+	int		size;
 
 	size = 0;
 	ptr = token;

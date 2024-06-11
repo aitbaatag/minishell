@@ -8,7 +8,7 @@ token	check_whitespace(char c)
 }
 token	check_special_characters(char *str, int count)
 {
-	if (count == 1) // Handle single character special tokens
+	if (count == 1)
 	{
 		if (!ft_strcmp(str, ">"))
 			return (OUTPUT_REDIRECTION);
@@ -21,7 +21,7 @@ token	check_special_characters(char *str, int count)
 		else if (!ft_strncmp(str, ")", 1))
 			return (CLOSING_PARENTHESES);
 	}
-	else if (count == 2) // Handle double character special tokens
+	else if (count == 2)
 	{
 		if (!ft_strcmp(str, ">>"))
 			return (APPEND_REDIRECTION);

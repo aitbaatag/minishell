@@ -31,16 +31,17 @@ void	read_from_user(char *delimiter, t_redi_exec *node_heredoc, int i,
 	int		break_;
 	char **line_split;
 
+	signal(SIGINT, heredoc_handler);
 	break_ = 1;
 	path_tmp_file = ft_strjoin("/tmp/.here_doc", ft_itoa(i));
 	open_file(path_tmp_file, node_heredoc);
 	while (break_)
 	{
 		line = readline("> ");
-		signal(SIGINT, heredoc_handler);
 		if (!line)
 		{
-			// heredoc_eof();
+			if (*heredoc_error() == -1)
+				heredoc_eof();
 			break ;
 		}
 		line_split = ft_split(line, '\0');
@@ -49,7 +50,13 @@ void	read_from_user(char *delimiter, t_redi_exec *node_heredoc, int i,
 		break_ = write_to_file(line_split[0], node_heredoc, delimiter);
 		add_garbage_node(&global.garbage_list ,new_garbage_node(line));
 	}
-	close(node_heredoc->infile);
+	if (*heredoc_error() != -1)
+	{
+		dup2(*heredoc_error(), 0);
+		close(*heredoc_error());
+	}
+	else
+		close(node_heredoc->infile);
 	node_heredoc->file_name = ft_strdup(path_tmp_file);
 }
 
@@ -93,6 +100,8 @@ t_redi_exec	*creat_list_heredoc(t_token *tokens)
 	ptr_token = tokens;
 	while (ptr_token)
 	{
+		if (*heredoc_error() != -1)
+			return (NULL);
 		process_token_here_doc(ptr_token, &list_heredoc, &last_node, &i);
 		ptr_token = ptr_token->next;
 	}

@@ -15,21 +15,21 @@ t_redi_exec	*new_node_here_doc(token type)
 
 char	*get_substring(char *str, int *i, char delimiter)
 {
-	int		start;
-	int		length;
+	int	start;
+	int	length;
 
 	start = *i;
 	length = 0;
 	if (delimiter != '\0')
 	{
-		start++; // Skip the opening quote
+		start++;
 		(*i)++;
 		while (str[*i] && str[*i] != delimiter)
 		{
 			(*i)++;
 			length++;
 		}
-		(*i)++; // Move past the closing quote
+		(*i)++;
 	}
 	else
 	{

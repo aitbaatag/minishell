@@ -29,11 +29,14 @@ int	main(int argc, char *argv[], char *envp[])
 		data->line = readline("\033[1;32mminishell@1337:~$ \033[0m");
 		if (data->line == NULL)
 			eof_handler();
+		*heredoc_error() = -1;
 		add_history(data->line);
 		data->tokens = tokenization(data->line);
 		if (analyze_syntax(data->tokens) == true)
 		{
 			data->tree = build_tree(&data->tokens);
+			// if (get_exit_status() == 130)
+			// 	data->tree = NULL;
 			executer(data->tree);
 		}
 		add_garbage_node(&global.garbage_list ,new_garbage_node(data->line));
