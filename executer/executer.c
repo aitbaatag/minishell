@@ -143,6 +143,7 @@ int	handle_external_command(t_exec *exec)
 		signal(SIGQUIT, SIG_DFL);
 		execve(get_path(exec->args[0]), exec->args, env_to_array(global.env));
 		cmd_notfound(exec->args[0]);
+		free_garbage(&global.garbage_list);
 		exit(get_exit_status());
 	}
 	signal(SIGQUIT, SIG_DFL);
@@ -165,7 +166,7 @@ int	run_cmd(t_tree *tree)
 		save_and_restore_fd(&orig_stdin, &orig_stdout, 1);
 		return (get_exit_status());
 	}
-	expand(exec->args);
+	expand(exec->args, 0);
 	if (!exec->args[0])
 		return (set_exit_status(0), get_exit_status());
 	status = handle_builtin(exec, orig_stdin, orig_stdout);

@@ -7,7 +7,10 @@ bool	analyze_syntax(t_token *tokens)
 	no_error = true;
 	no_error = check_parn_nbr(tokens);
 	if (no_error == false)
+	{
+		set_exit_status(2);
 		return (no_error);
+	}
 	while (tokens)
 	{
 		if (tokens->type & LOGICAL || tokens->type == PIPE)

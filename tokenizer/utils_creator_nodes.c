@@ -12,7 +12,7 @@ t_token	*new_node(char *value, token type)
 			break ;
 		i++;
 	}
-	new_token = malloc(sizeof(t_token));
+	new_token = safe_malloc(sizeof(t_token));
 	if (!new_token)
 		return (NULL);
 	new_token->value = value;

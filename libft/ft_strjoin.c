@@ -9,7 +9,7 @@
 /*   Updated: 2023/11/13 00:24:46 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "../include/minishell.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -23,7 +23,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	i = 0;
 	ss1 = ft_strlen(s1);
 	ss2 = ft_strlen(s2);
-	str = malloc((ss1 + ss2) * sizeof(char) + 1);
+	str = safe_malloc((ss1 + ss2) * sizeof(char) + 1);
 	if (!str)
 		return (NULL);
 	while (*s1)

@@ -4,7 +4,7 @@ t_redi_exec	*new_node_here_doc(token type)
 {
 	t_redi_exec	*redi;
 
-	redi = safe_malloc(sizeof(t_redi_exec), &global.garbage_list);
+	redi = safe_malloc(sizeof(t_redi_exec));
 	redi->type = type;
 	redi->flags = O_RDONLY;
 	redi->exec_child = NULL;
@@ -49,11 +49,7 @@ char	*append_substring(char *joined, char *str, int *i, char delimiter)
 
 	substring = get_substring(str, i, delimiter);
 	if (joined)
-	{
 		new_joined = ft_strjoin(joined, substring);
-		free(substring);
-		free(joined);
-	}
 	else
 		new_joined = substring;
 	return (new_joined);
@@ -73,6 +69,5 @@ char	*remove_quotes(char *str)
 		else
 			joined = append_substring(joined, str, &i, '\0');
 	}
-	// free(str);
 	return (joined);
 }

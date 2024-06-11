@@ -54,10 +54,8 @@ void print_sorted_env(t_env *envs)
         }
         else
             printf("\n");
-        free(env_array[i]);
         i++;
     }
-    free(env_array);
 }
 int add_var_to_envs_or_app_modif_exis(char *arg)
 {
@@ -69,8 +67,6 @@ int add_var_to_envs_or_app_modif_exis(char *arg)
     if (create_key_value_pair(arg, &key, &value) != 0)
         return 1;
     add_or_update_var(arg, key, value);
-    free(key);
-    free(value);
     return 0;
 }
 

@@ -52,14 +52,10 @@ void update_existing_var(t_env *current, char *arg, char *value)
     if (flag == 1)
     {
         new_value = ft_strjoin(current->value, value);
-        free(current->value);
         current->value = new_value;
     }
     else
-    {
-        free(current->value);
         current->value = ft_strdup(value);
-    }
 }
 void add_or_update_var(char *arg, char *key, char *value)
 {

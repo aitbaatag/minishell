@@ -45,10 +45,8 @@ SRCS = ./executer/exit_satus.c \
       ./tokenizer/token.c \
       ./tokenizer/utils.c \
       ./tokenizer/utils_creator_nodes.c \
-      ./garbage_collection/collection.c
-
-# Libft source files
-SRCS_LIBFT = ./libft/ft_split.c \
+      ./garbage_collection/collection.c \
+      ./libft/ft_split.c \
              ./libft/ft_strncmp.c \
              ./libft/ft_substr.c \
              ./libft/ft_atoi.c \
@@ -83,21 +81,17 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT)
-	@$(CC) $(CFLAGS) $(OBJS) $(LIBFT)  -lreadline -o $(NAME)
+$(NAME): $(OBJS)
+	@$(CC) $(CFLAGS) $(OBJS) -lreadline -o $(NAME)
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(LIBFT): $(SRCS_LIBFT)
-	@make -C $(LIBFT_DIR)
 
 clean:
 	@rm -f $(OBJS)
-	make -C $(LIBFT_DIR) clean
 
 fclean: clean
 	rm -f $(NAME)
-	make -C $(LIBFT_DIR) fclean
 
 re: fclean all

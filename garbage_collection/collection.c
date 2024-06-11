@@ -33,7 +33,6 @@ void	free_token_list(t_token *head)
 t_garbage	*new_garbage_node(void *ptr)
 {
 	t_garbage	*new_node;
-
 	new_node = malloc(sizeof(t_garbage));
 	if (!new_node)
 		return (NULL);
@@ -60,7 +59,7 @@ void	add_garbage_node(t_garbage **list, t_garbage *new_node)
 	}
 }
 
-void	*safe_malloc(size_t size, t_garbage **list)
+void	*safe_malloc(size_t size)
 {
 	void		*ptr;
 	t_garbage	*new_node;
@@ -74,34 +73,6 @@ void	*safe_malloc(size_t size, t_garbage **list)
 		free(ptr);
 		return (NULL);
 	}
-	add_garbage_node(list, new_node);
+	add_garbage_node(&global.garbage_list, new_node);
 	return (ptr);
 }
-// #include <stdio.h>
-// #include <string.h>
-
-// // Include the garbage collection functions here
-
-// int main() {
-//     t_garbage *garbage_list = NULL;
-
-//     char *str1 = (char *)safe_malloc(100 * sizeof(char), &garbage_list);
-//     char *str2 = (char *)safe_malloc(50 * sizeof(char), &garbage_list);
-
-//     if (!str1 || !str2) {
-//         fprintf(stderr, "Memory allocation failed\n");
-//         free_garbage(&garbage_list);
-//         return (1);
-//     }
-
-//     strcpy(str1, "Hello, world!");
-//     strcpy(str2, "Goodbye, world!");
-
-//     printf("%s\n", str1);
-//     printf("%s\n", str2);
-
-//     // Free all allocated memory
-//     free_garbage(&garbage_list);
-
-//     return (0);
-// }

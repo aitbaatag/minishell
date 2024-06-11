@@ -9,7 +9,7 @@
 /*   Updated: 2023/11/13 00:25:55 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "../include/minishell.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {

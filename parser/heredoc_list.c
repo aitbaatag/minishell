@@ -37,7 +37,7 @@ void	read_from_user(char *delimiter, t_redi_exec *node_heredoc, int i,
 	while (break_)
 	{
 		line = readline("> ");
-		// signal(SIGINT, heredoc_handler);
+		signal(SIGINT, heredoc_handler);
 		if (!line)
 		{
 			// heredoc_eof();
@@ -45,17 +45,15 @@ void	read_from_user(char *delimiter, t_redi_exec *node_heredoc, int i,
 		}
 		line_split = ft_split(line, '\0');
 		if (!flag)
-			expand(line_split);
+			expand(line_split, 1);
 		break_ = write_to_file(line_split[0], node_heredoc, delimiter);
-		free_it(line_split);
-		free (line);
+		add_garbage_node(&global.garbage_list ,new_garbage_node(line));
 	}
 	close(node_heredoc->infile);
 	node_heredoc->file_name = ft_strdup(path_tmp_file);
-	free(path_tmp_file);
 }
 
-void	process_token(t_token *ptr_token, t_redi_exec **list_heredoc,
+void	process_token_here_doc(t_token *ptr_token, t_redi_exec **list_heredoc,
 		t_redi_exec **last_node, int *i)
 {
 	char		*delimiter;
@@ -70,7 +68,6 @@ void	process_token(t_token *ptr_token, t_redi_exec **list_heredoc,
 		delimiter = remove_quotes(ptr_token->next->value);
 		new_node = new_node_here_doc(HEREDOC);
 		read_from_user(delimiter, new_node, *i, flag);
-		free(delimiter);
 		if (!*list_heredoc)
 			*list_heredoc = new_node;
 		else
@@ -86,15 +83,17 @@ void	process_token(t_token *ptr_token, t_redi_exec **list_heredoc,
 t_redi_exec	*creat_list_heredoc(t_token *tokens)
 {
 	t_token *ptr_token;
-	t_redi_exec *list_heredoc = NULL;
-	t_redi_exec *last_node = NULL;
+	t_redi_exec *list_heredoc;
+	t_redi_exec *last_node;
 	int i;
 
 	i = 0;
+	list_heredoc = NULL;
+	last_node = NULL;
 	ptr_token = tokens;
 	while (ptr_token)
 	{
-		process_token(ptr_token, &list_heredoc, &last_node, &i);
+		process_token_here_doc(ptr_token, &list_heredoc, &last_node, &i);
 		ptr_token = ptr_token->next;
 	}
 	while (list_heredoc && list_heredoc->next)

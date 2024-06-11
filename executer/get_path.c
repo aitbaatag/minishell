@@ -1,14 +1,5 @@
 #include "../include/minishell.h"
 
-void	free_it(char **split_path)
-{
-	int	i;
-
-	i = 0;
-	while (split_path[i])
-		free(split_path[i++]);
-	free(split_path);
-}
 
 char	*check_path(char *path, char *command)
 {
@@ -18,7 +9,7 @@ char	*check_path(char *path, char *command)
 	if (access(valid_command, X_OK) == 0)
 		return (valid_command);
 	else
-		return (free(valid_command), NULL);
+		return (NULL);
 }
 
 char	*get_path(char *command)
@@ -46,10 +37,8 @@ char	*get_path(char *command)
 		{
 			curpath = ft_strjoin(split_path[i], "/");
 			valid_path = check_path(curpath, command);
-			free(curpath);
 			if (valid_path != NULL)
-				return (free_it(split_path), valid_path);
-			free(valid_path);
+				return (valid_path);
 			i++;
 		}
 	}

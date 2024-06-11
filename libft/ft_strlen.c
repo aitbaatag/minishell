@@ -9,7 +9,7 @@
 /*   Updated: 2023/11/01 20:45:56 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
+#include "../include/minishell.h"
 
 size_t	ft_strlen(const char *str)
 {

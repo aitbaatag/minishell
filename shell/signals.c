@@ -38,6 +38,8 @@ void	heredoc_handler(int signum)
 void	eof_handler(void)
 {
 	printf("exit\n");
+	free_garbage(&global.garbage_list);
+	rl_clear_history();
 	exit(EXIT_SUCCESS);
 }
 

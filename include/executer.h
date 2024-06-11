@@ -19,10 +19,8 @@ void    if_exit_with_signal(int *status);
 void	executer(t_tree *tree);
 
 // utils
-void	expand(char **args);
 void	cmd_notfound(char *cmd);
 char	*get_path(char *command);
-void	free_it(char **split_path);
 
 
 int	set_type_redi(t_tree *redi);

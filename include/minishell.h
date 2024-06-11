@@ -13,7 +13,7 @@
 #include <dirent.h>
 #include <signal.h>
 #include <stdbool.h>
-#include "../libft/libft.h"
+#include "libft.h"
 #include "tokenizer.h"
 #include "parser.h"
 #include "envs.h"
@@ -26,14 +26,12 @@
 #define GREEN '\033[1;32m'
 #define CLOSE '\033[0m'
 
-typedef struct s_tree t_tree;
-struct s_token;
-typedef struct s_env t_env;
-typedef	struct s_garbage t_garbage;
 
 typedef	struct s_global {
     t_env   *env;
     int		status;
+    int fd;
+    int break_2;
     t_garbage *garbage_list;
 }	t_global;
 

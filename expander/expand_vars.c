@@ -1,5 +1,18 @@
 #include "../include/minishell.h"
 
+static void	expand_core1(char **buff, char *args_i, int *j, int *quotes)
+{
+	if (args_i[*j] == '$' && args_i[*j + 1] \
+		&& args_i[*j + 1] != '\'' && args_i[*j + 1] != '\"')
+		expand_add_to_buff(args_i, buff, j);
+	else if (args_i[*j] == '$' && !(*quotes) && args_i[*j + 1] \
+		&& (args_i[*j + 1] == '\'' || args_i[*j + 1] == '\"'))
+		(*j)++;
+	else
+		add_char_to_buff(buff, args_i[*j]);
+	(*j)++;
+}
+
 static void	expand_core(char **buff, char *args_i, int *j, int *quotes)
 {
 	if (args_i[*j] == '$' && !(*quotes == 1) && args_i[*j + 1] \
@@ -13,7 +26,7 @@ static void	expand_core(char **buff, char *args_i, int *j, int *quotes)
 	(*j)++;
 }
 
-void	expand(char **args)
+void	expand(char **args, int heredoc)
 {
 	char	*buff;
 	int		quotes_found;
@@ -29,9 +42,15 @@ void	expand(char **args)
 		while (args[i][j])
 		{
 			identify_quotes(args[i][j], &quotes_found);
-			expand_core(&buff, args[i], &j, &quotes_found);
+			if (!heredoc)
+				expand_core(&buff, args[i], &j, &quotes_found);
+			else
+				expand_core1(&buff, args[i], &j, &quotes_found);
 		}
-		args[i] = remove_quotes(buff);
+		if (!heredoc)
+			args[i] = remove_quotes(buff);
+		else
+			args[i] = buff;
 		i++;
 	}
 }

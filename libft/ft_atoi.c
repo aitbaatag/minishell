@@ -9,7 +9,7 @@
 /*   Updated: 2023/11/12 03:15:11 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "../include/minishell.h"
 
 int	ft_atoi(const char *str)
 {

@@ -9,7 +9,7 @@
 /*   Updated: 2023/11/13 00:46:19 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "../include/minishell.h"
 
 char	*ft_strdup(const char *string)
 {
@@ -22,7 +22,7 @@ char	*ft_strdup(const char *string)
     if (!string)
         return (NULL);
     i = ft_strlen(string);
-	ptr = (char *)malloc(1 + i * sizeof(char));
+	ptr = (char *)safe_malloc(1 + i * sizeof(char));
 	if (!ptr)
 		return (NULL);
 	while (string[n])

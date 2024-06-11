@@ -9,7 +9,7 @@
 /*   Updated: 2023/11/12 03:05:50 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "../include/minishell.h"
 
 char	*ft_strchr(const char *str, int c)
 {

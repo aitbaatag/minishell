@@ -1,0 +1,16 @@
+builtins
+environment
+executer
+expander
+garbage_collection
+include
+la
+libft
+Makefile
+minishell
+parser
+README.md
+shell
+skech.tldr
+syntax
+tokenizer

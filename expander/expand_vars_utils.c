@@ -47,7 +47,7 @@ void	expand_add_to_buff(char *args_i, char **buff, int *j)
 		var_value = env->value;
 	else
 		var_value = handle_questionmark(var_name);
-	tmp_buff = safe_malloc(sizeof(char) * (ft_strlen(var_value) + 1), &global.garbage_list);
+	tmp_buff = safe_malloc(sizeof(char) * (ft_strlen(var_value) + 1));
 	ft_strlcpy(tmp_buff, var_value, ft_strlen(var_value) + 1);
 	*j += len;
 	if (!(*buff))
@@ -60,7 +60,7 @@ void	add_char_to_buff(char **buff, char c)
 {
 	char	*single_char;
 
-	single_char = malloc(2);
+	single_char = safe_malloc(2);
 	single_char[0] = c;
 	single_char[1] = '\0';
 	if (!(*buff))

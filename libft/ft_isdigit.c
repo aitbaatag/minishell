@@ -9,7 +9,7 @@
 /*   Updated: 2023/11/08 03:46:42 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
+#include "../include/minishell.h"
 
 int	ft_isdigit(int c)
 {
