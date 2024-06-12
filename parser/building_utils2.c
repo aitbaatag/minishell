@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   building_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:59:52 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 16:10:05 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 18:38:25 by asadiqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_tree	*node_logic(token type, t_tree *left, t_tree *right)
 	logical->left = left;
 	return ((t_tree *)logical);
 }
+
 char	*init_arg(char *value)
 {
 	int		i;
@@ -33,9 +34,10 @@ char	*init_arg(char *value)
 	arg = ft_strdup(value);
 	return (arg);
 }
+
 t_tree	*add_node_tree(t_tree *right, t_tree *left)
 {
-	t_pipe *pipe;
+	t_pipe	*pipe;
 
 	pipe = new_pipe();
 	pipe->right = right;

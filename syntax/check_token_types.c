@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_token_types.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:00:22 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 16:10:05 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 20:44:59 by asadiqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	print_syntax_error(t_token *node)
 
 bool	check_andorpipe(t_token *node)
 {
-	if (!node->prev || (node->prev
-			&& !(node->prev->type & (WORD | CLOSING_PARENTHESES))))
+	if (!node->prev || (node->prev && \
+		!(node->prev->type & (WORD | CLOSING_PARENTHESES))))
 		return (print_syntax_error(node), false);
-	if (!node->next || (node->next
-			&& !(node->next->type & (WORD | REDIRECTION | OPENING_PARENTHESES))))
+	if (!node->next || (node->next && \
+		!(node->next->type & (WORD | REDIRECTION | OPENING_PARENTHESES))))
 		return (print_syntax_error(node), false);
 	return (true);
 }
@@ -34,10 +34,10 @@ bool	check_parentheses(t_token *node)
 {
 	if (node->type == OPENING_PARENTHESES)
 	{
-		if (node->prev &&
+		if (node->prev && \
 			!(node->prev->type & (PIPE | LOGICAL | OPENING_PARENTHESES)))
 			return (print_syntax_error(node), false);
-		if (node->next &&
+		if (node->next && \
 			!(node->next->type & (WORD | REDIRECTION | OPENING_PARENTHESES)))
 			return (print_syntax_error(node), false);
 	}
@@ -45,8 +45,8 @@ bool	check_parentheses(t_token *node)
 	{
 		if (node->prev && !(node->prev->type & (WORD | CLOSING_PARENTHESES)))
 			return (print_syntax_error(node), false);
-		if (node->next
-			&& !(node->next->type & (PIPE | LOGICAL | REDIRECTION | CLOSING_PARENTHESES)))
+		if (node->next && !(node->next->type & \
+			(PIPE | LOGICAL | REDIRECTION | CLOSING_PARENTHESES)))
 			return (print_syntax_error(node), false);
 		if (node->next && node->next->type & REDIRECTION)
 		{

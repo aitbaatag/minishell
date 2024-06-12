@@ -25,9 +25,7 @@ void	sigint_handler_exit(int signum)
 
 int	*heredoc_signaled(void)
 {
-	static int	fd;
-
-	fd = -1;
+	static int	fd = -1;
 	return (&fd);
 }
 
@@ -45,14 +43,13 @@ void	heredoc_handler(int signum)
 void	eof_handler(void)
 {
 	printf("exit\n");
-	rl_clear_history();
 	free_garbage(&global.garbage_list);
 	exit(EXIT_SUCCESS);
 }
 
 void	heredoc_eof(void)
 {
-	ft_putstr_fd("minishell: warning: here-document delimited by end-of-file\n",
-			2);
+	ft_putstr_fd("minishell: warning: here-document \
+		delimited by end-of-file\n", 2);
 	set_exit_status(EXIT_SUCCESS);
 }

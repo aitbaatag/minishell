@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_builtins.c                                   :+:      :+:    :+:   */
+/*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:57:39 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 16:16:57 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 17:03:38 by asadiqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-int	check(int *flag, char *c)
+static int	check_append_var(int *flag, char *c)
 {
 	if (*c == '+' && *(c + 1) == '=')
 	{
@@ -60,7 +60,7 @@ void	update_existing_var(t_env *current, char *arg, char *value)
 	new_value = NULL;
 	while (arg[i])
 	{
-		if (check(&flag, &arg[i]))
+		if (check_append_var(&flag, &arg[i]))
 			break ;
 		i++;
 	}

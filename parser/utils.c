@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:00:11 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 16:32:16 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 18:38:37 by asadiqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 int	is_argument_token(t_token *ptr)
 {
-	return ((ptr->prev == NULL && ptr->type == WORD) ||
-			(ptr->type == WORD && ptr->prev &&
-				(ptr->prev->type == WORD || ptr->prev->type == PIPE ||
-				ptr->prev->type == AND || ptr->prev->type == OR ||
-				ptr->prev->type == OPENING_PARENTHESES)));
+	return ((ptr->prev == NULL && ptr->type == WORD) || (ptr->type == WORD && \
+		ptr->prev && (ptr->prev->type == WORD || ptr->prev->type == PIPE || \
+		ptr->prev->type == AND || ptr->prev->type == OR || \
+		ptr->prev->type == OPENING_PARENTHESES)));
 }
 
 void	remove_token(t_token **tokens, t_token *token)
@@ -51,8 +50,8 @@ t_exec	*get_exec_and_update_tokens(t_token **tokens)
 			size--;
 		}
 		else if (ptr->type == CLOSING_PARENTHESES
-				|| ptr->type == OPENING_PARENTHESES || ptr->type == PIPE
-				|| ptr->type == AND || ptr->type == OR)
+			|| ptr->type == OPENING_PARENTHESES || ptr->type == PIPE
+			|| ptr->type == AND || ptr->type == OR)
 			return (exec_cmd);
 		else
 			ptr = ptr->prev;

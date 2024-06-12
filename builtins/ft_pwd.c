@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:12:41 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 16:12:44 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 17:09:00 by asadiqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_pwd(t_exec *exec)
 {
-	char cwd[1024];
+	char	cwd[1024];
 
 	(void)exec;
 	getcwd(cwd, sizeof(cwd));

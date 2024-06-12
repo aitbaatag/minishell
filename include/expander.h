@@ -1,7 +1,19 @@
-#ifndef EXPANDER_H
-#define EXPANDER_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expander.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/12 18:46:43 by asadiqui          #+#    #+#             */
+/*   Updated: 2024/06/12 19:14:47 by asadiqui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef EXPANDER_H
+# define EXPANDER_H
+
+# include "minishell.h"
 
 /*##############################*|
 /#			WILDCARDS			*|

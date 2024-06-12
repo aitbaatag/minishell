@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:58:57 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 16:23:03 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 17:35:48 by asadiqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	free_garbage(t_garbage **list)
 		current = next;
 	}
 	*list = NULL;
+	rl_clear_history();
 }
 
 void	free_token_list(t_token *head)

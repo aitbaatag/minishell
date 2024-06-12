@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_vars.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:13:13 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 16:13:14 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 18:29:52 by asadiqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ static void	expand_core1(char **buff, char *args_i, int *j, int *quotes)
 
 static void	expand_core(char **buff, char *args_i, int *j, int *quotes)
 {
-	if (args_i[*j] == '$' && !(*quotes == 1) && args_i[*j + 1] && args_i[*j
-		+ 1] != '\'' && args_i[*j + 1] != '\"')
+	if (args_i[*j] == '$' && !(*quotes == 1) && args_i[*j + 1] \
+		&& args_i[*j + 1] != '\'' && args_i[*j + 1] != '\"')
 		expand_add_to_buff(args_i, buff, j);
-	else if (args_i[*j] == '$' && !(*quotes) && args_i[*j + 1] && (args_i[*j
-				+ 1] == '\'' || args_i[*j + 1] == '\"'))
+	else if (args_i[*j] == '$' && !(*quotes) && args_i[*j + 1] \
+		&& (args_i[*j + 1] == '\'' || args_i[*j + 1] == '\"'))
 		(*j)++;
 	else
 		add_char_to_buff(buff, args_i[*j]);

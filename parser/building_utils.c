@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   building_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:59:50 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 16:10:05 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 18:40:15 by asadiqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_pipe	*new_pipe(void)
 	pipe->left = NULL;
 	return (pipe);
 }
+
 t_exec	*new_exec(int size_of_args)
 {
 	t_exec	*exec;
@@ -36,6 +37,7 @@ t_exec	*new_exec(int size_of_args)
 	exec->type = EXEC;
 	return (exec);
 }
+
 t_grp_exec	*new_grp_exec(void)
 {
 	t_grp_exec	*grp_exec;
@@ -46,6 +48,7 @@ t_grp_exec	*new_grp_exec(void)
 	grp_exec->outer_redir = NULL;
 	return (grp_exec);
 }
+
 t_logic	*new_logic(token type)
 {
 	t_logic	*lo_oper;
@@ -56,6 +59,7 @@ t_logic	*new_logic(token type)
 	lo_oper->left = NULL;
 	return (lo_oper);
 }
+
 t_redi_exec	*new_redi(t_token **tokens)
 {
 	t_redi_exec	*redi;
@@ -67,7 +71,7 @@ t_redi_exec	*new_redi(t_token **tokens)
 		redi->flags = O_RDONLY;
 	}
 	else if (redi->type == OUTPUT_REDIRECTION
-			|| redi->type == APPEND_REDIRECTION)
+		|| redi->type == APPEND_REDIRECTION)
 	{
 		redi->flags = O_WRONLY | O_CREAT;
 		if (redi->type == APPEND_REDIRECTION)

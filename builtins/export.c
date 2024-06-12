@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:57:31 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 16:12:32 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 17:09:58 by asadiqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	bubble_sort_env(char **env_array, size_t size)
 		swapped = 0;
 		while (j < size - i - 1)
 		{
-			if (ft_strcmp((const char *)env_array[j], (const char *)env_array[j
-					+ 1]) > 0)
+			if (ft_strcmp((const char *)env_array[j], \
+				(const char *)env_array[j + 1]) > 0)
 			{
 				temp = env_array[j];
 				env_array[j] = env_array[j + 1];
