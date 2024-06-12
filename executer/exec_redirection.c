@@ -1,16 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   redirection.c                                      :+:      :+:    :+:   */
+/*   exec_redirection.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:58:12 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 16:21:22 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 19:41:46 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+int	run_redir(t_tree *tree)
+{
+	int	orig_stdout;
+	int	orig_stdin;
+
+	orig_stdin = dup(STDIN_FILENO);
+	orig_stdout = dup(STDOUT_FILENO);
+	save_and_restore_fd(&orig_stdin, &orig_stdout, 0);
+	set_exit_status(set_type_redi(tree));
+	save_and_restore_fd(&orig_stdin, &orig_stdout, 1);
+	return (get_exit_status());
+}
 
 int	set_type_redi(t_tree *redi)
 {
@@ -58,8 +71,8 @@ int	handle_redir_input(t_redi_exec *redi)
 
 int	handle_redir_output(t_redi_exec *redi)
 {
-	int fd;
-	char **file_name;
+	int		fd;
+	char	**file_name;
 
 	file_name = ft_split(redi->file_name, '\0');
 	expand(file_name, 0);

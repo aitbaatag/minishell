@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_wildcards.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:04:21 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 16:13:17 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 18:30:18 by asadiqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,9 @@ void	add_meant_file(t_token **tokens, char *namefile)
 
 void	listfile(char *expand, t_token **tokens)
 {
-	struct dirent *namelist;
-	DIR *dir;
-	int flag;
+	struct dirent	*namelist;
+	DIR				*dir;
+	int				flag;
 
 	flag = 0;
 	dir = opendir(".");

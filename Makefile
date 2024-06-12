@@ -10,14 +10,16 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 # Source files
-SRCS = ./executer/exit_satus.c \
-      ./shell/clean_main.c \
+SRCS = ./shell/clean_main.c \
       ./executer/executer.c \
-      ./executer/utils.c \
-      ./executer/redirection.c \
       ./executer/get_path.c \
-      ./executer/start_exec.c \
-	  ./expander/expand_vars.c \
+	  ./executer/exec_cmd.c \
+      ./executer/exec_pipe.c \
+	  ./executer/exec_logic.c \
+      ./executer/exec_subshell.c \
+      ./executer/exec_redirection.c \
+	  ./executer/exit_satus.c \
+      ./expander/expand_vars.c \
 	  ./expander/expand_vars_utils.c \
 	  ./expander/expand_status.c \
 	  ./expander/expand_wildcards.c \
@@ -39,7 +41,7 @@ SRCS = ./executer/exit_satus.c \
       ./builtins/ft_echo.c \
       ./builtins/ft_exit.c \
       ./builtins/export.c \
-      ./builtins/utils_builtins.c \
+      ./builtins/export_utils.c \
       ./builtins/builtins.c \
       ./builtins/ft_pwd.c \
       ./builtins/env.c \

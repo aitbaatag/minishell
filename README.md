@@ -1,13 +1,23 @@
 # TO DO LIST #
 * signals with sleep 4 (pipe) (put \n)
 * when removed a parent directory, pwd/oldpwd shall work
+* cat with ctrl+\
+* run subshells in a fork
+* export var="ls -la" split by space after expand
+* export var="ls *" expand wildcards after expanding
+* ls | ls then echo $/ (segv)
 
 # TEST CASES TO FIX #
 ```
 ```
-
+ls "	-la"
 # TRIVIAL CASES HANDLED ###
 ```
+BUILTINS
+echo "-n" hello
+echo -n -n hello
+echo -n hello -n
+
 NO_SYNTAX_ERRORS  :
 * ls && (ls "" -la | ls | "    ") > file1 > file2 > file2
 * (ls "" -la | ls | "    ")

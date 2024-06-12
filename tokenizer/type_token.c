@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   type_token.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:07:47 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 16:10:05 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 19:18:10 by asadiqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ token	check_whitespace(char c)
 		return (WHITE_SPACE);
 	return (WORD);
 }
+
 token	check_special_characters(char *str, int count)
 {
 	if (count == 1)

@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:12:36 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 16:12:37 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 17:29:29 by asadiqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+void	print_input(char **args, int flag_exist)
+{
+	int	i;
+	int	put_space;
+
+	i = 0;
+	put_space = 0;
+	while (args[i])
+	{
+		if (put_space)
+			printf(" ");
+		printf("%s", args[i++]);
+		put_space = 1;
+	}
+	if (!flag_exist)
+		printf("\n");
+}
 
 int	check_echo_flag(char *str)
 {
@@ -35,7 +53,6 @@ int	ft_echo(t_exec *exec)
 	char	**args;
 	int		i;
 	int		flag_exist;
-	int		put_space;
 
 	args = exec->args;
 	i = 1;
@@ -50,15 +67,6 @@ int	ft_echo(t_exec *exec)
 		else
 			break ;
 	}
-	put_space = 0;
-	while (args[i])
-	{
-		if (put_space)
-			printf(" ");
-		printf("%s", args[i++]);
-		put_space = 1;
-	}
-	if (!flag_exist)
-		printf("\n");
+	print_input(&args[i], flag_exist);
 	return (set_exit_status(0), get_exit_status());
 }

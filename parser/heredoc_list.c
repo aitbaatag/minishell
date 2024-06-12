@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_list.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:59:57 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 16:52:53 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 18:39:30 by asadiqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	read_from_user(char *delimiter, t_redi_exec *node_heredoc, int i,
 	char	*path_tmp_file;
 	int		break_;
 	char	**line_split;
- 
+
 	signal(SIGINT, heredoc_handler);
 	break_ = 1;
 	path_tmp_file = ft_strjoin("/tmp/.here_doc", ft_itoa(i));

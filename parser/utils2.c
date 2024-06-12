@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:06:43 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 16:10:05 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 18:38:08 by asadiqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	check_expand(char *delimiter)
 	int	len;
 
 	len = ft_strlen(delimiter);
-	return ((delimiter[0] != '\'' && delimiter[0] != '\"') && (delimiter[len
-			- 1] != '\'' && delimiter[len - 1] != '\"'));
+	return ((delimiter[0] != '\'' && delimiter[0] != '\"') \
+		&& (delimiter[len - 1] != '\'' && delimiter[len - 1] != '\"'));
 }
 
 void	reverse_list_tokens(t_token **token)
@@ -45,7 +45,7 @@ int	size_of_args(t_token *token)
 				&& ptr->prev->type != PARN && ptr->prev->type != HEREDOC))
 			size++;
 		else if (ptr->type == AND || ptr->type == OR || ptr->type == PIPE
-				|| ptr->type == CLOSING_PARENTHESES)
+			|| ptr->type == CLOSING_PARENTHESES)
 			return (size);
 		else if (ptr->prev == NULL && ptr->type == WORD)
 			size++;

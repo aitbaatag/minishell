@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   other_checks.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:00:25 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 16:10:05 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 18:44:04 by asadiqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,13 @@ bool	check_series_of_redirection_after_parn(t_token *node)
 {
 	while (node)
 	{
-		if (node->next && node->next->next && node->next->next->next &&
-			node->next->type & REDIRECTION
-				&& node->next->next->next->type == WORD)
+		if (node->next && node->next->next && node->next->next->next && \
+			node->next->type & REDIRECTION && \
+			node->next->next->next->type == WORD)
 		{
 			ft_putstr_fd("minishell: syntax error near unexpected token `", 2);
-			write(2, node->next->next->next->value,
-					ft_strlen(node->next->next->next->value));
+			write(2, node->next->next->next->value, \
+				ft_strlen(node->next->next->next->value));
 			ft_putstr_fd("'\n", 2);
 			return (false);
 		}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_analysis.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:00:27 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 16:10:05 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 18:43:48 by asadiqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool	select_check(t_token *tokens, bool *status)
 			*status = check_redirection(tokens);
 		else if (tokens->type == WORD)
 		{
-			*status = check_closed_quotes(tokens->value, '\'') &&
+			*status = check_closed_quotes(tokens->value, '\'') && \
 				check_closed_quotes(tokens->value, '\"');
 			if (*status == false)
 				ft_putstr_fd("minishell: syntax error, unclosed quotes\n", 2);
