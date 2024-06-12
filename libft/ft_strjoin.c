@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 05:10:06 by kait-baa          #+#    #+#             */
-/*   Updated: 2023/11/13 00:24:46 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 16:27:11 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)

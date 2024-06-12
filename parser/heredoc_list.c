@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   heredoc_list.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/12 15:59:57 by kait-baa          #+#    #+#             */
+/*   Updated: 2024/06/12 16:52:53 by kait-baa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/parser.h"
 #include <stdio.h>
 
@@ -19,7 +31,7 @@ int	write_to_file(char *line, t_redi_exec *node_heredoc, char *delimiter)
 	if (ft_strcmp(line, delimiter) == 0)
 		return (0);
 	write(node_heredoc->infile, line, ft_strlen(line));
-	write(node_heredoc->infile, "\n", 1);	
+	write(node_heredoc->infile, "\n", 1);
 	return (1);
 }
 
@@ -29,8 +41,8 @@ void	read_from_user(char *delimiter, t_redi_exec *node_heredoc, int i,
 	char	*line;
 	char	*path_tmp_file;
 	int		break_;
-	char **line_split;
-
+	char	**line_split;
+ 
 	signal(SIGINT, heredoc_handler);
 	break_ = 1;
 	path_tmp_file = ft_strjoin("/tmp/.here_doc", ft_itoa(i));
@@ -48,15 +60,14 @@ void	read_from_user(char *delimiter, t_redi_exec *node_heredoc, int i,
 		if (!flag && ft_strcmp(line, delimiter) != 0)
 			expand(line_split, 1);
 		break_ = write_to_file(line_split[0], node_heredoc, delimiter);
-		add_garbage_node(&global.garbage_list ,new_garbage_node(line));
+		add_garbage_node(&global.garbage_list, new_garbage_node(line));
 	}
 	if (*heredoc_signaled() != -1)
 	{
 		dup2(*heredoc_signaled(), 0);
 		close(*heredoc_signaled());
 	}
-	else
-		close(node_heredoc->infile);
+	close(node_heredoc->infile);
 	node_heredoc->file_name = ft_strdup(path_tmp_file);
 }
 
@@ -83,16 +94,16 @@ void	process_token_here_doc(t_token *ptr_token, t_redi_exec **list_heredoc,
 			new_node->prev = *last_node;
 		}
 		*last_node = new_node;
-	(*i)++;
+		(*i)++;
 	}
 }
 
 t_redi_exec	*creat_list_heredoc(t_token *tokens)
 {
-	t_token *ptr_token;
-	t_redi_exec *list_heredoc;
-	t_redi_exec *last_node;
-	int i;
+	t_token		*ptr_token;
+	t_redi_exec	*list_heredoc;
+	t_redi_exec	*last_node;
+	int			i;
 
 	i = 0;
 	list_heredoc = NULL;

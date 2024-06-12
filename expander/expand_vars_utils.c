@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expand_vars_utils.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/12 16:03:32 by kait-baa          #+#    #+#             */
+/*   Updated: 2024/06/12 16:13:11 by kait-baa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 int	ft_isalnum_question(int c)
@@ -20,7 +32,7 @@ int	var_len(char *var)
 
 void	identify_quotes(char c, int *quotes_found)
 {
-	if ((*quotes_found == 1 && c == '\'') || \
+	if ((*quotes_found == 1 && c == '\'') ||
 		(*quotes_found == 2 && c == '\"'))
 		*quotes_found = 0;
 	else if (!(*quotes_found) && (c == '\'' || c == '\"'))

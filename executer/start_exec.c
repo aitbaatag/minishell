@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   start_exec.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/12 15:58:14 by kait-baa          #+#    #+#             */
+/*   Updated: 2024/06/12 16:10:05 by kait-baa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 int	ft_run_node(t_tree *tree)
@@ -11,7 +23,8 @@ int	ft_run_node(t_tree *tree)
 	else if (tree->type == AND || tree->type == OR)
 		return (run_logic(tree));
 	else if (tree->type == HEREDOC || tree->type == INPUT_REDIRECTION ||
-		tree->type == APPEND_REDIRECTION || tree->type == OUTPUT_REDIRECTION)
+				tree->type == APPEND_REDIRECTION
+					|| tree->type == OUTPUT_REDIRECTION)
 		return (run_redir(tree));
 	return (EXIT_FAILURE);
 }

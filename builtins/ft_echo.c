@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/12 16:12:36 by kait-baa          #+#    #+#             */
+/*   Updated: 2024/06/12 16:12:37 by kait-baa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 int	check_echo_flag(char *str)
@@ -18,18 +30,18 @@ int	check_echo_flag(char *str)
 	return (0);
 }
 
-int ft_echo(t_exec *exec)
+int	ft_echo(t_exec *exec)
 {
-    char    **args;
+	char	**args;
 	int		i;
 	int		flag_exist;
 	int		put_space;
 
-    args = exec->args;
+	args = exec->args;
 	i = 1;
 	flag_exist = 0;
-    while (args[i])
-    { 
+	while (args[i])
+	{
 		if (check_echo_flag(args[i]))
 		{
 			flag_exist = 1;
@@ -48,5 +60,5 @@ int ft_echo(t_exec *exec)
 	}
 	if (!flag_exist)
 		printf("\n");
-    return(set_exit_status(0), get_exit_status());
+	return (set_exit_status(0), get_exit_status());
 }

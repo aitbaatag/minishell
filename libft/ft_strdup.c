@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <kait-baa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 03:50:52 by kait-baa          #+#    #+#             */
-/*   Updated: 2023/11/13 00:46:19 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 16:28:26 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 char	*ft_strdup(const char *string)
@@ -18,10 +19,10 @@ char	*ft_strdup(const char *string)
 	int		n;
 
 	n = 0;
-    i = 0;
-    if (!string)
-        return (NULL);
-    i = ft_strlen(string);
+	i = 0;
+	if (!string)
+		return (NULL);
+	i = ft_strlen(string);
 	ptr = (char *)safe_malloc(1 + i * sizeof(char));
 	if (!ptr)
 		return (NULL);

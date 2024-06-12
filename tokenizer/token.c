@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   token.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/12 16:00:30 by kait-baa          #+#    #+#             */
+/*   Updated: 2024/06/12 16:10:05 by kait-baa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 void	process_spaces(t_token **tokens, char *line, int *i)
@@ -48,7 +60,8 @@ void	handle_general_tokens(t_token **tokens, char *line, int *i)
 	flag = 0;
 	count = 0;
 	save = -1;
-	while (line[*i] && !is_special(line[*i], 0) && !(line[*i] >= 7 && line[*i] <= 13))
+	while (line[*i] && !is_special(line[*i], 0) && !(line[*i] >= 7
+			&& line[*i] <= 13))
 	{
 		if ((line[*i] == '\"' || line[*i] == '\'') && !flag)
 		{
@@ -60,7 +73,7 @@ void	handle_general_tokens(t_token **tokens, char *line, int *i)
 		count++;
 		(*i)++;
 		if (b % 2 == 0 && line[*i] == 32)
-			break;
+			break ;
 	}
 	add_token(tokens, ft_substr(&line[*i - count], 0, count), count);
 }
@@ -84,7 +97,7 @@ t_token	*tokenization(char *line)
 		{
 			handle_special_characters(&tokens, line, &i);
 		}
-		else 
+		else
 			handle_general_tokens(&tokens, line, &i);
 	}
 	return (tokens);

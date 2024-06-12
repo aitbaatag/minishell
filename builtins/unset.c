@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   unset.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/12 15:57:37 by kait-baa          #+#    #+#             */
+/*   Updated: 2024/06/12 16:16:24 by kait-baa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 int	builtin_unset(char *key)
@@ -16,9 +28,10 @@ int	builtin_unset(char *key)
 	}
 	return (0);
 }
+
 int	ft_unset(t_exec *exec)
 {
-	int i;
+	int	i;
 
 	i = 1;
 	while (exec->args[i])

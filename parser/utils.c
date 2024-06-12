@@ -1,13 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/12 16:00:11 by kait-baa          #+#    #+#             */
+/*   Updated: 2024/06/12 16:32:16 by kait-baa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/parser.h"
 
 int	is_argument_token(t_token *ptr)
 {
-	return (ptr->prev == NULL && ptr->type == WORD) ||
-		(ptr->type == WORD && ptr->prev &&
-			(ptr->prev->type == WORD || ptr->prev->type == PIPE ||
-			ptr->prev->type == AND || ptr->prev->type == OR ||
-			ptr->prev->type == OPENING_PARENTHESES));
+	return ((ptr->prev == NULL && ptr->type == WORD) ||
+			(ptr->type == WORD && ptr->prev &&
+				(ptr->prev->type == WORD || ptr->prev->type == PIPE ||
+				ptr->prev->type == AND || ptr->prev->type == OR ||
+				ptr->prev->type == OPENING_PARENTHESES)));
 }
+
 void	remove_token(t_token **tokens, t_token *token)
 {
 	if (token->prev)
@@ -17,6 +30,7 @@ void	remove_token(t_token **tokens, t_token *token)
 	if (token == *tokens)
 		*tokens = token->prev;
 }
+
 t_exec	*get_exec_and_update_tokens(t_token **tokens)
 {
 	t_exec	*exec_cmd;
@@ -45,6 +59,7 @@ t_exec	*get_exec_and_update_tokens(t_token **tokens)
 	}
 	return (exec_cmd);
 }
+
 t_redi_exec	*get_node_heredoc(t_redi_exec **list_heredoc)
 {
 	t_redi_exec	*ptr;
@@ -61,7 +76,7 @@ t_redi_exec	*get_node_heredoc(t_redi_exec **list_heredoc)
 
 int	visit_tokens(t_token **tokens)
 {
-	t_token *ptr;
+	t_token	*ptr;
 
 	ptr = (*tokens);
 	if (!ptr || !ptr->prev)

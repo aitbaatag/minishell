@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 20:45:48 by kait-baa          #+#    #+#             */
-/*   Updated: 2023/11/01 20:45:56 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 16:27:15 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 size_t	ft_strlen(const char *str)

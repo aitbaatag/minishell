@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_builtins.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/12 15:57:39 by kait-baa          #+#    #+#             */
+/*   Updated: 2024/06/12 16:16:57 by kait-baa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 int	check(int *flag, char *c)
@@ -9,6 +21,7 @@ int	check(int *flag, char *c)
 	}
 	return (0);
 }
+
 int	create_key_value_pair(char *arg, char **key, char **value)
 {
 	char	*delimiter;
@@ -59,9 +72,10 @@ void	update_existing_var(t_env *current, char *arg, char *value)
 	else
 		current->value = ft_strdup(value);
 }
+
 void	add_or_update_var(char *arg, char *key, char *value)
 {
-	t_env *current;
+	t_env	*current;
 
 	current = find_env_var(global.env, key);
 	if (current)

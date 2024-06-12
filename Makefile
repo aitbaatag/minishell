@@ -29,7 +29,6 @@ SRCS = ./executer/exit_satus.c \
       ./parser/utils2.c \
       ./parser/building_utils2.c \
       ./parser/building_utils.c \
-      ./parser/parser.c \
       ./parser/utils_heredoc.c \
       ./shell/signals.c \
       ./environment/environment.c \
