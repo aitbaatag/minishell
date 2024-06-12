@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/12 16:06:43 by kait-baa          #+#    #+#             */
+/*   Updated: 2024/06/12 16:10:05 by kait-baa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/parser.h"
 
 int	check_expand(char *delimiter)
@@ -8,6 +20,7 @@ int	check_expand(char *delimiter)
 	return ((delimiter[0] != '\'' && delimiter[0] != '\"') && (delimiter[len
 			- 1] != '\'' && delimiter[len - 1] != '\"'));
 }
+
 void	reverse_list_tokens(t_token **token)
 {
 	if (!token || !(*token))
@@ -15,6 +28,7 @@ void	reverse_list_tokens(t_token **token)
 	while ((*token)->next)
 		(*token) = (*token)->next;
 }
+
 int	size_of_args(t_token *token)
 {
 	t_token	*ptr;

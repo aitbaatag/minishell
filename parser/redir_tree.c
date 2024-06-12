@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redir_tree.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/12 16:00:05 by kait-baa          #+#    #+#             */
+/*   Updated: 2024/06/12 16:35:10 by kait-baa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 t_redi_exec	*handle_redirection(t_token **tokens, t_redi_exec **list_heredoc)
@@ -28,8 +40,8 @@ t_redi_exec	*handle_redirection(t_token **tokens, t_redi_exec **list_heredoc)
 
 t_tree	*handling_redi(t_token **tokens, t_redi_exec **list_heredoc)
 {
-	t_redi_exec *redi_exec;
-	t_exec *exec;
+	t_redi_exec	*redi_exec;
+	t_exec		*exec;
 
 	redi_exec = NULL;
 	exec = NULL;

@@ -1,7 +1,6 @@
 # TO DO LIST #
 * signals with sleep 4 (pipe) (put \n)
 * when removed a parent directory, pwd/oldpwd shall work
-* < * ==> ambiguous redirect
 
 # TEST CASES TO FIX #
 ```
@@ -24,6 +23,8 @@ EXPANDER
 * TEST: echo "'$USER"""'$USER' "$USER'"		==> ;'asadiqui$USER asadiqui';
 * TEST: echo '$'"---$?'$?'$?"?				==> ;$---130'130'130?;
 * TEST: echo $'USER'						==> USER (special case)
+
+* < * ==> ambiguous redirect
 
 minishell:~$ (ls) -la (syntax error)
 

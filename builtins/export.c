@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/12 15:57:31 by kait-baa          #+#    #+#             */
+/*   Updated: 2024/06/12 16:12:32 by kait-baa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 void	bubble_sort_env(char **env_array, size_t size)
@@ -28,6 +40,7 @@ void	bubble_sort_env(char **env_array, size_t size)
 			break ;
 	}
 }
+
 void	print_sorted_env(t_env *envs)
 {
 	char	**env_array;
@@ -56,6 +69,7 @@ void	print_sorted_env(t_env *envs)
 			printf("\n");
 	}
 }
+
 int	add_var_to_envs_or_app_modif_exis(char *arg)
 {
 	char	*key;

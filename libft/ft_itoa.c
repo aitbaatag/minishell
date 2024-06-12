@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 03:03:00 by kait-baa          #+#    #+#             */
-/*   Updated: 2023/11/08 03:03:07 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 16:26:37 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 static size_t	get_digit(long i)

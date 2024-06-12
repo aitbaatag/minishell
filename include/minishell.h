@@ -30,8 +30,6 @@
 typedef	struct s_global {
     t_env   *env;
     int		status;
-    int fd;
-    int break_2;
     t_garbage *garbage_list;
 }	t_global;
 

@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <kait-baa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 21:51:11 by kait-baa          #+#    #+#             */
-/*   Updated: 2023/11/08 03:39:53 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 16:27:17 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 int	ft_strncmp(const char *str1, const char *str2, size_t n)

@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <kait-baa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 04:48:59 by kait-baa          #+#    #+#             */
-/*   Updated: 2023/11/13 00:08:11 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 16:27:19 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)

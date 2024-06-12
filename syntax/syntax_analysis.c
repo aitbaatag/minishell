@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   syntax_analysis.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/12 16:00:27 by kait-baa          #+#    #+#             */
+/*   Updated: 2024/06/12 16:10:05 by kait-baa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 bool	select_check(t_token *tokens, bool *status)
@@ -12,8 +24,8 @@ bool	select_check(t_token *tokens, bool *status)
 			*status = check_redirection(tokens);
 		else if (tokens->type == WORD)
 		{
-			*status = check_closed_quotes(tokens->value, '\'') && \
-					check_closed_quotes(tokens->value, '\"');
+			*status = check_closed_quotes(tokens->value, '\'') &&
+				check_closed_quotes(tokens->value, '\"');
 			if (*status == false)
 				ft_putstr_fd("minishell: syntax error, unclosed quotes\n", 2);
 		}
@@ -34,7 +46,8 @@ bool	ambiguous_redirect(t_token *tokens)
 	i = 0;
 	while (tokens)
 	{
-		if (tokens->type != HEREDOC && tokens->next && tokens->next->value[0] == '*')
+		if (tokens->type != HEREDOC && tokens->next
+			&& tokens->next->value[0] == '*')
 		{
 			while (tokens->next->value[i] == '*')
 				i++;

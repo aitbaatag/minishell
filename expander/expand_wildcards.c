@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   expand_wildcards.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/12 16:04:21 by kait-baa          #+#    #+#             */
+/*   Updated: 2024/06/12 16:13:17 by kait-baa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 int	check_wildcard(char *str)
@@ -13,6 +25,7 @@ int	check_wildcard(char *str)
 	}
 	return (0);
 }
+
 int	is_match(const char *f, const char *p)
 {
 	while (*f && *p)
@@ -39,6 +52,7 @@ int	is_match(const char *f, const char *p)
 	}
 	return (*f == '\0' && *p == '\0');
 }
+
 void	add_meant_file(t_token **tokens, char *namefile)
 {
 	t_token	*new_token;
@@ -46,6 +60,7 @@ void	add_meant_file(t_token **tokens, char *namefile)
 	new_token = new_node(namefile, WORD);
 	add_node_back(tokens, new_token);
 }
+
 void	listfile(char *expand, t_token **tokens)
 {
 	struct dirent *namelist;

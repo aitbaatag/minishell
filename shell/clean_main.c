@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   clean_main.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/12 16:06:58 by kait-baa          #+#    #+#             */
+/*   Updated: 2024/06/12 16:48:57 by kait-baa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 t_global	global;
@@ -8,8 +20,6 @@ int	main(int argc, char *argv[], char *envp[])
 	(void)argv;
 	global.env = NULL;
 	global.garbage_list = NULL;
-	global.fd = dup(0);
-	global.break_2 = 0;
 	data = safe_malloc(sizeof(t_data));
 	if (argc > 1)
 	{
@@ -35,7 +45,7 @@ int	main(int argc, char *argv[], char *envp[])
 			data->tree = build_tree(&data->tokens);
 			executer(data->tree);
 		}
-		add_garbage_node(&global.garbage_list ,new_garbage_node(data->line));
+		add_garbage_node(&global.garbage_list, new_garbage_node(data->line));
 	}
 	free_garbage(&global.garbage_list);
 }

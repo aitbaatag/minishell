@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 09:19:25 by kait-baa          #+#    #+#             */
-/*   Updated: 2023/11/10 09:22:39 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 16:26:40 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 static int	count_char(char *str, char c)

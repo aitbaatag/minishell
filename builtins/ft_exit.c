@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_exit.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/12 16:12:39 by kait-baa          #+#    #+#             */
+/*   Updated: 2024/06/12 16:12:40 by kait-baa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 static void	check_exit_args(char **args)
@@ -35,9 +47,9 @@ static void	check_exit_args(char **args)
 	}
 }
 
-int ft_exit(t_exec *exec)
+int	ft_exit(t_exec *exec)
 {
-	char    **args;
+	char	**args;
 
 	args = exec->args;
 	check_exit_args(args);

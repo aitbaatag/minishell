@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils_creator_nodes.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/12 16:08:10 by kait-baa          #+#    #+#             */
+/*   Updated: 2024/06/12 16:10:05 by kait-baa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 t_token	*new_node(char *value, token type)
@@ -43,7 +55,7 @@ void	add_node_back(t_token **list_token, t_token *new_token)
 
 void	add_token(t_token **token, char *str, int count)
 {
-	t_token *new_token;
+	t_token	*new_token;
 
 	if ((check_wildcard(str) && ((*token) == NULL || ((*token)
 					&& !((*token)->type & REDIRECTION)))))

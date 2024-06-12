@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   executer.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/06/12 15:58:05 by kait-baa          #+#    #+#             */
+/*   Updated: 2024/06/12 16:10:05 by kait-baa         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/minishell.h"
 
 void	save_and_restore_fd(int *orig_stdin, int *orig_stdout, int action)
@@ -133,8 +145,8 @@ int	handle_builtin(t_exec *exec, int orig_stdin, int orig_stdout)
 
 int	handle_external_command(t_exec *exec)
 {
-	int	status;
-	char *path_cmd;
+	int		status;
+	char	*path_cmd;
 
 	signal(SIGINT, sigint_handler_nl);
 	signal(SIGQUIT, sigint_handler_nl);
@@ -157,10 +169,10 @@ int	handle_external_command(t_exec *exec)
 
 int	run_cmd(t_tree *tree)
 {
-	t_exec *exec;
-	int status;
-	int orig_stdin;
-	int orig_stdout;
+	t_exec	*exec;
+	int		status;
+	int		orig_stdin;
+	int		orig_stdout;
 
 	exec = (t_exec *)tree;
 	save_and_restore_fd(&orig_stdin, &orig_stdout, 0);
