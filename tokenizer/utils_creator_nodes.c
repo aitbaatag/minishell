@@ -24,6 +24,7 @@ t_token	*new_node(char *value, token type)
 	new_token->prev = NULL;
 	return (new_token);
 }
+
 void	add_node_back(t_token **list_token, t_token *new_token)
 {
 	t_token	*head;
@@ -39,11 +40,13 @@ void	add_node_back(t_token **list_token, t_token *new_token)
 	head->next = new_token;
 	new_token->prev = head;
 }
+
 void	add_token(t_token **token, char *str, int count)
 {
-	t_token	*new_token;
+	t_token *new_token;
 
-	if (check_wildcard(str))
+	if ((check_wildcard(str) && ((*token) == NULL || ((*token)
+					&& !((*token)->type & REDIRECTION)))))
 		listfile(str, token);
 	else
 	{

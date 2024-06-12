@@ -23,5 +23,5 @@ int	ft_unset(t_exec *exec)
 	i = 1;
 	while (exec->args[i])
 		builtin_unset(exec->args[i++]);
-	return (0);
+	return (set_exit_status(0), get_exit_status());
 }

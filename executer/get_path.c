@@ -26,7 +26,7 @@ char	*get_path(char *command)
 	if (access(command, X_OK) == 0)
 		return (command);
 	if ((command[0] == '/' || command[0] == '.'))
-		return (NULL);
+		return (command);
 	path_node = find_env_var(global.env, "PATH");
 	if (!path_node)
 		return (NULL);
@@ -42,5 +42,5 @@ char	*get_path(char *command)
 			i++;
 		}
 	}
-	return (NULL);
+	return (command);
 }

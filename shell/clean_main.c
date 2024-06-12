@@ -5,15 +5,12 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	t_data	*data;
 
-	//if (isatty(STDIN_FILENO))
-	//	welcome();
+	(void)argv;
 	global.env = NULL;
 	global.garbage_list = NULL;
 	global.fd = dup(0);
 	global.break_2 = 0;
 	data = safe_malloc(sizeof(t_data));
-	(void)argv;
-	(void)argc;
 	if (argc > 1)
 	{
 		perror("error run programe ./minishell without any args\n");
@@ -29,14 +26,13 @@ int	main(int argc, char *argv[], char *envp[])
 		data->line = readline("\033[1;32mminishell@1337:~$ \033[0m");
 		if (data->line == NULL)
 			eof_handler();
-		*heredoc_error() = -1;
-		add_history(data->line);
+		if (data->line[0])
+			add_history(data->line);
+		*heredoc_signaled() = -1;
 		data->tokens = tokenization(data->line);
-		if (analyze_syntax(data->tokens) == true)
+		if (analyze_syntax(data->tokens) && ambiguous_redirect(data->tokens))
 		{
 			data->tree = build_tree(&data->tokens);
-			// if (get_exit_status() == 130)
-			// 	data->tree = NULL;
 			executer(data->tree);
 		}
 		add_garbage_node(&global.garbage_list ,new_garbage_node(data->line));

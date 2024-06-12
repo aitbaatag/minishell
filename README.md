@@ -1,7 +1,7 @@
 # TO DO LIST #
-* signals with sleep 4 (pipe)
+* signals with sleep 4 (pipe) (put \n)
 * when removed a parent directory, pwd/oldpwd shall work
-* (ls) > out -la  ==> syntax error near unexpected token `-la'
+* < * ==> ambiguous redirect
 
 # TEST CASES TO FIX #
 ```
@@ -9,6 +9,16 @@
 
 # TRIVIAL CASES HANDLED ###
 ```
+NO_SYNTAX_ERRORS  :
+* ls && (ls "" -la | ls | "    ") > file1 > file2 > file2
+* (ls "" -la | ls | "    ")
+* ((ls) && '') 
+SYNTAX_ERRORS
+* (ls) > out -la
+* echo "        _")
+* echo "        _"(*(("f"
+
+EXPANDER
 * TEST: echo "'$USER' "$USER" "'$USER'""	==>	;'asadiqui' asadiqui $USER;
 * TEST: echo '$USER"' ' "$USER" ''""'		==>	;$USER"  "$USER" "";
 * TEST: echo "'$USER"""'$USER' "$USER'"		==> ;'asadiqui$USER asadiqui';
@@ -37,7 +47,7 @@ should execute executable file without ./ initially like lsss
 # SYNTAX ANALYSIS #
 ()()			=> error	V
 ()				=> error	V
-(())			=> no_error	V
+(())			=> no_error	X
 ls  >| wc 		=> no_error	X
 ls > | wc		=> error	V
 'utgig'"		=> error	V

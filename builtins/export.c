@@ -90,9 +90,10 @@ int	export_env_var(t_exec *exec)
 				ft_putstr_fd("minishell: export: `", 2);
 				ft_putstr_fd(exec->args[i], 2);
 				ft_putstr_fd("'\033[0;31m: not a valid identifier\n\033[0m", 2);
+				return (set_exit_status(1), get_exit_status());
 			}
 			i++;
 		}
 	}
-	return (0);
+	return (set_exit_status(0), get_exit_status());
 }

@@ -8,7 +8,7 @@ t_tree	*build_tree(t_token **tokens)
 
 	right = NULL;
 	list_heredoc = creat_list_heredoc(*tokens);
-	if (*heredoc_error() != -1 && !list_heredoc)
+	if (*heredoc_signaled() != -1 && !list_heredoc)
 		return (NULL);
 	reverse_list_tokens(tokens);
 	right = pipe_tree(tokens, &list_heredoc);

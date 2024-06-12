@@ -1,6 +1,5 @@
 #include "../include/minishell.h"
 
-// responsible for echo $?
 int	get_exit_status(void)
 {
 	return (global.status);

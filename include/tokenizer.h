@@ -44,6 +44,5 @@ void		add_token(t_token **token, char *str, int count);
 void		init_struct(t_token *list_tokens);
 void		is_quotes(t_token **token, char *str, int *i);
 int			is_variable(t_token **token, char *str);
-int			check_quotes(char *str);
 
 #endif

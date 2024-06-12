@@ -40,20 +40,20 @@ void	read_from_user(char *delimiter, t_redi_exec *node_heredoc, int i,
 		line = readline("> ");
 		if (!line)
 		{
-			if (*heredoc_error() == -1)
+			if (*heredoc_signaled() == -1)
 				heredoc_eof();
 			break ;
 		}
 		line_split = ft_split(line, '\0');
-		if (!flag)
+		if (!flag && ft_strcmp(line, delimiter) != 0)
 			expand(line_split, 1);
 		break_ = write_to_file(line_split[0], node_heredoc, delimiter);
 		add_garbage_node(&global.garbage_list ,new_garbage_node(line));
 	}
-	if (*heredoc_error() != -1)
+	if (*heredoc_signaled() != -1)
 	{
-		dup2(*heredoc_error(), 0);
-		close(*heredoc_error());
+		dup2(*heredoc_signaled(), 0);
+		close(*heredoc_signaled());
 	}
 	else
 		close(node_heredoc->infile);
@@ -100,7 +100,7 @@ t_redi_exec	*creat_list_heredoc(t_token *tokens)
 	ptr_token = tokens;
 	while (ptr_token)
 	{
-		if (*heredoc_error() != -1)
+		if (*heredoc_signaled() != -1)
 			return (NULL);
 		process_token_here_doc(ptr_token, &list_heredoc, &last_node, &i);
 		ptr_token = ptr_token->next;
