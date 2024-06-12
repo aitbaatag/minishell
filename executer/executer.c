@@ -134,16 +134,19 @@ int	handle_builtin(t_exec *exec, int orig_stdin, int orig_stdout)
 int	handle_external_command(t_exec *exec)
 {
 	int	status;
+	char *path_cmd;
 
 	signal(SIGINT, sigint_handler_nl);
 	signal(SIGQUIT, sigint_handler_nl);
+	path_cmd = get_path(exec->args[0]);
 	if (fork() == 0)
 	{
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
-		execve(get_path(exec->args[0]), exec->args, env_to_array(global.env));
+		execve(path_cmd, exec->args, env_to_array(global.env));
 		cmd_notfound(exec->args[0]);
 		free_garbage(&global.garbage_list);
+		rl_clear_history();
 		exit(get_exit_status());
 	}
 	signal(SIGQUIT, SIG_DFL);

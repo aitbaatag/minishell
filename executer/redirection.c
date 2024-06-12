@@ -21,18 +21,21 @@ int set_type_redi(t_tree *redi)
 int handle_redir_input(t_redi_exec *redi)
 {
     int fd;
+    char **file_name;
 
+    file_name = ft_split(redi->file_name, '\0');
+    expand(file_name, 0);
     if (!redi)
 		return (EXIT_SUCCESS);
     if (set_type_redi((t_tree *)redi->exec_child) != 0)
 		return (set_exit_status(1), get_exit_status());
     if (redi->type == HEREDOC)
-        fd = open(redi->file_name, O_RDONLY);
+        fd = open(file_name[0], O_RDONLY);
     else
-        fd = open(redi->file_name, redi->flags, 0644);
+        fd = open(file_name[0], redi->flags, 0644);
     if (fd == -1)
     {
-        perror(redi->file_name);
+        perror(file_name[0]);
         return (set_exit_status(1), get_exit_status());
     }
     dup2(fd, STDIN_FILENO);
@@ -43,7 +46,10 @@ int handle_redir_input(t_redi_exec *redi)
 int handle_redir_output(t_redi_exec *redi)
 {
     int fd;
+    char **file_name;
 
+    file_name = ft_split(redi->file_name, '\0');
+    expand(file_name, 0);
     if (!redi)
         return EXIT_SUCCESS;
     if (set_type_redi((t_tree *)redi->exec_child) != 0)
@@ -51,10 +57,10 @@ int handle_redir_output(t_redi_exec *redi)
 
         return set_exit_status(1), get_exit_status();
     }
-    fd = open(redi->file_name, redi->flags, 0644);
+    fd = open(file_name[0], redi->flags, 0644);
     if (fd == -1)
     {
-        perror(redi->file_name);
+        perror(file_name[0]);
         return set_exit_status(1), get_exit_status();
     }
     dup2(fd, STDOUT_FILENO);

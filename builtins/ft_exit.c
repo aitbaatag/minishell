@@ -7,12 +7,15 @@ static void	check_exit_args(char **args)
 	if (!args[1])
 	{
 		ft_putstr_fd("exit\n", 2);
+		free_garbage(&global.garbage_list);
+		rl_clear_history();
 		exit(EXIT_SUCCESS);
 	}
 	else if (args[2])
 	{
 		ft_putstr_fd("exit: too many arguments\n", 2);
 		set_exit_status(2);
+		free_garbage(&global.garbage_list);
 		exit(get_exit_status());
 	}
 	i = 0;
@@ -24,6 +27,8 @@ static void	check_exit_args(char **args)
 			write(2, args[1], ft_strlen(args[1]));
 			ft_putstr_fd(": numeric argument required\n", 2);
 			set_exit_status(2);
+			free_garbage(&global.garbage_list);
+			rl_clear_history();
 			exit(get_exit_status());
 		}
 		i++;
@@ -38,6 +43,8 @@ int ft_exit(t_exec *exec)
 	check_exit_args(args);
 	ft_putstr_fd("exit\n", 2);
 	set_exit_status(ft_atoi(args[1]));
+	free_garbage(&global.garbage_list);
+	rl_clear_history();
 	exit(get_exit_status());
 	return (get_exit_status());
 }

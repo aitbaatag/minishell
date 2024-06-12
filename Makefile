@@ -1,3 +1,10 @@
+ANSI_GREEN		:= \\033[38;5;2m
+ANSI_RED		:= \\033[38;5;125m
+ANSI_ORANGE		:= \\033[38;5;208m
+ANSI_GOLD		:= \\033[38;5;214m
+ANSI_CYAN		:= \\033[38;5;44m
+ANSI_RESET		:= \\033[0m
+
 # Compiler and flags
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -24,7 +31,6 @@ SRCS = ./executer/exit_satus.c \
       ./parser/building_utils.c \
       ./parser/parser.c \
       ./parser/utils_heredoc.c \
-      ./shell/welcome.c \
       ./shell/signals.c \
       ./environment/environment.c \
       ./environment/env_utils.c \
@@ -40,7 +46,8 @@ SRCS = ./executer/exit_satus.c \
       ./builtins/env.c \
       ./builtins/unset.c \
       ./syntax/syntax_analysis.c \
-      ./syntax/checks.c \
+	  ./syntax/check_token_types.c \
+	  ./syntax/other_checks.c \
       ./tokenizer/type_token.c \
       ./tokenizer/token.c \
       ./tokenizer/utils.c \
@@ -83,6 +90,21 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -lreadline -o $(NAME)
+	@printf "$(ANSI_ORANGE)"
+	@printf "\n"
+	@printf "\t███▄ ▄███▓ ██▓ ███▄    █  ██▓  ██████  ██░ ██ ▓█████  ██▓     ██▓    \n"
+	@printf "\t▓██▒▀█▀ ██▒▓██▒ ██ ▀█   █ ▓██▒▒██    ▒ ▓██░ ██▒▓█   ▀ ▓██▒    ▓██▒    \n"
+	@printf "\t▓██    ▓██░▒██▒▓██  ▀█ ██▒▒██▒░ ▓██▄   ▒██▀▀██░▒███   ▒██░    ▒██░    \n"
+	@printf "\t▒██    ▒██ ░██░▓██▒  ▐▌██▒░██░  ▒   ██▒░▓█ ░██ ▒▓█  ▄ ▒██░    ▒██░    \n"
+	@printf "\t▒██▒   ░██▒░██░▒██░   ▓██░░██░▒██████▒▒░▓█▒░██▓░▒████▒░██████▒░██████▒\n"
+	@printf "\t░ ▒░   ░  ░░▓  ░ ▒░   ▒ ▒ ░▓  ▒ ▒▓▒ ▒ ░ ▒ ░░▒░▒░░ ▒░ ░░ ▒░▓  ░░ ▒░▓  ░\n"
+	@printf "\t░  ░      ░ ▒ ░░ ░░   ░ ▒░ ▒ ░░ ░▒  ░ ░ ▒ ░▒░ ░ ░ ░  ░░ ░ ▒  ░░ ░ ▒  ░\n"
+	@printf "\t░      ░    ▒ ░   ░   ░ ░  ▒ ░░  ░  ░   ░  ░░ ░   ░     ░ ░     ░ ░   \n"
+	@printf "\t       ░    ░           ░  ░        ░   ░  ░  ░   ░  ░    ░  ░    ░  ░\n"
+	@printf "$(ANSI_RESET)$(ANSI_CYAN)"
+	@printf "\t\t\t\tby: asadiqui && kait-baa\n"
+	@printf "\t\t\t\t^^^^^^^^^^^^^^^^^^^^^^^^\n"
+	@printf "$(ANSI_RESET)"
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
