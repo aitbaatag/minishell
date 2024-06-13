@@ -1,8 +1,12 @@
 # TO DO LIST #
 * signals with sleep 4 (pipe) (put \n)
 * when removed a parent directory, pwd/oldpwd shall work
+* echo $\/
+___________________________
 * cat with ctrl+\
+___________________________
 * run subshells in a fork
+___________________________
 * export var="ls -la" split by space after expand
 * export var="ls *" expand wildcards after expanding
 * ls | ls then echo $/ (segv)

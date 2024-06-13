@@ -6,7 +6,7 @@
 /*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:06:58 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 20:49:45 by asadiqui         ###   ########.fr       */
+/*   Updated: 2024/06/13 04:50:33 by asadiqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	main(int argc, char *argv[], char *envp[])
 	(void)argv;
 	global.env = NULL;
 	global.garbage_list = NULL;
+	global.y = 0;
 	data = safe_malloc(sizeof(t_data));
 	// if (argc > 1)
 	// {

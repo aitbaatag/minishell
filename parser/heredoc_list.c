@@ -6,7 +6,7 @@
 /*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:59:57 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 18:39:30 by asadiqui         ###   ########.fr       */
+/*   Updated: 2024/06/13 02:03:50 by asadiqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	read_from_user(char *delimiter, t_redi_exec *node_heredoc, int i,
 		}
 		line_split = ft_split(line, '\0');
 		if (!flag && ft_strcmp(line, delimiter) != 0)
-			expand(line_split, 1);
+			line_split = expand(line_split, 1);
 		break_ = write_to_file(line_split[0], node_heredoc, delimiter);
 		add_garbage_node(&global.garbage_list, new_garbage_node(line));
 	}

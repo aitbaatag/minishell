@@ -6,7 +6,7 @@
 /*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 18:46:51 by asadiqui          #+#    #+#             */
-/*   Updated: 2024/06/12 19:46:19 by asadiqui         ###   ########.fr       */
+/*   Updated: 2024/06/13 04:49:34 by asadiqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_global
 {
 	t_env		*env;
 	int			status;
+	int y;
 	t_garbage	*garbage_list;
 }	t_global;
 

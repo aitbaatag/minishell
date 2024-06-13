@@ -6,7 +6,7 @@
 /*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 20:53:45 by asadiqui          #+#    #+#             */
-/*   Updated: 2024/06/12 20:55:30 by asadiqui         ###   ########.fr       */
+/*   Updated: 2024/06/13 02:59:57 by asadiqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	cmd_notfound(char *cmd)
 		ft_putstr_fd("\033[0;31m: command not found\n\033[0m", 2);
 	set_exit_status(127);
 }
-
 int	handle_builtin(t_exec *exec, int orig_stdin, int orig_stdout)
 {
 	int	status;
@@ -62,7 +61,6 @@ int	handle_external_command(t_exec *exec)
 		free_garbage(&global.garbage_list);
 		exit(get_exit_status());
 	}
-	signal(SIGQUIT, SIG_DFL);
 	wait(&status);
 	if_exit_with_signal(&status);
 	return (status);
@@ -82,7 +80,13 @@ int	run_cmd(t_tree *tree)
 		save_and_restore_fd(&orig_stdin, &orig_stdout, 1);
 		return (get_exit_status());
 	}
-	expand(exec->args, 0);
+	// int i = 0;
+	// while (exec->args[i])
+	// 	printf("args_i: ;%s;\n", exec->args[i++]);
+	exec->args = expand(exec->args, 0);
+	// i = 0;
+	// while (exec->args[i])
+	// 	printf("args_i: ;%s;\n", exec->args[i++]);
 	if (!exec->args[0])
 		return (set_exit_status(0), get_exit_status());
 	status = handle_builtin(exec, orig_stdin, orig_stdout);

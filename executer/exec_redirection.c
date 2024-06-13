@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_redirection.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:58:12 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 19:41:46 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/13 02:03:06 by asadiqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	handle_redir_input(t_redi_exec *redi)
 	char	**file_name;
 
 	file_name = ft_split(redi->file_name, '\0');
-	expand(file_name, 0);
+	file_name = expand(file_name, 0);
 	if (!redi)
 		return (EXIT_SUCCESS);
 	if (set_type_redi((t_tree *)redi->exec_child) != 0)
@@ -75,7 +75,7 @@ int	handle_redir_output(t_redi_exec *redi)
 	char	**file_name;
 
 	file_name = ft_split(redi->file_name, '\0');
-	expand(file_name, 0);
+	file_name = expand(file_name, 0);
 	if (!redi)
 		return (EXIT_SUCCESS);
 	if (set_type_redi((t_tree *)redi->exec_child) != 0)

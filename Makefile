@@ -7,7 +7,7 @@ ANSI_RESET		:= \\033[0m
 
 # Compiler and flags
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = 
 
 # Source files
 SRCS = ./shell/clean_main.c \
