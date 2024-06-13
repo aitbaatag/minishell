@@ -6,7 +6,7 @@
 /*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:57:37 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 16:16:24 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 22:14:32 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ int	builtin_unset(char *key)
 {
 	t_env	*key_node;
 
-	key_node = find_env_var(global.env, key);
+	key_node = find_env_var(g_global.env, key);
 	if (key_node)
 	{
 		if (key_node->prev)
 			key_node->prev->next = key_node->next;
 		else
-			global.env = key_node->next;
+			g_global.env = key_node->next;
 		if (key_node->next)
 			key_node->next->prev = key_node->prev;
 	}

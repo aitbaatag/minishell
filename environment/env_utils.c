@@ -6,7 +6,7 @@
 /*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:57:50 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 16:10:05 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 22:14:32 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	add_env_node_to_list(t_env *new)
 {
 	t_env	*temp;
 
-	if (global.env == NULL)
-		global.env = new;
+	if (g_global.env == NULL)
+		g_global.env = new;
 	else
 	{
-		temp = global.env;
+		temp = g_global.env;
 		while (temp->next)
 			temp = temp->next;
 		temp->next = new;

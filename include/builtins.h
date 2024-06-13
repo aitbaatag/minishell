@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 18:46:29 by asadiqui          #+#    #+#             */
-/*   Updated: 2024/06/12 19:17:41 by asadiqui         ###   ########.fr       */
+/*   Updated: 2024/06/12 22:26:35 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		(*is_builtin(char *cmd))(t_exec *exec);
 int		compare_env(const char *a, const char *b);
 void	bubble_sort_env(char **env_array, size_t size);
 void	print_sorted_env(t_env *envs);
-int		add_var_to_envs_or_app_modif_exis(char *arg);
+int		add_or_modify_env_var(char *arg);
 int		create_key_value_pair(char *arg, char **key, char **value);
 void	update_existing_var(t_env *current, char *arg, char *value);
 void	add_or_update_var(char *arg, char *key, char *value);

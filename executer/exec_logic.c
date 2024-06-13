@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_logic.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:58:05 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 20:54:22 by asadiqui         ###   ########.fr       */
+/*   Updated: 2024/06/12 21:13:17 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,3 @@ int	run_logic(t_tree *tree)
 	}
 	return (set_exit_status(status), get_exit_status());
 }
-

@@ -6,7 +6,7 @@
 /*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 03:24:42 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 16:27:46 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 23:18:34 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 
 	n = 0;
 	i = 0;
+	// if (!*dst || !*src)
+	// 	return (0);
 	while (src[i] != '\0')
 	{
 		i++;

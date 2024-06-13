@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc_list.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:59:57 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 18:39:30 by asadiqui         ###   ########.fr       */
+/*   Updated: 2024/06/12 22:14:32 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,13 @@ void	read_from_user(char *delimiter, t_redi_exec *node_heredoc, int i,
 		int flag)
 {
 	char	*line;
-	char	*path_tmp_file;
 	int		break_;
 	char	**line_split;
 
 	signal(SIGINT, heredoc_handler);
 	break_ = 1;
-	path_tmp_file = ft_strjoin("/tmp/.here_doc", ft_itoa(i));
-	open_file(path_tmp_file, node_heredoc);
+	node_heredoc->file_name = ft_strjoin("/tmp/.here_doc", ft_itoa(i));
+	open_file(node_heredoc->file_name, node_heredoc);
 	while (break_)
 	{
 		line = readline("> ");
@@ -60,15 +59,10 @@ void	read_from_user(char *delimiter, t_redi_exec *node_heredoc, int i,
 		if (!flag && ft_strcmp(line, delimiter) != 0)
 			expand(line_split, 1);
 		break_ = write_to_file(line_split[0], node_heredoc, delimiter);
-		add_garbage_node(&global.garbage_list, new_garbage_node(line));
+		add_garbage_node(&g_global.garbage_list, new_garbage_node(line));
 	}
-	if (*heredoc_signaled() != -1)
-	{
-		dup2(*heredoc_signaled(), 0);
-		close(*heredoc_signaled());
-	}
+	ft_signaled();
 	close(node_heredoc->infile);
-	node_heredoc->file_name = ft_strdup(path_tmp_file);
 }
 
 void	process_token_here_doc(t_token *ptr_token, t_redi_exec **list_heredoc,

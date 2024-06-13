@@ -6,7 +6,7 @@
 /*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:13:08 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 16:13:09 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/13 00:05:59 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@ char	*handle_questionmark(char *var_name)
 	int		i;
 
 	i = 0;
-	len = 0;
+	len = ft_strlen(var_name);
 	if (var_name[i++] == '?')
 		expand_status(var_name, &i, &buff);
 	else
 	{
 		while (var_name[i] && var_name[i] != '?')
 			i++;
-		buff = safe_malloc(sizeof(char) * (ft_strlen(var_name) - i + 1));
-		ft_strlcpy(buff, var_name + i, ft_strlen(var_name) - i + 1);
+		buff = safe_malloc(sizeof(char) * (len - i + 1));
+		ft_strlcpy(buff, var_name + i, len - i + 1);
 	}
 	return (buff);
 }

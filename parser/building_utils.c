@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   building_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:59:50 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 18:40:15 by asadiqui         ###   ########.fr       */
+/*   Updated: 2024/06/12 22:16:31 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_grp_exec	*new_grp_exec(void)
 	return (grp_exec);
 }
 
-t_logic	*new_logic(token type)
+t_logic	*new_logic(t_token_type type)
 {
 	t_logic	*lo_oper;
 

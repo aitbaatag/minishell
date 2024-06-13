@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_vars_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:03:32 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 18:31:17 by asadiqui         ###   ########.fr       */
+/*   Updated: 2024/06/13 03:39:45 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	expand_add_to_buff(char *args_i, char **buff, int *j)
 
 	len = var_len(args_i + *j + 1);
 	var_name = ft_substr(args_i, *j + 1, len);
-	env = find_env_var(global.env, var_name);
+	env = find_env_var(g_global.env, var_name);
 	if (env)
 		var_value = env->value;
 	else

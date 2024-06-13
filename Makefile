@@ -10,7 +10,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 # Source files
-SRCS = ./shell/clean_main.c \
+SRCS = ./shell/main.c \
       ./executer/executer.c \
       ./executer/get_path.c \
 	  ./executer/exec_cmd.c \
@@ -33,6 +33,7 @@ SRCS = ./shell/clean_main.c \
       ./parser/building_utils.c \
       ./parser/utils_heredoc.c \
       ./shell/signals.c \
+      ./shell/heredoc_signals.c \
       ./environment/environment.c \
       ./environment/env_utils.c \
       ./environment/helper_functions.c \
@@ -80,12 +81,8 @@ HEADERS = ./include/envs.h \
           ./include/minishell.h
 
 OBJS = $(SRCS:.c=.o)
-OBJS_LIBFT = $(SRCS_LIBFT:.c=.o)
 
 NAME = minishell
-
-LIBFT_DIR = libft
-LIBFT = $(LIBFT_DIR)/libft.a
 
 all: $(NAME)
 

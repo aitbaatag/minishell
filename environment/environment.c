@@ -6,7 +6,7 @@
 /*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:57:55 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 16:10:05 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 22:25:39 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	set_env(char **envp)
 	if (!envp || !*envp)
 	{
 		getcwd(pwd, sizeof(pwd));
-		add_var_to_envs_or_app_modif_exis(ft_strjoin("PWD=", pwd));
+		add_or_modify_env_var(ft_strjoin("PWD=", pwd));
 		add_envp("SHLVL=1");
 		add_envp("_=/usr/bin/env");
 	}

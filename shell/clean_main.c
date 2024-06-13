@@ -1,67 +1,241 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   clean_main.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 16:06:58 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 20:49:45 by asadiqui         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../include/minishell.h"
 
-t_global	global;
+t_global	g_global;
 
-static void	parse_and_execute(t_data *data)
+char	*token_type_to_string(int type)
 {
-	data->tokens = tokenization(data->line);
-	if (analyze_syntax(data->tokens) && ambiguous_redirect(data->tokens))
+	switch (type)
 	{
-		data->tree = build_tree(&data->tokens);
-		executer(data->tree);
+	case WORD:
+		return ("WORD");
+	case PIPE:
+		return ("PIPE");
+	case INPUT_REDIRECTION:
+		return ("INPUT_REDIRECTION");
+	case OUTPUT_REDIRECTION:
+		return ("OUTPUT_REDIRECTION");
+	case APPEND_REDIRECTION:
+		return ("APPEND_REDIRECTION");
+	case HEREDOC:
+		return ("HEREDOC");
+	case AND:
+		return ("AND");
+	case OR:
+		return ("OR");
+	case OPENING_PARENTHESES:
+		return ("OPENING_PARENTHESES");
+	case CLOSING_PARENTHESES:
+		return ("CLOSING_PARENTHESES");
+	case WHITE_SPACE:
+		return ("WHITE_SPACE");
+	case SUBSHELL:
+		return ("SUBSHELL");
+	case EXEC:
+		return ("EXEC");
+	default:
+		return ("UNKNOWN");
 	}
-	add_garbage_node(&global.garbage_list, new_garbage_node(data->line));
 }
 
-static void	read_input(t_data *data)
+//	#####	tokens	#####
+// int main() {
+//     char *line;
+//     t_token *tokens;
+
+//     int i;
+
+//     i = 0;
+// 	line = readline("minishell> "); // link with -lreadkine
+
+//     tokens = tokenization(line);
+
+// while (1)
+// {
+//         while (tokens != NULL) {
+//             if (tokens && tokens->value)
+//             {
+//                 // printf ("jj\n");
+//              printf("%s_%s=> \n",  tokens->value, token_type_to_string(tokens->type));
+//             }
+//             tokens = tokens->next;
+//         }
+// 			line = readline("minishell> ");
+// 			 tokens = tokenization(line);
+// }
+//     return (0);
+// }
+
+void	print_tree2(t_tree *root)
 {
-	data->line = readline(GREEN PROMPT CLOSE);
-	if (data->line == NULL)
-		eof_handler();
-	if (data->line[0])
-		add_history(data->line);
-	*heredoc_signaled() = -1;	
+	t_tree		*current;
+	t_exec		*exec_node;
+	char		**args;
+	t_redi_exec	*redi_node;
+
+	if (root == NULL)
+	{
+		printf("NULL\n");
+		return ;
+	}
+	current = root;
+	while (current != NULL)
+	{
+		switch (current->type)
+		{
+		case EXEC:
+		{
+			exec_node = (t_exec *)current;
+			printf("EXEC\n");
+			printf("Arguments: \n");
+			args = exec_node->args;
+			while (*args)
+			{
+				printf("  %s\n", *args);
+				args++;
+			}
+			current = exec_node->child_redi;
+			if (current)
+				printf("redi ==> ");
+			break ;
+		}
+		case APPEND_REDIRECTION:
+		case INPUT_REDIRECTION:
+		case OUTPUT_REDIRECTION:
+		case HEREDOC:
+		{
+			redi_node = (t_redi_exec *)current;
+			printf("%s\n",
+					current->type == APPEND_REDIRECTION ? "APPEND_REDIRECTION" : current->type == INPUT_REDIRECTION ? "INPUT_REDIRECTION"
+						: current->type == OUTPUT_REDIRECTION                                                               ? "OUTPUT_REDIRECTION"
+																															: "HEREDOC");
+			printf("Filename: %s\n", redi_node->file_name);
+			current = redi_node->exec_child;
+			break ;
+		}
+		default:
+			printf("Unknown node type\n");
+			current = NULL; // End loop for unknown node type
+			break ;
+		}
+	}
 }
-
-static void	init_signals()
+void	print_tree(t_tree *root)
 {
-	if (signal(SIGINT, sigint_handler) == SIG_ERR)
-		ft_putstr_fd("signal error\n", STDERR_FILENO);
-	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
-		ft_putstr_fd("signal error\n", STDERR_FILENO);
+	t_tree		*current;
+	t_pipe		*pipe_node;
+	t_exec		*exec_node;
+	char		**args;
+	t_logic		*logic_node;
+	t_grp_exec	*grp_node;
+	t_redi_exec	*redi_node;
+
+	if (root == NULL)
+	{
+		printf("NULL\n");
+		return ;
+	}
+	current = root;
+	while (current != NULL)
+	{
+		switch (current->type)
+		{
+		case PIPE:
+		{
+			pipe_node = (t_pipe *)current;
+			printf("PIPE\n");
+			printf("Left subtree:      ");
+			print_tree(pipe_node->left);
+			printf("Right subtree:     ");
+			print_tree(pipe_node->right);
+			current = NULL; // End loop for PIPE node
+			break ;
+		}
+		case EXEC:
+		{
+			exec_node = (t_exec *)current;
+			printf("EXEC\n");
+			printf("Arguments: \n");
+			args = exec_node->args;
+			while (*args)
+			{
+				printf("  %s\n", *args);
+				args++;
+			}
+			current = exec_node->child_redi;
+			if (current)
+				printf("redi ==> \n");
+			break ;
+		}
+		case AND:
+		case OR:
+		{
+			logic_node = (t_logic *)current;
+			printf("%s\n", current->type == AND ? "AND" : "OR");
+			printf("Left subtree:\n");
+			print_tree(logic_node->left);
+			printf("Right subtree:\n");
+			print_tree(logic_node->right);
+			current = NULL; // End loop for AND/OR node
+			break ;
+		}
+		case SUBSHELL:
+		{
+			grp_node = (t_grp_exec *)current;
+			printf("GROUPED_COMMANDS\n");
+			printf("Child subtree:\n");
+			current = grp_node->child;
+			if (grp_node->outer_redir)
+			{
+				printf("outer_redi\n");
+				print_tree2(grp_node->outer_redir);
+			}
+			break ;
+		}
+		case APPEND_REDIRECTION:
+		case INPUT_REDIRECTION:
+		case OUTPUT_REDIRECTION:
+		case HEREDOC:
+		{
+			redi_node = (t_redi_exec *)current;
+			printf("%s\n",
+					current->type == APPEND_REDIRECTION ? "APPEND_REDIRECTION" : current->type == INPUT_REDIRECTION ? "INPUT_REDIRECTION"
+						: current->type == OUTPUT_REDIRECTION                                                               ? "OUTPUT_REDIRECTION"
+						: current->type == HEREDOC                                                                          ? "HEREDOC"
+																															: "UNKNOWN_TYPE");
+			printf("Filename: %s\n", redi_node->file_name);
+			printf("delimtr: %s\n", redi_node->dlmt);
+			current = redi_node->exec_child;
+			break ;
+		}
+		default:
+			printf("Unknown node type\n");
+			current = NULL; // End loop for unknown node type
+			break ;
+		}
+	}
 }
-
-int	main(int argc, char *argv[], char *envp[])
+//	#####	tree	#####
+int	main(void)
 {
-	t_data	*data;
+	t_data *data;
+	t_global global;
 
-	(void)argc;
-	(void)argv;
+	// global = malloc(sizeof(t_global));
 	global.env = NULL;
-	global.garbage_list = NULL;
-	data = safe_malloc(sizeof(t_data));
-	// if (argc > 1)
-	// {
-	// 	perror("error run programe ./minishell without any args\n");
-	// 	exit(EXIT_FAILURE);
-	// }
-	set_env(envp);
+	global.status = 0;
+	data = malloc(sizeof(t_data));
+
+	// set_env(envp);
+	char *line;
+	t_token *tokens;
+	t_tree *root;
 	while (1)
 	{
-		init_signals();
-		read_input(data);
-		parse_and_execute(data);
+		line = readline("minishell> "); // link with -lreadkine
+
+		tokens = tokenization(line);
+		root = build_tree(&tokens);
+		print_tree(root);
 	}
+	return (0);
 }

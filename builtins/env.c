@@ -6,7 +6,7 @@
 /*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:57:29 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 16:12:30 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 22:14:32 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	builtin_env(t_exec *exec)
 {
 	t_env	*ptr_envs;
 
-	ptr_envs = global.env;
+	ptr_envs = g_global.env;
 	if (exec->args[1] != NULL)
 	{
 		printf("env: ’%s’: No such file or directory\n", exec->args[1]);

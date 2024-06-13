@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:57:39 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 17:03:38 by asadiqui         ###   ########.fr       */
+/*   Updated: 2024/06/12 22:30:47 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ int	create_key_value_pair(char *arg, char **key, char **value)
 	i = 1;
 	delimiter = NULL;
 	delimiter = ft_strchr(arg, '=');
-	if (!ft_isalpha(arg[0]))
+	if (!ft_isalpha(arg[0]) && arg[0] != '_')
 		return (1);
 	while (arg[i])
 	{
 		if ((arg + i) == delimiter || (((arg + (i + 1)) == delimiter)
 				&& arg[i] == '+'))
 			break ;
-		if (!ft_isalnum(arg[i]))
+		if (!ft_isalnum(arg[i]) && arg[i] != '_')
 			return (1);
 		i++;
 	}
@@ -77,7 +77,7 @@ void	add_or_update_var(char *arg, char *key, char *value)
 {
 	t_env	*current;
 
-	current = find_env_var(global.env, key);
+	current = find_env_var(g_global.env, key);
 	if (current)
 	{
 		update_existing_var(current, arg, value);

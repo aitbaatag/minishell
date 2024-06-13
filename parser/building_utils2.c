@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   building_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:59:52 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 18:38:25 by asadiqui         ###   ########.fr       */
+/*   Updated: 2024/06/12 22:15:53 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/parser.h"
 
-t_tree	*node_logic(token type, t_tree *left, t_tree *right)
+t_tree	*node_logic(t_token_type type, t_tree *left, t_tree *right)
 {
 	t_logic	*logical;
 

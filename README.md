@@ -6,6 +6,8 @@
 * export var="ls -la" split by space after expand
 * export var="ls *" expand wildcards after expanding
 * ls | ls then echo $/ (segv)
+* echo "'"'"' ==> print '" 
+* echo "'"
 
 # TEST CASES TO FIX #
 ```

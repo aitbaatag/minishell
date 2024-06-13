@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:12:39 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 17:40:22 by asadiqui         ###   ########.fr       */
+/*   Updated: 2024/06/12 22:14:32 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	exit_error(void)
 {
 	set_exit_status(2);
-	free_garbage(&global.garbage_list);
+	free_garbage(&g_global.garbage_list);
 	exit(get_exit_status());
 }
 
@@ -26,7 +26,7 @@ static void	check_exit_args(char **args)
 	if (!args[1])
 	{
 		ft_putstr_fd("exit\n", 2);
-		free_garbage(&global.garbage_list);
+		free_garbage(&g_global.garbage_list);
 		exit(EXIT_SUCCESS);
 	}
 	else if (args[2])
@@ -56,7 +56,7 @@ int	ft_exit(t_exec *exec)
 	check_exit_args(args);
 	ft_putstr_fd("exit\n", 2);
 	set_exit_status(ft_atoi(args[1]));
-	free_garbage(&global.garbage_list);
+	free_garbage(&g_global.garbage_list);
 	exit(get_exit_status());
 	return (get_exit_status());
 }
