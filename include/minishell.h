@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 18:46:51 by asadiqui          #+#    #+#             */
-/*   Updated: 2024/06/12 19:46:19 by asadiqui         ###   ########.fr       */
+/*   Updated: 2024/06/12 22:13:18 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_global
 	t_garbage	*garbage_list;
 }	t_global;
 
-extern t_global	global;
+extern t_global	g_global;
 
 typedef struct s_data
 {
@@ -63,7 +63,6 @@ typedef struct s_data
 	t_tree	*tree;
 }	t_data;
 
-void	welcome(void);
 void	sigint_handler(int signum);
 void	sigint_handler_nl(int signum);
 void	sigint_handler_exit(int signum);
@@ -71,5 +70,6 @@ void	heredoc_handler(int signum);
 int		*heredoc_signaled(void);
 void	eof_handler(void);
 void	heredoc_eof(void);
+void	ft_signaled(void);
 
 #endif

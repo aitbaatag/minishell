@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:57:31 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 17:09:58 by asadiqui         ###   ########.fr       */
+/*   Updated: 2024/06/12 22:26:42 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	print_sorted_env(t_env *envs)
 	}
 }
 
-int	add_var_to_envs_or_app_modif_exis(char *arg)
+int	add_or_modify_env_var(char *arg)
 {
 	char	*key;
 	char	*value;
@@ -88,7 +88,7 @@ int	export_env_var(t_exec *exec)
 	int		i;
 	t_env	*envs;
 
-	envs = global.env;
+	envs = g_global.env;
 	i = 1;
 	i = 1;
 	if (exec->args[1] == NULL)
@@ -99,7 +99,7 @@ int	export_env_var(t_exec *exec)
 	{
 		while (exec->args[i])
 		{
-			if (add_var_to_envs_or_app_modif_exis(exec->args[i]) != 0)
+			if (add_or_modify_env_var(exec->args[i]) != 0)
 			{
 				ft_putstr_fd("minishell: export: `", 2);
 				ft_putstr_fd(exec->args[i], 2);

@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   type_token.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:07:47 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 19:18:10 by asadiqui         ###   ########.fr       */
+/*   Updated: 2024/06/12 22:18:53 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-token	check_whitespace(char c)
+t_token_type	check_whitespace(char c)
 {
 	if (c == 32 || (c >= 9 && c <= 13))
 		return (WHITE_SPACE);
 	return (WORD);
 }
 
-token	check_special_characters(char *str, int count)
+t_token_type	check_special_characters(char *str, int count)
 {
 	if (count == 1)
 	{
@@ -48,9 +48,9 @@ token	check_special_characters(char *str, int count)
 	return (WORD);
 }
 
-token	return_type(char *str, int count)
+t_token_type	return_type(char *str, int count)
 {
-	token	result;
+	t_token_type	result;
 
 	result = check_whitespace(*str);
 	if (result != WORD)

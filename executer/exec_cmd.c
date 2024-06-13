@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 20:53:45 by asadiqui          #+#    #+#             */
-/*   Updated: 2024/06/12 20:55:30 by asadiqui         ###   ########.fr       */
+/*   Updated: 2024/06/12 22:14:32 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,11 @@ int	handle_external_command(t_exec *exec)
 	{
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
-		execve(path_cmd, exec->args, env_to_array(global.env));
+		execve(path_cmd, exec->args, env_to_array(g_global.env));
 		cmd_notfound(exec->args[0]);
-		free_garbage(&global.garbage_list);
+		free_garbage(&g_global.garbage_list);
 		exit(get_exit_status());
 	}
-	signal(SIGQUIT, SIG_DFL);
 	wait(&status);
 	if_exit_with_signal(&status);
 	return (status);

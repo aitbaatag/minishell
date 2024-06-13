@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipe.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 19:39:59 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 20:48:26 by asadiqui         ###   ########.fr       */
+/*   Updated: 2024/06/12 23:06:39 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,27 @@ void	parent(int *pipe_fd, int *status, pid_t *cpid)
 	set_exit_status(*status);
 }
 
-void	run_child_process(int *fd, int std_fd, t_tree *node, int close_fd,
-		int dup_fd)
+void	run_left_child_process(int *fd, t_pipe *pipenode)
 {
 	signal(SIGINT, SIG_DFL);
 	signal(SIGQUIT, SIG_DFL);
-	close(fd[close_fd]);
-	dup2(fd[dup_fd], std_fd);
-	close(fd[dup_fd]);
-	set_exit_status(ft_run_node(node));
-	free_garbage(&global.garbage_list);
+	close(fd[0]);
+	dup2(fd[1], STDOUT_FILENO);
+	close(fd[1]);
+	set_exit_status(ft_run_node(pipenode->left));
+	free_garbage(&g_global.garbage_list);
+	exit(get_exit_status());
+}
+
+void	run_right_child_process(int *fd, t_pipe *pipenode)
+{
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+	close(fd[1]);
+	dup2(fd[0], STDIN_FILENO);
+	close(fd[0]);
+	set_exit_status(ft_run_node(pipenode->right));
+	free_garbage(&g_global.garbage_list);
 	exit(get_exit_status());
 }
 
@@ -48,10 +59,10 @@ int	run_pipe(t_tree *tree)
 	pipe(fd);
 	cpid[0] = fork();
 	if (cpid[0] == 0)
-		run_child_process(fd, STDOUT_FILENO, pipenode->left, 0, 1);
+		run_left_child_process(fd, pipenode);
 	cpid[1] = fork();
 	if (cpid[1] == 0)
-		run_child_process(fd, STDIN_FILENO, pipenode->right, 1, 0);
+		run_right_child_process(fd, pipenode);
 	parent(fd, &status, cpid);
 	return (get_exit_status());
 }

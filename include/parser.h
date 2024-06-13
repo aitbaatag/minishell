@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 18:46:58 by asadiqui          #+#    #+#             */
-/*   Updated: 2024/06/12 19:04:44 by asadiqui         ###   ########.fr       */
+/*   Updated: 2024/06/12 22:11:36 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@
 
 typedef struct s_tree
 {
-	token	type;
+	t_token_type	type;
 }	t_tree;
 
 typedef struct s_pipecmd
 {
-	token	type;
-	t_tree	*left;
-	t_tree	*right;
+	t_token_type	type;
+	t_tree			*left;
+	t_tree			*right;
 }	t_pipe;
 
 typedef struct s_exec
 {
-	token			type;
+	t_token_type	type;
 	char			*line;
 	char			**args;
 	t_tree			*child_redi;
@@ -38,14 +38,14 @@ typedef struct s_exec
 
 typedef struct s_logiccmd
 {
-	token	type;
-	t_tree	*left;
-	t_tree	*right;
+	t_token_type	type;
+	t_tree			*left;
+	t_tree			*right;
 }	t_logic;
 
 typedef struct s_redcmd
 {
-	token			type;
+	t_token_type	type;
 	int				infile;
 	int				outfile;
 	char			*file_name;
@@ -58,9 +58,9 @@ typedef struct s_redcmd
 
 typedef struct s_grouped_commands
 {
-	token	type;
-	t_tree	*child;
-	t_tree	*outer_redir;
+	t_token_type	type;
+	t_tree			*child;
+	t_tree			*outer_redir;
 }	t_grp_exec;
 
 //Tree Building Functions
@@ -78,8 +78,8 @@ t_tree		*grouoped_cmd_tree(t_token **tokens, t_tree *redi_list, \
 t_pipe		*new_pipe(void);
 t_exec		*new_exec(int size_of_args);
 t_grp_exec	*new_grp_exec(void);
-t_logic		*new_logic(token type);
-t_tree		*node_logic(token type, t_tree *right, t_tree *left);
+t_logic		*new_logic(t_token_type type);
+t_tree		*node_logic(t_token_type type, t_tree *right, t_tree *left);
 t_redi_exec	*new_redi(t_token **tokens);
 
 //Token Processing Functions
@@ -96,7 +96,7 @@ void		remove_token(t_token **tokens, t_token *token);
 
 // Heredoc Creation Functions
 t_redi_exec	*creat_list_heredoc(t_token *tokens);
-t_redi_exec	*new_node_here_doc(token type);
+t_redi_exec	*new_node_here_doc(t_token_type type);
 int			check_expand(char *delimiter);
 
 // String Manipulation Functions

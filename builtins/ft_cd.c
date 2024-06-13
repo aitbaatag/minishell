@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:12:33 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 17:37:51 by asadiqui         ###   ########.fr       */
+/*   Updated: 2024/06/12 22:25:39 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	cd_special_cases(t_exec *exec)
 	set_exit_status(1);
 	if (!exec->args[1] || !ft_strcmp(exec->args[1], "~"))
 	{
-		home = find_env_var(global.env, "HOME");
+		home = find_env_var(g_global.env, "HOME");
 		if (home)
 			chdir(home->value);
 		else
@@ -46,11 +46,11 @@ int	ft_cd(t_exec *exec)
 	char	*oldpwd;
 	char	newpwd[1024];
 
-	oldpwd = ((find_env_var(global.env, "PWD"))->value);
+	oldpwd = ((find_env_var(g_global.env, "PWD"))->value);
 	if (cd_special_cases(exec))
 		return (get_exit_status());
-	add_var_to_envs_or_app_modif_exis(ft_strjoin("OLDPWD=", oldpwd));
+	add_or_modify_env_var(ft_strjoin("OLDPWD=", oldpwd));
 	getcwd(newpwd, sizeof(newpwd));
-	add_var_to_envs_or_app_modif_exis(ft_strjoin("PWD=", newpwd));
+	add_or_modify_env_var(ft_strjoin("PWD=", newpwd));
 	return (set_exit_status(0), get_exit_status());
 }

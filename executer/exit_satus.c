@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_satus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:58:07 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 20:47:12 by asadiqui         ###   ########.fr       */
+/*   Updated: 2024/06/12 22:14:32 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	get_exit_status(void)
 {
-	return (global.status);
+	return (g_global.status);
 }
 
 void	set_exit_status(int status)
 {
-	global.status = status;
+	g_global.status = status;
 }
 
 void	if_exit_with_signal(int *status)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:58:57 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 17:35:48 by asadiqui         ###   ########.fr       */
+/*   Updated: 2024/06/12 22:14:32 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,6 @@ void	*safe_malloc(size_t size)
 		free(ptr);
 		return (NULL);
 	}
-	add_garbage_node(&global.garbage_list, new_node);
+	add_garbage_node(&g_global.garbage_list, new_node);
 	return (ptr);
 }

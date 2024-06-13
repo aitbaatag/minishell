@@ -6,7 +6,7 @@
 /*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:58:09 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 16:10:05 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/12 22:14:32 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,35 +23,45 @@ char	*check_path(char *path, char *command)
 		return (NULL);
 }
 
+char	*find_valid_path(char **split_path, char *command)
+{
+	char	*curpath;
+	char	*valid_path;
+	int		i;
+
+	i = 0;
+	while (split_path[i] != NULL)
+	{
+		curpath = ft_strjoin(split_path[i], "/");
+		valid_path = check_path(curpath, command);
+		if (valid_path != NULL)
+			return (valid_path);
+		i++;
+	}
+	return (NULL);
+}
+
 char	*get_path(char *command)
 {
-	int		i;
 	char	**split_path;
 	t_env	*path_node;
 	char	*valid_path;
-	char	*curpath;
 
-	i = 0;
 	if (command == NULL)
 		return (NULL);
 	if (access(command, X_OK) == 0)
 		return (command);
 	if ((command[0] == '/' || command[0] == '.'))
 		return (command);
-	path_node = find_env_var(global.env, "PATH");
+	path_node = find_env_var(g_global.env, "PATH");
 	if (!path_node)
 		return (NULL);
 	split_path = ft_split(path_node->value, ':');
 	if (split_path)
 	{
-		while (split_path[i] != NULL)
-		{
-			curpath = ft_strjoin(split_path[i], "/");
-			valid_path = check_path(curpath, command);
-			if (valid_path != NULL)
-				return (valid_path);
-			i++;
-		}
+		valid_path = find_valid_path(split_path, command);
+		if (valid_path)
+			return (valid_path);
 	}
 	return (command);
 }
