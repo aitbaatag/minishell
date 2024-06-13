@@ -6,7 +6,7 @@
 /*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:03:32 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/13 23:22:32 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:53:09 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	expand_add_to_buff(char *args_i, char **buff, int *j)
 	if (env)
 	{
 		var_value = env->value;
-		g_global.to_split = 0;	
+		g_global.to_split = 1;	
 	}
 	else
 		var_value = handle_questionmark(var_name);
