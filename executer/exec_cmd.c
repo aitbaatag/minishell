@@ -6,7 +6,7 @@
 /*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 20:53:45 by asadiqui          #+#    #+#             */
-/*   Updated: 2024/06/12 22:14:32 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:03:24 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	run_cmd(t_tree *tree)
 		save_and_restore_fd(&orig_stdin, &orig_stdout, 1);
 		return (get_exit_status());
 	}
-	expand(exec->args, 0);
+	exec->args = expand(exec->args, 0);
 	if (!exec->args[0])
 		return (set_exit_status(0), get_exit_status());
 	status = handle_builtin(exec, orig_stdin, orig_stdout);

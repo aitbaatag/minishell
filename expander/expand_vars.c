@@ -6,7 +6,7 @@
 /*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:13:13 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/13 00:24:36 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:11:22 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,20 @@ static void	expand_core(char **buff, char *args_i, int *j, int *quotes)
 	(*j)++;
 }
 
-void	expand(char **args, int heredoc)
+char    **expand(char **args, int heredoc)
 {
-	char	*buff;
-	int		quotes_found;
-	int		i;
-	int		j;
+    char	*buff;
+    int		quotes_found;
+    int		i;
+    int		j;
+    int		k;
+    int		tmp_index;
 
+	char **tmp_args = safe_malloc(sizeof(char *) * 100);
+	i = -1;
+	while (args[++i])
+		tmp_args[i] = ft_strdup(args[i]);
+	tmp_index = 0;
 	i = 0;
 	while (args[i])
 	{
@@ -60,9 +67,28 @@ void	expand(char **args, int heredoc)
 				expand_core1(&buff, args[i], &j, &quotes_found);
 		}
 		if (!heredoc)
-			args[i] = remove_quotes(buff);
+		{
+			if (g_global.to_split)
+			{
+				k = 0;
+				char **buff_to_array = ft_split(remove_quotes(buff), ' ');
+				while (buff_to_array[k])
+					tmp_args[tmp_index++] = buff_to_array[k++];
+			}
+			else
+				tmp_args[tmp_index] = remove_quotes(buff);
+		}
 		else
 			args[i] = buff;
 		i++;
+		if (!g_global.to_split)
+			tmp_index++;
+		g_global.to_split = 0;
 	}
+	if (!heredoc)
+	{
+		tmp_args[tmp_index] = NULL;
+		args = tmp_args;
+	}
+	return (args);
 }

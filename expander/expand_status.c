@@ -6,7 +6,7 @@
 /*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:13:08 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/13 00:05:59 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:31:20 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*handle_questionmark(char *var_name)
 
 	i = 0;
 	len = ft_strlen(var_name);
-	if (var_name[i++] == '?')
+	if (var_name[i] && var_name[i++] == '?')
 		expand_status(var_name, &i, &buff);
 	else
 	{

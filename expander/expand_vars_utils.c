@@ -6,7 +6,7 @@
 /*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:03:32 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/13 03:39:45 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:22:32 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ void	expand_add_to_buff(char *args_i, char **buff, int *j)
 	var_name = ft_substr(args_i, *j + 1, len);
 	env = find_env_var(g_global.env, var_name);
 	if (env)
+	{
 		var_value = env->value;
+		g_global.to_split = 0;	
+	}
 	else
 		var_value = handle_questionmark(var_name);
 	tmp_buff = safe_malloc(sizeof(char) * (ft_strlen(var_value) + 1));
