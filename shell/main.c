@@ -6,7 +6,7 @@
 /*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:06:58 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 22:19:21 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/13 23:09:30 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	main(int argc, char *argv[], char *envp[])
 	(void)argv;
 	g_global.env = NULL;
 	g_global.garbage_list = NULL;
+	g_global.to_split = 0;
 	data = safe_malloc(sizeof(t_data));
 	set_env(envp);
 	while (1)

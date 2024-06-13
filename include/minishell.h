@@ -6,7 +6,7 @@
 /*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 18:46:51 by asadiqui          #+#    #+#             */
-/*   Updated: 2024/06/12 22:13:18 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/13 22:58:42 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_global
 {
 	t_env		*env;
 	int			status;
+	int			to_split;
 	t_garbage	*garbage_list;
 }	t_global;
 
