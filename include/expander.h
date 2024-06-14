@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 18:46:43 by asadiqui          #+#    #+#             */
-/*   Updated: 2024/06/13 23:03:01 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/14 01:10:06 by asadiqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	listfile(char *expand, t_token **tokens);
 /#			VARIABLES			*|
 |###############################*/
 
-char    **expand(char **args, int heredoc);
+char	**expand(char **args, int heredoc);
 void	add_char_to_buff(char **buff, char c);
 void	expand_add_to_buff(char *args_i, char **buff, int *j);
 void	identify_quotes(char c, int *quotes_found);

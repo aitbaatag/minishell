@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 03:24:42 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/13 21:57:24 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/14 01:18:07 by asadiqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 
 	n = 0;
 	i = 0;
-	// if (!*dst || !*src)
-	// 	return (0);
 	while (src[i] != '\0')
 	{
 		i++;
