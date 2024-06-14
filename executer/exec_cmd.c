@@ -6,11 +6,31 @@
 /*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 20:53:45 by asadiqui          #+#    #+#             */
-/*   Updated: 2024/06/13 23:03:24 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/14 09:09:44 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
+
+static void	cmd_exit_126(char *cmd)
+{
+	struct stat	info;
+
+	stat(cmd, &info);
+	if (S_ISDIR(info.st_mode))
+	{
+		ft_putstr_fd(RED ": Is a directory\n" CLOSE, 2);
+		set_exit_status(126);
+		return ;
+	}
+	if (access(cmd, R_OK | X_OK) == -1)
+	{
+		ft_putstr_fd(RED "Permission denied\n" CLOSE, 2);
+		set_exit_status(126);
+		return ;
+	}
+	return ;
+}
 
 void	cmd_notfound(char *cmd)
 {
@@ -18,16 +38,21 @@ void	cmd_notfound(char *cmd)
 	int	backslash;
 
 	ft_putstr_fd(cmd, 2);
-	i = 0;
-	backslash = 0;
-	while (cmd[i])
-		if (cmd[i++] == '/')
-			backslash = 1;
-	if (backslash)
-		ft_putstr_fd(": No such file or directory\n", 2);
-	else
-		ft_putstr_fd("\033[0;31m: command not found\n\033[0m", 2);
-	set_exit_status(127);
+	if (access(cmd, F_OK) == -1)
+	{
+		i = 0;
+		backslash = 0;
+		while (cmd[i])
+			if (cmd[i++] == '/')
+				backslash = 1;
+		if (backslash)
+			ft_putstr_fd(RED ": No such file or directory\n" CLOSE, 2);
+		else
+			ft_putstr_fd(RED ": command not found\n" CLOSE, 2);
+		set_exit_status(127);
+		return ;
+	}
+	return (cmd_exit_126(cmd));
 }
 
 int	handle_builtin(t_exec *exec, int orig_stdin, int orig_stdout)

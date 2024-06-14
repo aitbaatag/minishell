@@ -8,6 +8,7 @@
 * ls | ls then echo $/ (segv)
 * echo "'"'"' ==> print '" 
 * echo "'"
+* ./test_files mini exit code = 127 bash exit code = 126
 
 # TEST CASES TO FIX #
 ```

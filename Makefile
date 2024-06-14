@@ -34,6 +34,7 @@ SRCS = ./shell/main.c \
       ./parser/utils_heredoc.c \
       ./shell/signals.c \
       ./shell/heredoc_signals.c \
+      ./shell/prompt.c \
       ./environment/environment.c \
       ./environment/env_utils.c \
       ./environment/helper_functions.c \
@@ -69,7 +70,8 @@ SRCS = ./shell/main.c \
              ./libft/ft_putstr_fd.c \
              ./libft/ft_strjoin.c \
              ./libft/ft_strcmp.c \
-             ./libft/ft_isalnum.c
+             ./libft/ft_isalnum.c \
+             ./libft/ft_strnstr.c
 
 # Header files
 HEADERS = ./include/envs.h \
@@ -106,11 +108,11 @@ $(NAME): $(OBJS)
 	@printf "$(ANSI_RESET)"
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 
 clean:
-	@rm -f $(OBJS)
+	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)

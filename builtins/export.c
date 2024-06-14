@@ -6,7 +6,7 @@
 /*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:57:31 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 22:26:42 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/14 09:06:57 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	export_env_var(t_exec *exec)
 			{
 				ft_putstr_fd("minishell: export: `", 2);
 				ft_putstr_fd(exec->args[i], 2);
-				ft_putstr_fd("'\033[0;31m: not a valid identifier\n\033[0m", 2);
+				ft_putstr_fd(RED "': not a valid identifier\n" CLOSE, 2);
 				return (set_exit_status(1), get_exit_status());
 			}
 			i++;

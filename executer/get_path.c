@@ -6,7 +6,7 @@
 /*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:58:09 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 22:14:32 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/14 06:25:17 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,15 @@ char	*find_valid_path(char **split_path, char *command)
 
 char	*get_path(char *command)
 {
-	char	**split_path;
-	t_env	*path_node;
-	char	*valid_path;
+	char		**split_path;
+	t_env		*path_node;
+	char		*valid_path;
+	struct stat	info;
 
+	stat(command, &info);
 	if (command == NULL)
 		return (NULL);
-	if (access(command, X_OK) == 0)
+	if (access(command, X_OK) == 0 && !S_ISDIR(info.st_mode))
 		return (command);
 	if ((command[0] == '/' || command[0] == '.'))
 		return (command);

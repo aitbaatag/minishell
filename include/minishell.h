@@ -6,7 +6,7 @@
 /*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 18:46:51 by asadiqui          #+#    #+#             */
-/*   Updated: 2024/06/13 22:58:42 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/14 09:45:37 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <fcntl.h>
 # include <sys/wait.h>
 # include <sys/types.h>
+# include <sys/stat.h>
 # include <unistd.h>
 # include <dirent.h>
 # include <signal.h>
@@ -39,12 +40,24 @@
 #  define GREEN "\033[1;32m"
 # endif
 
+# ifndef RED
+#  define RED "\033[1;31m"
+# endif
+
 # ifndef CLOSE
 #  define CLOSE "\033[0m"
 # endif
 
 # ifndef PROMPT
 #  define PROMPT "minishell@1337:~$ "
+# endif
+
+# ifndef ORANGE
+#  define ORANGE "\033[1;38;5;208m"
+# endif
+
+# ifndef BLUE
+#  define BLUE "\033[1m"
 # endif
 
 typedef struct s_global
@@ -72,5 +85,6 @@ int		*heredoc_signaled(void);
 void	eof_handler(void);
 void	heredoc_eof(void);
 void	ft_signaled(void);
+char	*get_prompt(void);
 
 #endif

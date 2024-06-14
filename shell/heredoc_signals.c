@@ -6,7 +6,7 @@
 /*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 22:08:54 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 22:10:25 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/14 09:10:53 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	heredoc_handler(int signum)
 
 void	heredoc_eof(void)
 {
-	ft_putstr_fd("minishell: warning: here-document \
-		delimited by end-of-file\n", 2);
+	ft_putstr_fd(RED"minishell: warning: here-document \
+		delimited by end-of-file\n"CLOSE, 2);
 	set_exit_status(EXIT_SUCCESS);
 }
 
