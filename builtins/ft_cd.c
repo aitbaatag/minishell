@@ -6,7 +6,7 @@
 /*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:12:33 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 22:25:39 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/14 09:09:27 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ static int	cd_special_cases(t_exec *exec)
 			chdir(home->value);
 		else
 		{
-			ft_putstr_fd("cd: HOME not set\n", 2);
+			ft_putstr_fd(RED"cd: HOME not set\n"CLOSE, 2);
 			return (get_exit_status());
 		}
 	}
 	else if (exec->args[2])
 	{
-		ft_putstr_fd("cd: too many arguments\n", 2);
+		ft_putstr_fd(RED"cd: too many arguments\n"CLOSE, 2);
 		return (get_exit_status());
 	}
 	else if (exec->args[1] && chdir(exec->args[1]) == -1)

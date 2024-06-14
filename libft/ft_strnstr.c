@@ -1,42 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 21:33:55 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/14 11:28:27 by kait-baa         ###   ########.fr       */
+/*   Created: 2024/06/14 01:18:29 by kait-baa          #+#    #+#             */
+/*   Updated: 2024/06/14 08:28:31 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	sigint_handler(int signum)
+char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 {
-	(void)signum;
-	write(1, "\n", STDOUT_FILENO);
-	rl_on_new_line();
-	rl_redisplay();
-	set_exit_status(130);
-}
+	size_t	i;
+	size_t	b;
 
-void	sigint_handler_nl(int signum)
-{
-	(void)signum;
-	write(1, "\n", STDOUT_FILENO);
-	set_exit_status(130);
-}
-
-void	sigint_handler_exit(int signum)
-{
-	(void)signum;
-	set_exit_status(130);
-}
-
-void	eof_handler(void)
-{
-	printf("exit\n");
-	free_garbage(&g_global.garbage_list);
-	exit(EXIT_SUCCESS);
+	i = 0;
+	if (!s1 && !n)
+		return (NULL);
+	if (!*s2)
+		return ((char *)s1);
+	while (s1[i] && n > i)
+	{
+		b = 0;
+		while (s1[i + b] == s2[b] && n > i + b)
+		{
+			b++;
+			if (s2[b] == '\0')
+				return ((char *)s1 + i);
+		}
+		i++;
+	}
+	return (NULL);
 }

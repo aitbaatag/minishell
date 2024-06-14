@@ -6,7 +6,7 @@
 /*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 16:06:58 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/13 23:09:30 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/14 12:06:31 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ static void	parse_and_execute(t_data *data)
 
 static void	read_input(t_data *data)
 {
-	data->line = readline(GREEN PROMPT CLOSE);
+	char	*prompt;
+
+	prompt = get_prompt();
+	data->line = readline(prompt);
 	if (data->line == NULL)
 		eof_handler();
 	if (data->line[0])
