@@ -6,7 +6,7 @@
 /*   By: asadiqui <asadiqui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 18:47:02 by asadiqui          #+#    #+#             */
-/*   Updated: 2024/06/12 19:00:20 by asadiqui         ###   ########.fr       */
+/*   Updated: 2024/06/14 01:36:04 by asadiqui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ bool	check_redirection(t_token *node);
 #			OTHER	CHECK			#
 ###################################*/
 bool	check_parn_nbr(t_token *node);
-bool	check_closed_quotes(char *node, char quote);
+bool	check_closed_quotes(char *node);
 bool	check_series_of_redirection_after_parn(t_token *node);
 
 #endif
