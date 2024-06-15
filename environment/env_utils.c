@@ -6,7 +6,7 @@
 /*   By: kait-baa <kait-baa@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:57:50 by kait-baa          #+#    #+#             */
-/*   Updated: 2024/06/12 22:14:32 by kait-baa         ###   ########.fr       */
+/*   Updated: 2024/06/14 22:09:15 by kait-baa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*create_value(char *value_start)
 
 	if (!value_start)
 		return (ft_strdup(""));
-	value = remove_quotes(value_start);
+	value = ft_strdup(value_start);
 	return (value);
 }
 
