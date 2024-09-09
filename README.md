@@ -7,4 +7,3 @@
     </picture>
   </a>
 </p>
-## The Challenge
