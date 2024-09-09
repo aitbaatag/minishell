@@ -41,11 +41,8 @@ typedef struct s_token
 {
 	t_token_type	type;
 	char			*value;
-	int				count;
-	int				index;
 	struct s_token	*next;
 	struct s_token	*prev;
-	t_redi_exec		*list_here_doc;
 }	t_token;
 
 t_token			*tokenization(char *line);

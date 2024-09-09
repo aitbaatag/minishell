@@ -59,9 +59,6 @@ bool	check_parentheses(t_token *node)
 
 bool	check_redirection(t_token *node)
 {
-	int	i;
-
-	i = 1;
 	if (!node->next || (node->next && !(node->next->type & WORD)))
 		return (print_syntax_error(node), false);
 	return (true);
