@@ -12,63 +12,43 @@
 
 #include "../include/minishell.h"
 
-char	*get_current_directory_prompt(char *cwd)
+char	*get_current_directory_prompt(char *cwd, char *user)
 {
-	int	b;
-	int	i;
-
-	b = 0;
-	i = 0;
-	while (cwd[i] && b < 3)
-	{
-		if (cwd[i] == '/')
-			b++;
-		i++;
-	}
-	return (ft_strdup(&cwd[i]));
+	if (cwd[0] == '/' && cwd[1] == '\0')
+		return (ft_strdup("/"));
+	return (ft_strnstr(cwd, user, ft_strlen(cwd)));
 }
 
-char	*construct_prompt(t_env *env_user, char *path)
+char	*construct_prompt(char *username, char *path)
 {
 	char	*tmp_prompt;
-	char	*prompt;
 
-	if (!env_user || !env_user->value)
-		prompt = ft_strdup(RED"known_user@minishell:~"CLOSE);
-	else
-	{
-		prompt = ft_strjoin(env_user->value, "@minishell:~");
-		prompt = ft_strjoin(ORANGE, prompt);
-		prompt = ft_strjoin(prompt, CLOSE);
-	}
+	username = ft_strjoin(ORANGE, ft_strjoin(username,":~"));
+	username = ft_strjoin(username, CLOSE);
 	tmp_prompt = ft_strnstr(path, "/", ft_strlen(path));
-	if (!tmp_prompt)
-		prompt = ft_strjoin(prompt, RED"$ > "CLOSE);
-	else
-	{
-		prompt = ft_strjoin(prompt, tmp_prompt);
-		prompt = ft_strjoin(prompt, RED"$ > "CLOSE);
-	}
-	return (prompt);
+	username = ft_strjoin(username, tmp_prompt);
+	username = ft_strjoin(username, RED"$ -_- > "CLOSE);
+	return (username);
 }
 
 char	*get_prompt(void)
 {
 	char	cwd[1024];
-	t_env	*env_user;
+	char hostname[256];
+    char *username;
 	char	*prompt;
-
+	
 	prompt = NULL;
-	env_user = find_env_var(g_global.env, "USER");
+	if (gethostname(hostname, sizeof(hostname)) != 0) {
+        perror("gethostname");
+    }
+	username = getlogin();
+    if (username == NULL) {
+        perror("getlogin");
+    }
 	getcwd(cwd, sizeof(cwd));
-	if (env_user && env_user->value)
-	{
-		prompt = ft_strnstr(cwd, env_user->value, ft_strlen(cwd));
-		if (!prompt)
-			prompt = ft_strdup(env_user->value);
-	}
-	else
-		prompt = get_current_directory_prompt(cwd);
-	prompt = construct_prompt(env_user, prompt);
+	prompt = get_current_directory_prompt(cwd, username);
+	username = ft_strjoin(username, ft_strjoin("@", hostname));
+	prompt = construct_prompt(username, prompt);
 	return (prompt);
 }

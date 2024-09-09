@@ -62,5 +62,7 @@ int	main(int argc, char *argv[], char *envp[])
 		init_signals();
 		read_input(data);
 		parse_and_execute(data);
+		// free_garbage(&g_global.garbage_list);
 	}
+	// free_garbage(&g_global.env);
 }

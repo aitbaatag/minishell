@@ -24,10 +24,8 @@ t_tree	*node_logic(t_token_type type, t_tree *left, t_tree *right)
 
 char	*init_arg(char *value)
 {
-	int		i;
 	char	*arg;
 
-	i = 0;
 	if (!value)
 		return (NULL);
 	arg = safe_malloc(ft_strlen(value) + 1);

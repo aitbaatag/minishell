@@ -14,9 +14,6 @@
 
 void	process_spaces(t_token **tokens, char *line, int *i)
 {
-	int	fix;
-
-	fix = *i;
 	(void)tokens;
 	while (line[*i] == 32 || (line[*i] >= 7 && line[*i] <= 13))
 		(*i)++;
