@@ -263,6 +263,7 @@ Command: (export A=123) && echo $A
 5. Result:
   - Since the environment variable `A` was set in a subshell, it does not persist 
     to the parent shell, and the final output of `echo $A` is an empty line.
+## How to Use
 ### Clone the repository:
 ``` 
 git clone https://github.com/aitbaatag/minishell.git
