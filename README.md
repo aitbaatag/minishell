@@ -117,6 +117,15 @@ typedef struct s_token
 ### Parser
 
 The parser builds an Abstract Syntax Tree (AST) from the tokens provided by the lexer. The AST represents the syntactic structure of the command input and helps in executing commands by organizing them into a hierarchical structure. The parser uses several data structures to model different aspects of the command input.
+```h
+ ls -a | gredfsd | (grep shel || ls && ls -la) | grep mini
+```
+<img src="./jj1.png" width ="100%"/>
+
+```h
+(ls && (cat Makefile) > file) > file2
+```
+<img src="./jj2.png" width ="100%"/>
 
 #### Data Structures
 
