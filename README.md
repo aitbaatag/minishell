@@ -120,12 +120,12 @@ The parser builds an Abstract Syntax Tree (AST) from the tokens provided by the 
 ```h
  ls -a | gredfsd | (grep shel || ls && ls -la) | grep mini
 ```
-<img src="./jj1.png" width ="100%"/>
+<img src="./tree1.png" width ="100%"/>
 
 ```h
 (ls && (cat Makefile) > file) > file2
 ```
-<img src="./jj2.png" width ="100%"/>
+<img src="./tree2.png" width ="100%"/>
 
 #### Data Structures
 
